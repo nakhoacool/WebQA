@@ -1,0 +1,87 @@
+'use client'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
+
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
+import { Textarea } from '@/components/ui/textarea'
+import { JSX, SVGProps } from 'react'
+
+const formSchema = z.object({
+  chatMessage: z.string(),
+})
+
+export function ChatForm() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      chatMessage: '',
+    },
+  })
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
+    form.reset()
+  }
+
+  return (
+    <Form {...form}>
+      <div className='inp'>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <FormField
+            control={form.control}
+            name='chatMessage'
+            render={({ field }) => (
+              <FormItem>
+                <div className='textarea-wrapper'>
+                  <FormControl>
+                    <Textarea
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                          if (
+                            field.value.length < 1 ||
+                            (field.value.length < 2 && !e.shiftKey)
+                          ) {
+                            e.preventDefault()
+                          } else {
+                            form.handleSubmit(onSubmit)()
+                            form.reset()
+                          }
+                        }
+                      }}
+                      placeholder='Enter your message...'
+                      className='resize-none focus-visible:ring-offset-0 focus-visible:ring-0 pr-20'
+                      {...field}
+                    />
+                  </FormControl>
+                  <Button
+                    type='submit'
+                    className='inside-button'
+                    disabled={field.value.length < 2}
+                  >
+                    <IconSend className='text-white dark:text-black' />
+                  </Button>
+                </div>
+              </FormItem>
+            )}
+          />
+        </form>
+      </div>
+    </Form>
+  )
+}
+
+function IconSend(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+  return (
+    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' {...props}>
+      <path
+        d='M7 11L12 6L17 11M12 18V7'
+        stroke='currentColor'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      ></path>
+    </svg>
+  )
+}
