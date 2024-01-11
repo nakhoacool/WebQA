@@ -1,4 +1,6 @@
-flask
 langchain
+faiss-cpu
+streamlit
+jupyterlab
 elasticsearch
 rank_bm25

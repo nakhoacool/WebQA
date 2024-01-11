@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   server:
     container_name: server
@@ -12,7 +12,6 @@ services:
         - path: ./server
           target: /server
           action: sync
-
   client:
     container_name: client
     build: ./client
