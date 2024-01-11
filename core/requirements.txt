@@ -1,6 +1,5 @@
 langchain
-faiss-cpu
-streamlit
 jupyterlab
 elasticsearch
 rank_bm25
+langchain-google-genai
