@@ -61,7 +61,7 @@ class Configuration:
         with open(f"{self.env_path}/../.keys/elastic.nodes") as f:
             nodes = f.readlines()
         with open(f"{self.env_path}/../.keys/elastic.auth") as f:
-            auth = f.read().split(":")
+            auth = f.read().strip().split(":")
         es = Elasticsearch(
             nodes, 
             basic_auth=auth, 
