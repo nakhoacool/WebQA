@@ -13,10 +13,13 @@ class HybridGeminiRag:
     """
         Formula: RAG = Gemini + ES + Hybrid Search
     """
-    
+
     def __init__(self, es_index: str, embed_model: str, config: Configuration):
         """
             Initialize the RAG
+            @param es_index elastic search index
+            @param embed_model hugging face sentence-transformer model
+            @param config Configuration
         """
         self.chat_model = ChatGoogleGenerativeAI(
             model="gemini-pro", 
