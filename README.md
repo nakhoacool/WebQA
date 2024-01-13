@@ -1,3 +1,12 @@
+## To run Flask server
+At the top directory, run
+```bash
+flask --app core/app.py run
+```
+
+To test QA, go to
+- http://127.0.0.1:5000/qa/em%20gi%E1%BB%8Fi%20v%E1%BA%BD%20th%C3%AC%20n%C3%AAn%20h%E1%BB%8Dc%20g%C3%AC
+
 ## Docker Setup and Installation
 
 1. Make sure Docker and Docker Compose are installed on your machine. If not, you can download them from [Docker's official website](https://www.docker.com/products/docker-desktop).

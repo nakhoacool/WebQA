@@ -30,7 +30,7 @@ class DocDataLoader:
             chunk_size=size, chunk_overlap=overlap, 
             length_function=self.word_len_func, is_separator_regex=False
         )
-        db_df = pd.read_csv('../data/test_major/docs.csv')
+        db_df = pd.read_csv(f'{self.env_path}/../../data/test_major/docs.csv')
         dist = []
         db = []
         for i, data in db_df.iterrows():

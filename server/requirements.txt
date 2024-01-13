@@ -1,4 +1,0 @@
-flask
-langchain
-elasticsearch
-rank_bm25
