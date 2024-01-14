@@ -1,5 +1,9 @@
+'use client'
 import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { Button } from '@/components/ui/button'
+import React, { useState } from 'react'
+import SidebarItem from '@/components/component/sidebar-item'
 import {
   Popover,
   PopoverContent,
@@ -9,23 +13,31 @@ import {
 import { JSX, SVGProps } from 'react'
 
 export function Sidebar() {
+  const [items, setItems] = useState(['Hellodadawdawdawdawdwa', 'Hello'])
+  const handleRemove = (indexToRemove: number) => {
+    setItems(items.filter((_, index) => index !== indexToRemove))
+  }
+
   return (
     <div key='1' className='bg-[#000000] w-[250px] h-full flex flex-col'>
-      <div className='flex items-center px-6 py-4 space-x-4 border-b border-gray-700 justify-between'>
+      <Button
+        variant='outline'
+        className='flex items-center px-6 py-4 space-x-4 border-b border-gray-700 justify-between'
+      >
         <div className='flex items-center space-x-4'>
-          <MessageCircleIcon className='text-gray-400 h-6 w-6' />
           <span className='font-semibold text-lg'>New chat</span>
         </div>
         <PlusIcon className='text-gray-400 h-6 w-6' />
-      </div>
+      </Button>
 
-      <ScrollArea className='py-2 grow overflow-y-auto'>
-        <a
-          className='block px-6 py-2 hover:bg-gray-700 truncate text-clip'
-          href='#'
-        >
-          Hello
-        </a>
+      <ScrollArea className='py-3 grow overflow-y-auto'>
+        {items.map((text, index) => (
+          <SidebarItem
+            key={index}
+            text={text}
+            onRemove={() => handleRemove(index)}
+          />
+        ))}
       </ScrollArea>
 
       <Popover>
@@ -39,27 +51,6 @@ export function Sidebar() {
         <PopoverContent className='w-60'>Hi</PopoverContent>
       </Popover>
     </div>
-  )
-}
-
-function MessageCircleIcon(
-  props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
-) {
-  return (
-    <svg
-      {...props}
-      xmlns='http://www.w3.org/2000/svg'
-      width='24'
-      height='24'
-      viewBox='0 0 24 24'
-      fill='none'
-      stroke='currentColor'
-      strokeWidth='2'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    >
-      <path d='m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z' />
-    </svg>
   )
 }
 
