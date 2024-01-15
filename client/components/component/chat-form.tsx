@@ -34,7 +34,7 @@ export function ChatForm() {
             name='chatMessage'
             render={({ field }) => (
               <FormItem>
-                <div className='textarea-wrapper'>
+                <div className='relative'>
                   <FormControl>
                     <Textarea
                       onKeyDown={(e) => {
@@ -57,7 +57,7 @@ export function ChatForm() {
                   </FormControl>
                   <Button
                     type='submit'
-                    className='inside-button'
+                    className='absolute bottom-[10px] right-[10px]'
                     disabled={field.value.length < 2}
                   >
                     <IconSend className='text-white dark:text-black' />
