@@ -1,0 +1,1 @@
+{ "answer": "Tôi không thể trả lời câu hỏi này vì thông tin về cổ sinh vật học không được đề cập trong các tài liệu được cung cấp.", "question": "Trường có đào tạo cổ sinh vật học không?", "status": 200 }
