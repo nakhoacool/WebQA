@@ -4,8 +4,15 @@ At the top directory, run
 flask --app core/app.py run
 ```
 
-To test QA, go to
+To test QA with GET request, go to
 - http://127.0.0.1:5000/qa/em%20gi%E1%BB%8Fi%20v%E1%BA%BD%20th%C3%AC%20n%C3%AAn%20h%E1%BB%8Dc%20g%C3%AC
+
+To test QA with POST request, run
+```bash
+bash test_POST.sh
+
+cat a.txt
+```
 
 ## Docker Setup and Installation
 
