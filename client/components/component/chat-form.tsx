@@ -2,7 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
-
+import axios from 'axios';
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
@@ -21,7 +21,22 @@ export function ChatForm() {
   })
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+    const url = 'http://127.0.0.1:5000/qa'
+    const data = {
+      "question": values.chatMessage
+    };
+    console.log(data['question'])
+
+    axios
+      .post(url, data, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        },
+      })
+      .then(({data}) => {
+        console.table(data);
+    });
     form.reset()
   }
 

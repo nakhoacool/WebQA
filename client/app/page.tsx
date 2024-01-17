@@ -7,7 +7,7 @@ export default function Home() {
       <div className='main'>
         <div className='chats'>
           <div className='chat'>
-            Welcome to the chat
+            Welcome to the chat. I have modified this.
           </div>
         </div>
         <div className='chat-footer'>
