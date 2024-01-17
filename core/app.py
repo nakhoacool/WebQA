@@ -3,11 +3,14 @@ from markupsafe import escape
 from src.rag.hybrid_gemini import HybridGeminiRag
 from src.config import Configuration
 import logging
+from flask_cors import CORS
 
 # When call API, please check the "status" field first
 # 200 is success, else is error
 
 app = Flask(__name__)
+# enable CORS
+CORS(app=app)
 
 config = Configuration()
 config.enable_tracing("TEST")
@@ -36,8 +39,8 @@ def answer_major():
         return {"status": 404}
     try:
         question = request.form.get("question")
-        answer = RAG.rag.invoke(escape(question))
-        #answer = "tôi không biết thông tin chi tiết"
+        #answer = RAG.rag.invoke(escape(question))
+        answer = "tôi không biết thông tin chi tiết"
         data = {"question": question, "answer": answer, "status": 200}
     except Exception as Argument:
         with open("rag.log", "a") as f:
