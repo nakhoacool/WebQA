@@ -8,11 +8,15 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
 import { JSX, SVGProps } from 'react'
 
+type ChildProps = {
+  setMessage: (message: string) => void;
+};
+
 const formSchema = z.object({
   chatMessage: z.string(),
 })
 
-export function ChatForm() {
+export function ChatForm(props: ChildProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -25,8 +29,6 @@ export function ChatForm() {
     const data = {
       "question": values.chatMessage
     };
-    console.log(data['question'])
-
     axios
       .post(url, data, {
         headers: {
@@ -35,7 +37,9 @@ export function ChatForm() {
         },
       })
       .then(({data}) => {
+        // how to define a type for 'data'
         console.table(data);
+        props.setMessage(data['answer'])
     });
     form.reset()
   }
