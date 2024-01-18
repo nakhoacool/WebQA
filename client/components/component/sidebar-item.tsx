@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, JSX, SVGProps } from 'react'
 const SidebarItem = ({
   text,
   onRemove,
@@ -9,33 +9,27 @@ const SidebarItem = ({
   const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <a
-      className='px-6 py-2 hover:bg-gray-700 flex justify-between items-center'
-      href='#'
+    <div
+      className='px-4 py-2 hover:bg-gray-700 cursor-pointer flex justify-between items-center'
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className='w-40 truncate text-clip'>{text}</div>
-      <div>
-        {isHovered && (
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth={1.5}
-            stroke='currentColor'
-            className='w-6 h-6'
-            onClick={onRemove}
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0'
-            />
-          </svg>
-        )}
-      </div>
-    </a>
+      <p className='w-40 text-sm truncate'>{text}</p>
+      {isHovered && <TrashIcon className='h-5 w-5' onClick={onRemove} />}
+    </div>
+  )
+}
+
+function TrashIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      viewBox='0 0 448 512'
+      fill='white'
+      {...props}
+    >
+      <path d='M164.2 39.5L148.9 64H299.1L283.8 39.5c-2.9-4.7-8.1-7.5-13.6-7.5H177.7c-5.5 0-10.6 2.8-13.6 7.5zM311 22.6L336.9 64H384h32 16c8.8 0 16 7.2 16 16s-7.2 16-16 16H416V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V96H16C7.2 96 0 88.8 0 80s7.2-16 16-16H32 64h47.1L137 22.6C145.8 8.5 161.2 0 177.7 0h92.5c16.6 0 31.9 8.5 40.7 22.6zM64 96V432c0 26.5 21.5 48 48 48H336c26.5 0 48-21.5 48-48V96H64zm80 80V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V176c0-8.8 7.2-16 16-16s16 7.2 16 16zm96 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V176c0-8.8 7.2-16 16-16s16 7.2 16 16zm96 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V176c0-8.8 7.2-16 16-16s16 7.2 16 16z' />
+    </svg>
   )
 }
 export default SidebarItem

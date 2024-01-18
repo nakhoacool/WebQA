@@ -2,15 +2,15 @@ version: "3"
 services:
   server:
     container_name: server
-    build: ./server
+    build: ./core
     ports:
       - 5000:5000
     develop:
       watch:
-        - path: ./server/requirements.txt
+        - path: ./core/requirements.txt
           action: rebuild
-        - path: ./server
-          target: /server
+        - path: ./core
+          target: /core
           action: sync
   client:
     container_name: client

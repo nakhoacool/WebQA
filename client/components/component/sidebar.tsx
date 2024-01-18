@@ -1,55 +1,43 @@
 'use client'
 import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { Button } from '@/components/ui/button'
-import React, { useState } from 'react'
-import SidebarItem from '@/components/component/sidebar-item'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
-
-import { JSX, SVGProps } from 'react'
+import React, { useState, JSX, SVGProps } from 'react'
+import SidebarItem from './sidebar-item'
 
 export function Sidebar() {
-  const [items, setItems] = useState(['Hellodadawdawdawdawdwa', 'Hello'])
+  const [items, setItems] = useState([
+    'Hello',
+    'How are you',
+    `Let's meet up later. Let's meet up later. Let's meet up later.
+              Let's meet up later. Let's meet up later.`,
+  ])
   const handleRemove = (indexToRemove: number) => {
     setItems(items.filter((_, index) => index !== indexToRemove))
   }
 
   return (
-    <div key='1' className='bg-[#000000] w-[250px] h-full flex flex-col'>
-      <Button
-        variant='outline'
-        className='flex items-center px-6 py-4 space-x-4 border-b border-gray-700 justify-between'
-      >
-        <div className='flex items-center space-x-4'>
-          <span className='font-semibold text-lg'>New chat</span>
-        </div>
-        <PlusIcon className='text-gray-400 h-6 w-6' />
-      </Button>
-
-      <ScrollArea className='py-3 grow overflow-y-auto'>
-        {items.map((text, index) => (
+    <div className='flex flex-col w-64 border-r border-gray-700'>
+      <div className='px-4 py-2 flex items-center justify-between border-b border-gray-700'>
+        <h2 className='text-lg font-semibold'>New chat</h2>
+        <button className='p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring'>
+          <PlusIcon className='text-white h-6 w-6' />
+        </button>
+      </div>
+      <div className='overflow-y-auto'>
+        {items.map((item, index) => (
           <SidebarItem
             key={index}
-            text={text}
+            text={item}
             onRemove={() => handleRemove(index)}
           />
         ))}
-      </ScrollArea>
-
-      <Popover>
-        <PopoverTrigger className='flex px-6 py-4 hover:bg-gray-700 border-t border-gray-700 items-center'>
-          <Avatar>
-            <AvatarImage alt='Guest' src='' />
-            <AvatarFallback>G</AvatarFallback>
-          </Avatar>
-          <span className='font-semibold'>Guest</span>
-        </PopoverTrigger>
-        <PopoverContent className='w-60'>Hi</PopoverContent>
-      </Popover>
+      </div>
+      <div className='px-4 py-2 flex items-center space-x-2 border-t border-gray-700 mt-auto'>
+        <Avatar>
+          <AvatarImage alt='Guest' src='/placeholder.svg?height=32&width=32' />
+          <AvatarFallback>G</AvatarFallback>
+        </Avatar>
+        <span className='text-sm'>Guest</span>
+      </div>
     </div>
   )
 }
@@ -61,7 +49,7 @@ function PlusIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
       xmlns='http://www.w3.org/2000/svg'
       width='24'
       height='24'
-      viewBox='0 0 24 24'
+      viewBox='0 24'
       fill='none'
       stroke='currentColor'
       strokeWidth='2'
