@@ -2,15 +2,15 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
-import axios from 'axios';
+import axios from 'axios'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
 import { JSX, SVGProps } from 'react'
 
 type ChildProps = {
-  setMessage: (message: string) => void;
-};
+  onSubmit: (message: string) => void
+}
 
 const formSchema = z.object({
   chatMessage: z.string(),
@@ -27,20 +27,20 @@ export function ChatForm(props: ChildProps) {
   function onSubmit(values: z.infer<typeof formSchema>) {
     const url = 'http://127.0.0.1:5000/qa'
     const data = {
-      "question": values.chatMessage
-    };
-    axios
-      .post(url, data, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-        },
-      })
-      .then(({data}) => {
-        // how to define a type for 'data'
-        console.table(data);
-        props.setMessage(data['answer'])
-    });
+      question: values.chatMessage,
+    }
+    // axios
+    //   .post(url, data, {
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    //     },
+    //   })
+    //   .then(({ data }) => {
+    //     //props.onSubmit(data.answer);
+    //     // props.onSubmit(values.chatMessage)
+    //   })
+    props.onSubmit(values.chatMessage)
     form.reset()
   }
 
