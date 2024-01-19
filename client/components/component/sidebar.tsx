@@ -3,7 +3,11 @@ import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar'
 import React, { useState, JSX, SVGProps } from 'react'
 import SidebarItem from './sidebar-item'
 
-export function Sidebar() {
+type ChildProps = {
+  onClearChat: () => void
+}
+
+export function Sidebar(props: ChildProps) {
   const [items, setItems] = useState([
     'Hello',
     'How are you',
@@ -18,7 +22,10 @@ export function Sidebar() {
     <div className='flex flex-col w-64 border-r border-gray-700'>
       <div className='px-4 py-2 flex items-center justify-between border-b border-gray-700'>
         <h2 className='text-lg font-semibold'>New chat</h2>
-        <button className='p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring'>
+        <button
+          className='p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring'
+          onClick={props.onClearChat}
+        >
           <PlusIcon className='text-white h-6 w-6' />
         </button>
       </div>

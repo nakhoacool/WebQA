@@ -24,6 +24,20 @@ export function ChatForm(props: ChildProps) {
     },
   })
 
+  function handleKeyDown(
+    e: React.KeyboardEvent,
+    field: any,
+    form: any,
+    onSubmit: Function
+  ) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      if (field.value.trim().length > 0) {
+        form.handleSubmit(onSubmit)()
+      }
+    }
+  }
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     const url = 'http://127.0.0.1:5000/qa'
     const data = {
@@ -56,19 +70,7 @@ export function ChatForm(props: ChildProps) {
                 <div className='relative'>
                   <FormControl>
                     <Textarea
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' && !e.shiftKey) {
-                          if (
-                            field.value.length < 1 ||
-                            (field.value.length < 2 && !e.shiftKey)
-                          ) {
-                            e.preventDefault()
-                          } else {
-                            form.handleSubmit(onSubmit)()
-                            form.reset()
-                          }
-                        }
-                      }}
+                      onKeyDown={(e) => handleKeyDown(e, field, form, onSubmit)}
                       placeholder='Enter your message...'
                       className='resize-none focus-visible:ring-offset-0 focus-visible:ring-0 pr-20'
                       {...field}
@@ -77,7 +79,7 @@ export function ChatForm(props: ChildProps) {
                   <Button
                     type='submit'
                     className='absolute bottom-[10px] right-[10px]'
-                    disabled={field.value.length < 2}
+                    disabled={field.value.trim().length < 1}
                   >
                     <IconSend className='text-white dark:text-black' />
                   </Button>
