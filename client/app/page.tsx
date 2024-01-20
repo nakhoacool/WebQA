@@ -22,12 +22,18 @@ const testData = [
   { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
 ]
 
+interface Message {
+  id: string
+  role: string
+  content: string
+}
+
 export default function Home() {
   const [data, setData] = useState(testData)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
-  const handleFormSubmit = (message: string) => {
-    setData([...data, { id: 'first chat', role: 'user', content: message }])
+  const handleFormSubmit = (message: Message) => {
+    setData((prevData) => [...prevData, message])
   }
 
   const handleClearChat = () => {

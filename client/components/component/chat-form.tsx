@@ -8,8 +8,14 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
 import { JSX, SVGProps } from 'react'
 
+type Message = {
+  id: string
+  role: string
+  content: string
+}
+
 type ChildProps = {
-  onSubmit: (message: string) => void
+  onSubmit: (message: Message) => void
 }
 
 const formSchema = z.object({
@@ -43,18 +49,28 @@ export function ChatForm(props: ChildProps) {
     const data = {
       question: values.chatMessage,
     }
-    // axios
-    //   .post(url, data, {
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-    //     },
-    //   })
-    //   .then(({ data }) => {
-    //     //props.onSubmit(data.answer);
-    //     // props.onSubmit(values.chatMessage)
-    //   })
-    props.onSubmit(values.chatMessage)
+    axios
+      .post(url, data, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        },
+      })
+      .then(({ data }) => {
+        props.onSubmit({
+          id: 'unique-user-id',
+          role: 'user',
+          content: values.chatMessage,
+        })
+
+        setTimeout(() => {
+          props.onSubmit({
+            id: 'unique-bot-id',
+            role: 'bot',
+            content: data.answer,
+          })
+        }, 1000)
+      })
     form.reset()
   }
 
