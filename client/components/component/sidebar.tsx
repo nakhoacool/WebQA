@@ -23,7 +23,7 @@ export function Sidebar(props: ChildProps) {
       <div className='px-4 py-2 flex items-center justify-between border-b border-gray-700'>
         <h2 className='text-lg font-semibold'>New chat</h2>
         <button
-          className='p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring'
+          className='p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring hover:scale-105 transition-transform duration-200 ease-in-out'
           onClick={props.onClearChat}
         >
           <PlusIcon className='text-white h-6 w-6' />
