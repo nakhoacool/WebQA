@@ -2,7 +2,7 @@
 import { Sidebar } from '@/components/component/sidebar'
 import ChatBubble from '@/components/ui/chat-bubble'
 import { ChatForm } from '@/components/component/chat-form'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useReducer } from 'react'
 
 const testData = [
   { id: 'first chat', role: 'bot', content: 'Hello, how can I help you?' },
@@ -28,18 +28,35 @@ interface Message {
   content: string
 }
 
+type Action = { type: 'add_message'; message: Message } | { type: 'clear_chat' }
+
+const chatReducer = (state: Message[], action: Action) => {
+  switch (action.type) {
+    case 'add_message':
+      return [...state, action.message]
+    case 'clear_chat':
+      return [
+        {
+          id: 'first chat',
+          role: 'bot',
+          content: 'Hello, how can I help you?',
+        },
+      ]
+    default:
+      return state
+  }
+}
+
 export default function Home() {
-  const [data, setData] = useState(testData)
+  const [data, dispatch] = useReducer(chatReducer, testData)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
   const handleFormSubmit = (message: Message) => {
-    setData((prevData) => [...prevData, message])
+    dispatch({ type: 'add_message', message })
   }
 
   const handleClearChat = () => {
-    setData([
-      { id: 'first chat', role: 'bot', content: 'Hello, how can I help you?' },
-    ])
+    dispatch({ type: 'clear_chat' })
   }
 
   useEffect(() => {
