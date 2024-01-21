@@ -13,19 +13,28 @@ interface ChatBubbleProps {
 const ChatBubble: React.FC<ChatBubbleProps> = ({ data }) => {
   const [currentMessage, setCurrentMessage] = useState('')
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null
     if (data.role === 'bot') {
       let messageArray = data.content.split(' ')
       let i = 0
-      const intervalId = setInterval(() => {
+      const addWord = () => {
         setCurrentMessage((prev) => prev + ' ' + messageArray[i])
         i++
-        if (i === messageArray.length) {
-          clearInterval(intervalId)
+        if (i < messageArray.length) {
+          timeoutId = setTimeout(() => requestAnimationFrame(addWord), 50)
         }
-      }, 20) // Adjust the interval to control the speed of typing
-      return () => clearInterval(intervalId)
+      }
+      // Start the typing effect
+      addWord()
     } else {
       setCurrentMessage(data.content)
+    }
+
+    // Cleanup function
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
     }
   }, [data])
   return (
