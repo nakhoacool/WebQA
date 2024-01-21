@@ -9,7 +9,6 @@ import { Textarea } from '@/components/ui/textarea'
 import IconSend from '@/components/icon/send'
 
 type Message = {
-  id: string
   role: string
   content: string
 }
@@ -52,7 +51,6 @@ export function ChatForm(props: ChildProps) {
       question: values.chatMessage,
     }
     props.onSubmit({
-      id: 'unique-user-id',
       role: 'user',
       content: values.chatMessage,
     })
@@ -66,7 +64,6 @@ export function ChatForm(props: ChildProps) {
       })
       .then(({ data }) => {
         props.onSubmit({
-          id: 'unique-bot-id',
           role: 'bot',
           content: data.answer,
         })

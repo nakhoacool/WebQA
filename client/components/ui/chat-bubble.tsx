@@ -4,7 +4,6 @@ import UserIcon from '@/components/icon/user'
 
 interface ChatBubbleProps {
   data: {
-    id: string
     role: string
     content: string
   }

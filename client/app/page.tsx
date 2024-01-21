@@ -2,38 +2,24 @@
 import { Sidebar } from '@/components/component/sidebar'
 import ChatBubble from '@/components/ui/chat-bubble'
 import { ChatForm } from '@/components/component/chat-form'
-import React, { useState, useEffect, useRef, useReducer } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import RobotIcon from '@/components/icon/robot'
 interface Message {
-  id: string
   role: string
   content: string
 }
 
-type Action = { type: 'add_message'; message: Message } | { type: 'clear_chat' }
-
-const chatReducer = (state: Message[], action: Action) => {
-  switch (action.type) {
-    case 'add_message':
-      return [...state, action.message]
-    case 'clear_chat':
-      return []
-    default:
-      return state
-  }
-}
-
 export default function Home() {
   const [isBotTyping, setIsBotTyping] = useState(false)
-  const [data, dispatch] = useReducer(chatReducer, [])
+  const [data, setData] = useState<Message[]>([])
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
   const handleFormSubmit = (message: Message) => {
-    dispatch({ type: 'add_message', message })
+    setData((prev) => [...prev, message])
   }
 
   const handleClearChat = () => {
-    dispatch({ type: 'clear_chat' })
+    setData([])
   }
 
   useEffect(() => {
