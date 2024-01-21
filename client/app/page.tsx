@@ -3,25 +3,7 @@ import { Sidebar } from '@/components/component/sidebar'
 import ChatBubble from '@/components/ui/chat-bubble'
 import { ChatForm } from '@/components/component/chat-form'
 import React, { useState, useEffect, useRef, useReducer } from 'react'
-
-const testData = [
-  { id: 'first chat', role: 'bot', content: 'Hello, how can I help you?' },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-  { id: 'first chat', role: 'user', content: "Hi there! How's it going?" },
-]
-
+import RobotIcon from '@/components/icon/robot'
 interface Message {
   id: string
   role: string
@@ -35,20 +17,15 @@ const chatReducer = (state: Message[], action: Action) => {
     case 'add_message':
       return [...state, action.message]
     case 'clear_chat':
-      return [
-        {
-          id: 'first chat',
-          role: 'bot',
-          content: 'Hello, how can I help you?',
-        },
-      ]
+      return []
     default:
       return state
   }
 }
 
 export default function Home() {
-  const [data, dispatch] = useReducer(chatReducer, testData)
+  const [isBotTyping, setIsBotTyping] = useState(false)
+  const [data, dispatch] = useReducer(chatReducer, [])
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
   const handleFormSubmit = (message: Message) => {
@@ -74,11 +51,28 @@ export default function Home() {
           {data.map((data, index) => (
             <ChatBubble key={index} data={data} />
           ))}
+          {isBotTyping && (
+            <div className='p-4 flex'>
+              <div className='rounded-full h-8 w-8 flex items-center justify-center mr-2'>
+                <RobotIcon />
+              </div>
+              <div className='rounded-lg bg-gray-700 px-4 py-2 inline-block max-w-xs text-sm'>
+                <div className='animate-pulse bg-gray-500 rounded-full h-2 w-2 mr-1 inline-block'></div>
+                <div className='animate-pulse bg-gray-500 rounded-full h-2 w-2 mr-1 inline-block'></div>
+                <div className='animate-pulse bg-gray-500 rounded-full h-2 w-2 inline-block'></div>
+              </div>
+            </div>
+          )}
+          {/* Scroll to bottom */}
           <div ref={messagesEndRef} />
         </div>
         {/* Chat form */}
         <div className='flex items-center'>
-          <ChatForm onSubmit={handleFormSubmit} />
+          <ChatForm
+            onSubmit={handleFormSubmit}
+            setIsTyping={setIsBotTyping}
+            isTyping={isBotTyping}
+          />
         </div>
       </div>
     </div>

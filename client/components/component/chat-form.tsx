@@ -6,7 +6,7 @@ import axios from 'axios'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
-import { JSX, SVGProps } from 'react'
+import IconSend from '@/components/icon/send'
 
 type Message = {
   id: string
@@ -16,6 +16,8 @@ type Message = {
 
 type ChildProps = {
   onSubmit: (message: Message) => void
+  setIsTyping: (isBotTyping: boolean) => void
+  isTyping: boolean
 }
 
 const formSchema = z.object({
@@ -49,6 +51,12 @@ export function ChatForm(props: ChildProps) {
     const data = {
       question: values.chatMessage,
     }
+    props.onSubmit({
+      id: 'unique-user-id',
+      role: 'user',
+      content: values.chatMessage,
+    })
+    props.setIsTyping(true)
     axios
       .post(url, data, {
         headers: {
@@ -58,18 +66,11 @@ export function ChatForm(props: ChildProps) {
       })
       .then(({ data }) => {
         props.onSubmit({
-          id: 'unique-user-id',
-          role: 'user',
-          content: values.chatMessage,
+          id: 'unique-bot-id',
+          role: 'bot',
+          content: data.answer,
         })
-
-        setTimeout(() => {
-          props.onSubmit({
-            id: 'unique-bot-id',
-            role: 'bot',
-            content: data.answer,
-          })
-        }, 1000)
+        props.setIsTyping(false)
       })
     form.reset()
   }
@@ -89,6 +90,7 @@ export function ChatForm(props: ChildProps) {
                       onKeyDown={(e) => handleKeyDown(e, field, form, onSubmit)}
                       placeholder='Enter your message...'
                       className='resize-none focus-visible:ring-offset-0 focus-visible:ring-0 pr-20'
+                      disabled={props.isTyping}
                       {...field}
                     />
                   </FormControl>
@@ -106,19 +108,5 @@ export function ChatForm(props: ChildProps) {
         </form>
       </div>
     </Form>
-  )
-}
-
-function IconSend(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
-  return (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' {...props}>
-      <path
-        d='M7 11L12 6L17 11M12 18V7'
-        stroke='currentColor'
-        strokeWidth='2'
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      ></path>
-    </svg>
   )
 }
