@@ -18,10 +18,15 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ data }) => {
       let messageArray = data.content.split(' ')
       let i = 0
       const addWord = () => {
-        setCurrentMessage((prev) => prev + ' ' + messageArray[i])
-        i++
         if (i < messageArray.length) {
-          timeoutId = setTimeout(() => requestAnimationFrame(addWord), 50)
+          setCurrentMessage(
+            (prev) => prev + (messageArray[i] ? ' ' + messageArray[i] : '')
+          )
+          i++
+          if (i < messageArray.length) {
+            // Delay the next word by 500ms
+            timeoutId = setTimeout(() => requestAnimationFrame(addWord), 50)
+          }
         }
       }
       // Start the typing effect
