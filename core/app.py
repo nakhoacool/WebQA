@@ -39,8 +39,7 @@ def answer_major():
         return {"status": 404}
     try:
         question = request.form.get("question")
-        #answer = RAG.rag.invoke(escape(question))
-        answer = "tôi không biết thông tin chi tiết"
+        answer = RAG.rag.invoke(escape(question))
         data = {"question": question, "answer": answer, "status": 200}
     except Exception as Argument:
         with open("rag.log", "a") as f:

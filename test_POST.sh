@@ -1,1 +1,3 @@
-echo -e `curl -d "question=Ngành ngôn ngữ Anh ra trường làm gì?" http://127.0.0.1:5000/qa`
+echo "Type in your question"
+read QUES
+echo -e `curl -d "question=$QUES" http://127.0.0.1:5000/qa`
