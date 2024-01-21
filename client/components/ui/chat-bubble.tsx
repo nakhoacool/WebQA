@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react'
 import RobotIcon from '@/components/icon/robot'
 import UserIcon from '@/components/icon/user'
 
@@ -10,37 +9,6 @@ interface ChatBubbleProps {
 }
 
 const ChatBubble: React.FC<ChatBubbleProps> = ({ data }) => {
-  const [currentMessage, setCurrentMessage] = useState('')
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout | null = null
-    if (data.role === 'bot') {
-      let messageArray = data.content.split(' ')
-      let i = 0
-      const addWord = () => {
-        if (i < messageArray.length) {
-          setCurrentMessage(
-            (prev) => prev + (messageArray[i] ? ' ' + messageArray[i] : '')
-          )
-          i++
-          if (i < messageArray.length) {
-            // Delay the next word by 500ms
-            timeoutId = setTimeout(() => requestAnimationFrame(addWord), 50)
-          }
-        }
-      }
-      // Start the typing effect
-      addWord()
-    } else {
-      setCurrentMessage(data.content)
-    }
-
-    // Cleanup function
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId)
-      }
-    }
-  }, [data])
   return (
     <div className={`p-4 flex ${data.role === 'bot' ? '' : 'justify-end'}`}>
       {data.role === 'bot' && (
@@ -53,7 +21,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ data }) => {
           data.role === 'bot' ? 'bg-gray-700' : 'bg-blue-600'
         } px-4 py-2 inline-block max-w-xs text-sm text-justify`}
       >
-        {currentMessage}
+        {data.content}
       </div>
       {data.role === 'user' && (
         <div className='rounded-full h-8 w-8 flex items-center justify-center ml-2'>
