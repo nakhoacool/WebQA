@@ -13,7 +13,7 @@ interface Message {
 }
 
 interface ChatHistory {
-  id: number
+  id: string
   messages: Message[]
 }
 
@@ -21,8 +21,8 @@ export default function Home() {
   const [isBotTyping, setIsBotTyping] = useState(false)
   const [data, setData] = useState<Message[]>([])
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([])
-  const messagesEndRef = useRef<HTMLDivElement | null>(null)
   const [isHovered, setIsHovered] = useState(false)
+  const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
   const handleFormSubmit = (message: Message) => {
     setData((prev) => {
@@ -36,15 +36,13 @@ export default function Home() {
     setData([])
   }
 
-  const handleRemove = (indexToRemove: number) => {
-    setChatHistory(chatHistory.filter((_, index) => index !== indexToRemove))
+  const handleRemoveChatHistory = (id: string) => {
+    setChatHistory(chatHistory.filter((history) => history.id!== id))
     setData([])
   }
 
-  const handleSidebarItemClick = (id: number) => {
-    // Clear the chat
+  const handleSidebarItemClick = (id: string) => {
     setData([])
-
     const history = chatHistory.find((history) => history.id === id)
     if (history) {
       // Use a timeout to allow the chat to clear before setting the data
@@ -86,7 +84,7 @@ export default function Home() {
                   className='h-5 w-5'
                   onClick={(event) => {
                     event.stopPropagation()
-                    handleRemove(item.id)
+                    handleRemoveChatHistory(item.id)
                   }}
                 />
               )}
