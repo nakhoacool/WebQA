@@ -51,6 +51,7 @@ export default function Home() {
 
   const handleSidebarItemClick = (id: string) => {
     setData([])
+    setIsNewChat(false)
     const history = chatHistory.find((history) => history.id === id)
     if (history) {
       // Use a timeout to allow the chat to clear before setting the data
