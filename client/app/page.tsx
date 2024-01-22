@@ -1,11 +1,9 @@
 'use client'
-import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar'
+import React, { useState, useEffect, useRef } from 'react'
 import ChatBubble from '@/components/ui/chat-bubble'
 import { ChatForm } from '@/components/component/chat-form'
-import React, { useState, useEffect, useRef } from 'react'
 import BotTyping from '@/components/ui/bot-typing'
-import PlusIcon from '@/components/icon/plus'
-import TrashIcon from '@/components/icon/trash'
+import Sidebar from '@/components/component/sidebar'
 import { v4 as uuidv4 } from 'uuid'
 interface Message {
   role: string
@@ -21,23 +19,33 @@ export default function Home() {
   const [isBotTyping, setIsBotTyping] = useState(false)
   const [data, setData] = useState<Message[]>([])
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([])
-  const [isHovered, setIsHovered] = useState(false)
+  const [isNewChat, setIsNewChat] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
   const handleFormSubmit = (message: Message) => {
     setData((prev) => {
       const newData = [...prev, message]
-      setChatHistory([...chatHistory, { id: uuidv4(), messages: newData }])
+      if (chatHistory.length > 0 && !isNewChat) {
+        // Create a new copy of the last chat history item and update it with the new data
+        const lastChatHistory = { ...chatHistory[chatHistory.length - 1] }
+        lastChatHistory.messages = newData
+        setChatHistory([...chatHistory.slice(0, -1), lastChatHistory])
+      } else {
+        // If there's no chat history or a new chat is started, create a new one
+        setChatHistory([...chatHistory, { id: uuidv4(), messages: newData }])
+        setIsNewChat(false) // Reset the new chat flag
+      }
       return newData
     })
   }
 
   const handleClearChat = () => {
     setData([])
+    setIsNewChat(true)
   }
 
   const handleRemoveChatHistory = (id: string) => {
-    setChatHistory(chatHistory.filter((history) => history.id!== id))
+    setChatHistory(chatHistory.filter((history) => history.id !== id))
     setData([])
   }
 
@@ -59,49 +67,12 @@ export default function Home() {
   return (
     <div className='flex h-screen bg-gray-800 text-white'>
       {/* Sidebar */}
-      <div className='flex flex-col w-64 border-r border-gray-700'>
-        <div className='px-4 py-2 flex items-center justify-between border-b border-gray-700'>
-          <h2 className='text-lg font-semibold'>New chat</h2>
-          <button
-            className='p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring hover:scale-105 transition-transform duration-200 ease-in-out'
-            onClick={handleClearChat}
-          >
-            <PlusIcon className='text-white h-6 w-6' />
-          </button>
-        </div>
-        <div className='overflow-y-auto'>
-          {chatHistory.map((item, index) => (
-            <div
-              key={item.id}
-              className='px-4 py-2 hover:bg-gray-700 cursor-pointer flex justify-between items-center'
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              onClick={() => handleSidebarItemClick(item.id)}
-            >
-              <p className='w-40 text-sm truncate'>Chat {index}</p>
-              {isHovered && (
-                <TrashIcon
-                  className='h-5 w-5'
-                  onClick={(event) => {
-                    event.stopPropagation()
-                    handleRemoveChatHistory(item.id)
-                  }}
-                />
-              )}
-            </div>
-          ))}
-        </div>
-        <div className='px-4 py-2 flex items-center space-x-2 border-t border-gray-700 mt-auto'>
-          <Avatar>
-            <AvatarImage
-              alt='Guest'
-              src='/placeholder.svg?height=32&width=32'
-            />
-            <AvatarFallback>G</AvatarFallback>
-          </Avatar>
-          <span className='text-sm'>Guest</span>
-        </div>
-      </div>
+      <Sidebar
+        chatHistory={chatHistory}
+        handleClearChat={handleClearChat}
+        handleSidebarItemClick={handleSidebarItemClick}
+        handleRemoveChatHistory={handleRemoveChatHistory}
+      />
       {/* Chat */}
       <div className='flex-1 flex flex-col'>
         {/* Chat message */}
