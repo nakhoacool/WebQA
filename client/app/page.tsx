@@ -1,39 +1,63 @@
 'use client'
-import { Sidebar } from '@/components/component/sidebar'
+import React, { useState, useEffect, useRef } from 'react'
 import ChatBubble from '@/components/ui/chat-bubble'
 import { ChatForm } from '@/components/component/chat-form'
-import React, { useState, useEffect, useRef, useReducer } from 'react'
-import RobotIcon from '@/components/icon/robot'
+import BotTyping from '@/components/ui/bot-typing'
+import Sidebar from '@/components/component/sidebar'
+import { v4 as uuidv4 } from 'uuid'
 interface Message {
-  id: string
   role: string
   content: string
 }
 
-type Action = { type: 'add_message'; message: Message } | { type: 'clear_chat' }
-
-const chatReducer = (state: Message[], action: Action) => {
-  switch (action.type) {
-    case 'add_message':
-      return [...state, action.message]
-    case 'clear_chat':
-      return []
-    default:
-      return state
-  }
+interface ChatHistory {
+  id: string
+  messages: Message[]
 }
 
 export default function Home() {
   const [isBotTyping, setIsBotTyping] = useState(false)
-  const [data, dispatch] = useReducer(chatReducer, [])
+  const [data, setData] = useState<Message[]>([])
+  const [chatHistory, setChatHistory] = useState<ChatHistory[]>([])
+  const [isNewChat, setIsNewChat] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
   const handleFormSubmit = (message: Message) => {
-    dispatch({ type: 'add_message', message })
+    setData((prev) => {
+      const newData = [...prev, message]
+      if (chatHistory.length > 0 && !isNewChat) {
+        // Create a new copy of the last chat history item and update it with the new data
+        const lastChatHistory = { ...chatHistory[chatHistory.length - 1] }
+        lastChatHistory.messages = newData
+        setChatHistory([...chatHistory.slice(0, -1), lastChatHistory])
+      } else {
+        // If there's no chat history or a new chat is started, create a new one
+        setChatHistory([...chatHistory, { id: uuidv4(), messages: newData }])
+        setIsNewChat(false) // Reset the new chat flag
+      }
+      return newData
+    })
   }
 
   const handleClearChat = () => {
-    dispatch({ type: 'clear_chat' })
+    setData([])
+    setIsNewChat(true)
+  }
+
+  const handleRemoveChatHistory = (id: string) => {
+    setChatHistory(chatHistory.filter((history) => history.id !== id))
+    setData([])
+  }
+
+  const handleSidebarItemClick = (id: string) => {
+    setData([])
+    const history = chatHistory.find((history) => history.id === id)
+    if (history) {
+      // Use a timeout to allow the chat to clear before setting the data
+      setTimeout(() => {
+        setData(history.messages)
+      }, 0)
+    }
   }
 
   useEffect(() => {
@@ -43,7 +67,12 @@ export default function Home() {
   return (
     <div className='flex h-screen bg-gray-800 text-white'>
       {/* Sidebar */}
-      <Sidebar onClearChat={handleClearChat} />
+      <Sidebar
+        chatHistory={chatHistory}
+        handleClearChat={handleClearChat}
+        handleSidebarItemClick={handleSidebarItemClick}
+        handleRemoveChatHistory={handleRemoveChatHistory}
+      />
       {/* Chat */}
       <div className='flex-1 flex flex-col'>
         {/* Chat message */}
@@ -51,18 +80,7 @@ export default function Home() {
           {data.map((data, index) => (
             <ChatBubble key={index} data={data} />
           ))}
-          {isBotTyping && (
-            <div className='p-4 flex'>
-              <div className='rounded-full h-8 w-8 flex items-center justify-center mr-2'>
-                <RobotIcon />
-              </div>
-              <div className='rounded-lg bg-gray-700 px-4 py-2 inline-block max-w-xs text-sm'>
-                <div className='animate-pulse bg-gray-500 rounded-full h-2 w-2 mr-1 inline-block'></div>
-                <div className='animate-pulse bg-gray-500 rounded-full h-2 w-2 mr-1 inline-block'></div>
-                <div className='animate-pulse bg-gray-500 rounded-full h-2 w-2 inline-block'></div>
-              </div>
-            </div>
-          )}
+          {isBotTyping && <BotTyping />}
           {/* Scroll to bottom */}
           <div ref={messagesEndRef} />
         </div>
