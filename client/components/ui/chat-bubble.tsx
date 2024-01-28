@@ -17,9 +17,9 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ data }) => {
         </div>
       )}
       <div
-        className={`rounded-lg ${
-          data.role === 'bot' ? 'bg-gray-700' : 'bg-blue-600'
-        } px-4 py-2 inline-block max-w-xs text-sm text-justify`}
+        className={`rounded-lg w-full ${
+          data.role === 'bot' ? 'bg-gray-700 max-w-100' : 'bg-blue-600 max-w-80'
+        } px-4 py-2 inline-block text-base text-justify`}
       >
         {data.content}
       </div>
@@ -31,4 +31,5 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ data }) => {
     </div>
   )
 }
-export default ChatBubble
+
+export default ChatBubble;
