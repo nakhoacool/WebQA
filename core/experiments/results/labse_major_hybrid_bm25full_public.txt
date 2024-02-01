@@ -1,0 +1,10 @@
+->
+Model: sentence-transformers/LaBSE
+Technique: sentence-transformers/LaBSE + Hybrid (full text at BM25)
+Index: labse-major
+Params
+weights: [0.5, 0.5], k: 2
+Find Top: 1
+Correct: 122
+Total: 156
+Score: 0.782051282051282
