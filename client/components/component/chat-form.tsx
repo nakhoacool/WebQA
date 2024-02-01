@@ -16,6 +16,7 @@ type ChildProps = {
   onSubmit: (message: Message) => void
   setIsTyping: (isBotTyping: boolean) => void
   isTyping: boolean
+  chatHistory: Message[]
 }
 
 const formSchema = z.object({
@@ -48,11 +49,13 @@ export function ChatForm(props: ChildProps) {
     const url = 'http://127.0.0.1:5000/qa'
     const data = {
       question: values.chatMessage,
+      context: props.chatHistory
     }
     props.onSubmit({
       role: 'user',
       content: values.chatMessage,
     })
+    console.log(props.chatHistory)
     props.setIsTyping(true)
     axios
       .post(url, data, {

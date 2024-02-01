@@ -91,6 +91,7 @@ export default function Home() {
             onSubmit={handleFormSubmit}
             setIsTyping={setIsBotTyping}
             isTyping={isBotTyping}
+            chatHistory={data}
           />
         </div>
       </div>
