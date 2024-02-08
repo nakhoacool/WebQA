@@ -1,0 +1,42 @@
+
+->
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-major
+Param top k: 2
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 114
+Total: 143
+Score: 0.7972027972027972
+
+->
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-major
+Param top k: 2
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 142
+Total: 153
+Score: 0.9281045751633987
+
+->
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-major
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 138
+Total: 153
+Score: 0.9019607843137255

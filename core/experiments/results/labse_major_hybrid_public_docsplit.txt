@@ -1,0 +1,29 @@
+
+->
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-major
+Param top k: 2
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 149
+Total: 156
+Score: 0.9551282051282052
+
+
+->
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-major
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 143
+Total: 156
+Score: 0.9166666666666666

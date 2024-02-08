@@ -1,0 +1,14 @@
+
+->
+Param model: Gemini models/embedding-001
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: gemini-major
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: models/embedding-001 + Hybrid
+Correct: 112
+Total: 153
+Score: 0.7320261437908496
