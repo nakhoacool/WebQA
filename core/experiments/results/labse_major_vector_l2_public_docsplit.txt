@@ -1,0 +1,12 @@
+
+->
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param index: labse-major
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: Vector: sentence-transformers/LaBSE
+Correct: 110
+Total: 156
+Score: 0.7051282051282052
