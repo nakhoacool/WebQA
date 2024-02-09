@@ -5,6 +5,8 @@ import { ChatForm } from '@/components/component/chat-form'
 import BotTyping from '@/components/ui/bot-typing'
 import Sidebar from '@/components/component/sidebar'
 import { v4 as uuidv4 } from 'uuid'
+import { signOut, useSession } from 'next-auth/react'
+import { redirect } from 'next/navigation'
 interface Message {
   role: string
   content: string
@@ -21,6 +23,13 @@ export default function Home() {
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([])
   const [isNewChat, setIsNewChat] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
+
+  const session = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect('/signin')
+    },
+  })
 
   const handleFormSubmit = (message: Message) => {
     setData((prev) => {
@@ -69,6 +78,7 @@ export default function Home() {
     <div className='flex h-screen bg-gray-800 text-white'>
       {/* Sidebar */}
       <Sidebar
+        session={session}
         chatHistory={chatHistory}
         handleClearChat={handleClearChat}
         handleSidebarItemClick={handleSidebarItemClick}
@@ -98,3 +108,5 @@ export default function Home() {
     </div>
   )
 }
+
+Home.requireAuth = true

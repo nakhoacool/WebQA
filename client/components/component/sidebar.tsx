@@ -3,6 +3,7 @@ import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar'
 import PlusIcon from '@/components/icon/plus'
 import SidebarItem from './sidebar-item'
 interface SidebarProps {
+  session: any
   chatHistory: any[]
   handleClearChat: () => void
   handleSidebarItemClick: (id: string) => void
@@ -10,6 +11,7 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
+  session,
   chatHistory,
   handleClearChat,
   handleSidebarItemClick,
@@ -42,7 +44,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           <AvatarImage alt='Guest' src='/placeholder.svg?height=32&width=32' />
           <AvatarFallback>G</AvatarFallback>
         </Avatar>
-        <span className='text-sm'>Guest</span>
+        <span className='text-sm'>{session?.data?.user?.email}</span>
       </div>
     </div>
   )
