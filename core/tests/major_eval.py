@@ -8,12 +8,13 @@ def test_major(qa_df: DataFrame, ques_col: str, retriever, error_limit: int = 20
     err = 0
     for id, row in qa_df.iterrows():
         query = row[ques_col]
+        ground_result = int(row['doc_id'])
         total += 1
         try:
             res = retriever.get_relevant_documents(query)
             for idx, r in enumerate(res):
-                target_id = r.metadata['id']
-                if(int(target_id) == int(row['doc_id'])):
+                target_id = int(r.metadata['id'])
+                if target_id == ground_result:
                     correct += 1
                     break
         except:
@@ -36,7 +37,7 @@ class MajorBlogPostEvaluation:
         df = pd.read_csv(os.path.join(self.data_folder, target_file))
         correct, total = test_major(df, ques_col, retriever, error_limit=20)
         with open(os.path.join(self.save_path, file_name), "a") as f:
-            f.write("\n"+"--->\n")
+            f.write("\n->\n")
             [f.write(f"Param {k}: {v}\n") for k, v in metadata.items()]
             f.write(f"Correct: {str(correct)}\n")
             f.write(f"Total: {str(total)}\n")
