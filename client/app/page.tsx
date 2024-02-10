@@ -4,18 +4,11 @@ import ChatBubble from '@/components/ui/chat-bubble'
 import { ChatForm } from '@/components/component/chat-form'
 import BotTyping from '@/components/ui/bot-typing'
 import Sidebar from '@/components/component/sidebar'
+import Loading from '@/components/component/loading'
 import { v4 as uuidv4 } from 'uuid'
 import { signOut, useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
-interface Message {
-  role: string
-  content: string
-}
-
-interface ChatHistory {
-  id: string
-  messages: Message[]
-}
+import { Message, ChatHistory } from '@/lib/types'
 
 export default function Home() {
   const [isBotTyping, setIsBotTyping] = useState(false)
@@ -24,7 +17,7 @@ export default function Home() {
   const [isNewChat, setIsNewChat] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
-  const session = useSession({
+  const { data: session, status } = useSession({
     required: true,
     onUnauthenticated() {
       redirect('/signin')
@@ -73,6 +66,10 @@ export default function Home() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [data])
+
+  if (status === 'loading') {
+    return <Loading />
+  }
 
   return (
     <div className='flex h-screen bg-gray-800 text-white'>

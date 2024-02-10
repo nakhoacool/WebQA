@@ -2,9 +2,10 @@ import React from 'react'
 import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar'
 import PlusIcon from '@/components/icon/plus'
 import SidebarItem from './sidebar-item'
+import { ChatHistory } from '@/lib/types'
 interface SidebarProps {
   session: any
-  chatHistory: any[]
+  chatHistory: ChatHistory[]
   handleClearChat: () => void
   handleSidebarItemClick: (id: string) => void
   handleRemoveChatHistory: (id: string) => void
