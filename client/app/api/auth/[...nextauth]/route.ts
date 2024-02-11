@@ -5,7 +5,7 @@ import { auth } from '@/lib/firebase/config'
 
 const handler = NextAuth({
   pages: {
-    signIn: '/signin',
+    signIn: '/auth/signin',
   },
   providers: [
     CredentialsProvider({

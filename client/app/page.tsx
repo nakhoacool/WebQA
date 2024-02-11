@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
-import ChatBubble from '@/components/ui/chat-bubble'
+import ChatBubble from '@/components/component/chat-bubble'
 import { ChatForm } from '@/components/component/chat-form'
 import BotTyping from '@/components/ui/bot-typing'
 import Sidebar from '@/components/component/sidebar'
@@ -20,7 +20,7 @@ export default function Home() {
   const { data: session, status } = useSession({
     required: true,
     onUnauthenticated() {
-      redirect('/signin')
+      redirect('/auth/signin')
     },
   })
 

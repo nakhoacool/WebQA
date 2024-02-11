@@ -2,17 +2,7 @@
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import {
-  CardTitle,
-  CardDescription,
-  CardHeader,
-  CardContent,
-  Card,
-} from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+
 export default function Signin() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -21,11 +11,6 @@ export default function Signin() {
   return (
     <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
       <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
-        <img
-          className='mx-auto h-10 w-auto'
-          src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500'
-          alt='Your Company'
-        />
         <h2 className='mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white'>
           Sign in to your account
         </h2>
@@ -63,7 +48,7 @@ export default function Signin() {
               </label>
               <div className='text-sm'>
                 <div
-                  onClick={() => router.push('/forgot-password')}
+                  onClick={() => router.push('/auth/forgot-password')}
                   className='cursor-pointer font-semibold text-indigo-400 hover:text-indigo-300'
                 >
                   Forgot password?
@@ -104,7 +89,7 @@ export default function Signin() {
         <p className='mt-10 text-center text-sm text-gray-400'>
           Not a member?{' '}
           <button
-            onClick={() => router.push('signup')}
+            onClick={() => router.push('/auth/signup')}
             className='font-semibold leading-6 text-indigo-400 hover:text-indigo-300'
           >
             Sign Up
