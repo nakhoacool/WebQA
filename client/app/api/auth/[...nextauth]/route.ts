@@ -3,7 +3,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/lib/firebase/config'
 
-const handler = NextAuth({
+export const authOptions = {
   pages: {
     signIn: '/auth/signin',
   },
@@ -33,5 +33,6 @@ const handler = NextAuth({
       },
     }),
   ],
-})
+}
+export const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }
