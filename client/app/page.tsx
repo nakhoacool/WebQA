@@ -6,7 +6,7 @@ import BotTyping from '@/components/ui/bot-typing'
 import Sidebar from '@/components/component/sidebar'
 import Loading from '@/components/ui/loading'
 import { v4 as uuidv4 } from 'uuid'
-import { signOut, useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
 import { Message, ChatHistory } from '@/lib/types'
 

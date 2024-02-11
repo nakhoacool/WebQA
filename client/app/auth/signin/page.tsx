@@ -1,19 +1,22 @@
 'use client'
 import { signIn, useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useRouter, redirect } from 'next/navigation'
+import { useState } from 'react'
+import Loading from '@/components/ui/loading'
 
 export default function Signin() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
   const router = useRouter()
 
-  useEffect(() => {
-    if (session) {
-      router.push('/')
-    }
-  }, [session, router])
+  if (status === 'loading') {
+    return <Loading />
+  }
+
+  if (session) {
+    redirect('/')
+  }
 
   return (
     <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>

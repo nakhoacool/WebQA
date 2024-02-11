@@ -1,7 +1,14 @@
 import React from 'react'
 import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
 import PlusIcon from '@/components/icon/plus'
-import SidebarItem from './sidebar-item'
+import LogOutIcon from '@/components/icon/logout'
+import SidebarItem from '@/components/component/sidebar-item'
+import { signOut } from 'next-auth/react'
 import { ChatHistory } from '@/lib/types'
 interface SidebarProps {
   session: any
@@ -40,13 +47,27 @@ const Sidebar: React.FC<SidebarProps> = ({
           />
         ))}
       </div>
-      <div className='px-4 py-2 flex items-center space-x-2 border-t border-gray-700 mt-auto'>
-        <Avatar>
-          <AvatarImage alt='Guest' src='/placeholder.svg?height=32&width=32' />
-          <AvatarFallback>G</AvatarFallback>
-        </Avatar>
-        <span className='text-sm'>{session?.data?.user?.email}</span>
-      </div>
+      <Popover>
+        <PopoverTrigger className='px-4 py-2 flex items-center space-x-2 border-t border-gray-700 mt-auto'>
+          <Avatar>
+            <AvatarImage
+              alt='Guest'
+              src='/placeholder.svg?height=32&width=32'
+            />
+            <AvatarFallback>G</AvatarFallback>
+          </Avatar>
+          <span className='text-sm'>{session?.user?.email}</span>
+        </PopoverTrigger>
+        <PopoverContent className='w-[15rem] pl-2 pr-2'>
+          <button
+            onClick={() => signOut()}
+            className='py-2 hover:bg-gray-700 w-full flex items-center rounded space-x-2'
+          >
+            <LogOutIcon className='text-white' />
+            <span>Sign out</span>
+          </button>
+        </PopoverContent>
+      </Popover>
     </div>
   )
 }
