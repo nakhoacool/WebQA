@@ -8,11 +8,14 @@ class RAGCategories:
 
 class RAGResponse:
 
-    def __init__(self, answer: str, status: int, category: str, document: TDTDoc) -> None:
+    def __init__(self, answer: str, category: str, document: TDTDoc) -> None:
         self.answer = answer
         self.category = category
         self.document = document
-        self.status = status
+        if answer.lower() == "none":
+            self.status = 404
+        else:
+            self.status = 200
         return
     
     def is_sucess(self):

@@ -15,11 +15,12 @@ from src.rag.types import RAGResponse, RAGCategories
 
 class HybridGeminiRag:
     """
-        Formula: RAG = Gemini + ES + Hybrid Search
-        Features:
-        - Vector Store Memory
+        This is a RAG designed to search for major blog posts and provide answers to user.
+        It uses:
+        - Gemini as chat model
+        - LaBSE + BM25 as retriever
+        - Elastic search as vector database
     """
-
     def __init__(self, es_index: str, embed_model: str, config: Configuration):
         """
             Initialize the RAG
@@ -51,14 +52,19 @@ class HybridGeminiRag:
         return
     
     def _format_doc(self, input_dict):
-        data = {**input_dict}
+        """
+            Note! for internal class use only.
+
+            This method formats the retrieved documnents from the retriever.
+            It helps the chat model understands the context better.
+        """
         retrieve_doc = input_dict['context'][0]
         doc_id = retrieve_doc.metadata['id']
         document = self.database[doc_id]
-        data['content'] = document.content
+        input_dict['context'] = document.content
         # store to a temporary mem
         self.ask_memory[input_dict['ask_id']] = document
-        return data
+        return input_dict
 
     @traceable(tags=['hybrid_gemini'])
     def ask_rag(self, question: str) -> RAGResponse:
@@ -74,18 +80,16 @@ class HybridGeminiRag:
         if ask_id == None:
             return "Went wrong. Cannot generate uuid"
         answer = self.rag.invoke({"question": question, "ask_id": ask_id})
-        status = 200
-        if answer.lower() == "none":
-            status = 404
         resp = RAGResponse(
             answer=answer.strip(), 
-            status=status, 
             category=RAGCategories.major, 
             document=self.ask_memory.pop(ask_id))
         return resp
 
     def _init_retriever(self, es_index:str, embed_model:str, config:Configuration):
         """
+            Note! for internal use only.
+
             Initialize Elastic, BM25 instances and combine them into hybrid search
             This method is intented for private use. Please be cautious modifying.
         """
