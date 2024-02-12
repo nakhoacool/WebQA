@@ -51,10 +51,12 @@ const Sidebar: React.FC<SidebarProps> = ({
         <PopoverTrigger className='px-4 py-2 flex items-center space-x-2 border-t border-gray-700 mt-auto'>
           <Avatar>
             <AvatarImage
-              alt='Guest'
-              src='/placeholder.svg?height=32&width=32'
+              alt='user profile image'
+              src= {session?.user?.image}
             />
-            <AvatarFallback>G</AvatarFallback>
+            <AvatarFallback>
+              <span>{session?.user?.email[0].toUpperCase()}</span>
+            </AvatarFallback>
           </Avatar>
           <span className='text-sm'>{session?.user?.email}</span>
         </PopoverTrigger>
