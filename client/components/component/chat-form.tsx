@@ -51,7 +51,6 @@ export function ChatForm(props: ChildProps) {
       role: 'user',
       content: values.chatMessage,
     })
-    console.log(props.chatHistory)
     props.setIsTyping(true)
     axios
       .post(url, data, {
