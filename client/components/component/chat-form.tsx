@@ -6,16 +6,13 @@ import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
 import IconSend from '@/components/icon/send'
-
-type Message = {
-  role: string
-  content: string
-}
+import { Message } from '@/lib/types'
 
 type ChildProps = {
   onSubmit: (message: Message) => void
   setIsTyping: (isBotTyping: boolean) => void
   isTyping: boolean
+  chatHistory: Message[]
 }
 
 const formSchema = z.object({
@@ -48,6 +45,7 @@ export function ChatForm(props: ChildProps) {
     const url = 'http://127.0.0.1:5000/qa'
     const data = {
       question: values.chatMessage,
+      context: props.chatHistory,
     }
     props.onSubmit({
       role: 'user',

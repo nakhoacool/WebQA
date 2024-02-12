@@ -1,19 +1,14 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
-import ChatBubble from '@/components/ui/chat-bubble'
+import ChatBubble from '@/components/component/chat-bubble'
 import { ChatForm } from '@/components/component/chat-form'
 import BotTyping from '@/components/ui/bot-typing'
 import Sidebar from '@/components/component/sidebar'
+import Loading from '@/components/ui/loading'
 import { v4 as uuidv4 } from 'uuid'
-interface Message {
-  role: string
-  content: string
-}
-
-interface ChatHistory {
-  id: string
-  messages: Message[]
-}
+import { useSession } from 'next-auth/react'
+import { redirect } from 'next/navigation'
+import { Message, ChatHistory } from '@/lib/types'
 
 export default function Home() {
   const [isBotTyping, setIsBotTyping] = useState(false)
@@ -21,6 +16,13 @@ export default function Home() {
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([])
   const [isNewChat, setIsNewChat] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
+
+  const { data: session, status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect('/auth/signin')
+    },
+  })
 
   const handleFormSubmit = (message: Message) => {
     setData((prev) => {
@@ -65,10 +67,15 @@ export default function Home() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [data])
 
+  if (status === 'loading') {
+    return <Loading />
+  }
+
   return (
     <div className='flex h-screen bg-gray-800 text-white'>
       {/* Sidebar */}
       <Sidebar
+        session={session}
         chatHistory={chatHistory}
         handleClearChat={handleClearChat}
         handleSidebarItemClick={handleSidebarItemClick}
@@ -91,9 +98,12 @@ export default function Home() {
             onSubmit={handleFormSubmit}
             setIsTyping={setIsBotTyping}
             isTyping={isBotTyping}
+            chatHistory={data}
           />
         </div>
       </div>
     </div>
   )
 }
+
+Home.requireAuth = true
