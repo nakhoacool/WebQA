@@ -1,13 +1,12 @@
 'use client'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
 import { auth } from '@/lib/firebase/config'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Bounce, ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { Input } from '@/components/ui/input'
 import {
   Form,
   FormControl,
@@ -76,7 +75,7 @@ export default function SignUpForm() {
 
         <div className='mt-5 sm:mx-auto sm:w-full sm:max-w-sm'>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
               <FormField
                 control={form.control}
                 name='email'
@@ -84,9 +83,10 @@ export default function SignUpForm() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input
+                      <input
                         type='email'
-                        placeholder='johndoe@example.com'
+                        placeholder='Enter your email address'
+                        className='block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
                         {...field}
                       />
                     </FormControl>
@@ -101,9 +101,10 @@ export default function SignUpForm() {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input
+                      <input
                         type='password'
-                        placeholder='Enter your password'
+                        placeholder='At least 6 characters'
+                        className='block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
                         {...field}
                       />
                     </FormControl>
@@ -118,9 +119,10 @@ export default function SignUpForm() {
                   <FormItem>
                     <FormLabel>Confirm password</FormLabel>
                     <FormControl>
-                      <Input
+                      <input
                         type='password'
-                        placeholder='Re-enter your password'
+                        placeholder='At least 6 characters'
+                        className='block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
                         {...field}
                       />
                     </FormControl>

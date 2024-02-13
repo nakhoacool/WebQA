@@ -1,14 +1,75 @@
 'use client'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { Bounce, ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-export default function SignInForm() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
 
+const formSchema = z.object({
+  email: z.string().min(1, 'Email is required').email('Invalid email'),
+  password: z.string().min(1, 'Password is required'),
+})
+
+export default function SignInForm() {
   const router = useRouter()
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  })
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    signIn('credentials', {
+      email: values.email,
+      password: values.password,
+      redirect: false,
+      callbackUrl: '/',
+    })
+      .then((response) => {
+        if (response?.ok) {
+          router.replace('/')
+        } else {
+          toast.error('Invalid email or password', {
+            position: 'top-right',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'light',
+            transition: Bounce,
+          })
+        }
+      })
+      .catch((error) => {
+        toast.error('Error signing in', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+          transition: Bounce,
+        })
+      })
+  }
 
   useEffect(() => {
     const toastSuccess = localStorage.getItem('signupSuccess')
@@ -28,30 +89,6 @@ export default function SignInForm() {
     }
   }, [])
 
-  const handleLogin = async () => {
-    const login = await signIn('credentials', {
-      email,
-      password,
-      redirect: false,
-      callbackUrl: '/',
-    })
-    if (login?.ok) {
-      router.replace('/')
-    } else {
-      toast.error('Invalid email or password', {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-        transition: Bounce,
-      })
-    }
-  }
-
   return (
     <div>
       <ToastContainer />
@@ -61,71 +98,57 @@ export default function SignInForm() {
             Sign in to your account
           </h2>
         </div>
-        <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-          <div className='space-y-6'>
-            <div>
-              <label
-                htmlFor='email'
-                className='block text-sm font-medium leading-6 text-white'
-              >
-                Email address
-              </label>
-              <div className='mt-2'>
-                <input
-                  id='email'
-                  name='email'
-                  type='email'
-                  autoComplete='email'
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className='block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
-                />
-              </div>
-            </div>
-
-            <div>
-              <div className='flex items-center justify-between'>
-                <label
-                  htmlFor='password'
-                  className='block text-sm font-medium leading-6 text-white'
-                >
-                  Password
-                </label>
-                <div className='text-sm'>
-                  <div
-                    onClick={() => router.push('/auth/forgot-password')}
-                    className='cursor-pointer font-semibold text-indigo-400 hover:text-indigo-300'
-                  >
-                    Forgot password?
-                  </div>
-                </div>
-              </div>
-              <div className='mt-2'>
-                <input
-                  id='password'
-                  name='password'
-                  type='password'
-                  autoComplete='current-password'
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className='block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
-                />
-              </div>
-            </div>
-
-            <div>
+        <div className='mt-5 sm:mx-auto sm:w-full sm:max-w-sm'>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
+              <FormField
+                control={form.control}
+                name='email'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <input
+                        type='email'
+                        autoComplete='email'
+                        placeholder='Enter your email address'
+                        className='block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name='password'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <input
+                        type='password'
+                        autoComplete='current-password'
+                        placeholder='Enter your password'
+                        className='block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <button
-                onClick={handleLogin}
-                disabled={!email || !password}
-                className='disabled:opacity-40 flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
+                type='submit'
+                className='flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
               >
-                Sign in
+                Sign In
               </button>
-            </div>
-          </div>
-
-          <p className='mt-10 text-center text-sm text-gray-400'>
-            Not a member?{' '}
+            </form>
+          </Form>
+          <p className='mt-5 text-center text-sm text-gray-400'>
+            Don&apos;t have an account yet?{' '}
             <button
               onClick={() => router.push('/auth/signup')}
               className='font-semibold leading-6 text-indigo-400 hover:text-indigo-300'
