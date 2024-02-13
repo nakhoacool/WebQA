@@ -28,6 +28,30 @@ export default function SignInForm() {
     }
   }, [])
 
+  const handleLogin = async () => {
+    const login = await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+      callbackUrl: '/',
+    })
+    if (login?.ok) {
+      router.replace('/')
+    } else {
+      toast.error('Invalid email or password', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Bounce,
+      })
+    }
+  }
+
   return (
     <div>
       <ToastContainer />
@@ -91,14 +115,7 @@ export default function SignInForm() {
 
             <div>
               <button
-                onClick={() =>
-                  signIn('credentials', {
-                    email,
-                    password,
-                    redirect: true,
-                    callbackUrl: '/',
-                  })
-                }
+                onClick={handleLogin}
                 disabled={!email || !password}
                 className='disabled:opacity-40 flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
               >
