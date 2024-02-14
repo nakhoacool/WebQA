@@ -1,0 +1,2 @@
+origin	 (fetch)
+origin	https://nakhoacool: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@github.com/nakhoacool/WebQA.git (push)

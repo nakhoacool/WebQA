@@ -7,3 +7,5 @@ Flask
 flask-cors
 pandas
 langchain-community
+langchainhub
+langchain-openai
