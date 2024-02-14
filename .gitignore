@@ -4,6 +4,7 @@
 __pycache__/
 
 .venv/
+rag.log
 
 *.pyc
 __pycache__/

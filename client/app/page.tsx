@@ -15,6 +15,9 @@ export default function Home() {
   const [data, setData] = useState<Message[]>([])
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([])
   const [isNewChat, setIsNewChat] = useState(false)
+  const [activeChatHistoryId, setActiveChatHistoryId] = useState<string | null>(
+    null
+  )
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
   const { data: session, status } = useSession({
@@ -24,17 +27,39 @@ export default function Home() {
     },
   })
 
+  const date = new Date()
+  const dateString = `${date.getFullYear()}-${
+    date.getMonth() + 1
+  }-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`
+
   const handleFormSubmit = (message: Message) => {
     setData((prev) => {
       const newData = [...prev, message]
-      if (chatHistory.length > 0 && !isNewChat) {
-        // Create a new copy of the last chat history item and update it with the new data
-        const lastChatHistory = { ...chatHistory[chatHistory.length - 1] }
-        lastChatHistory.messages = newData
-        setChatHistory([...chatHistory.slice(0, -1), lastChatHistory])
+      if (chatHistory.length > 0 && !isNewChat && activeChatHistoryId) {
+        const activeChatHistoryIndex = chatHistory.findIndex(
+          (history) => history.id === activeChatHistoryId
+        )
+        if (activeChatHistoryIndex !== -1) {
+          const activeChatHistory = { ...chatHistory[activeChatHistoryIndex] }
+          activeChatHistory.messages = newData
+          setChatHistory([
+            ...chatHistory.slice(0, activeChatHistoryIndex),
+            activeChatHistory,
+            ...chatHistory.slice(activeChatHistoryIndex + 1),
+          ])
+        }
       } else {
         // If there's no chat history or a new chat is started, create a new one
-        setChatHistory([...chatHistory, { id: uuidv4(), messages: newData }])
+        const newChatHistoryId = uuidv4()
+        setActiveChatHistoryId(newChatHistoryId)
+        setChatHistory([
+          ...chatHistory,
+          {
+            id: newChatHistoryId,
+            title: `Chat ${dateString}`,
+            messages: newData,
+          },
+        ])
         setIsNewChat(false) // Reset the new chat flag
       }
       return newData
@@ -44,6 +69,7 @@ export default function Home() {
   const handleClearChat = () => {
     setData([])
     setIsNewChat(true)
+    setActiveChatHistoryId(null)
   }
 
   const handleRemoveChatHistory = (id: string) => {
@@ -54,12 +80,10 @@ export default function Home() {
   const handleSidebarItemClick = (id: string) => {
     setData([])
     setIsNewChat(false)
+    setActiveChatHistoryId(id)
     const history = chatHistory.find((history) => history.id === id)
     if (history) {
-      // Use a timeout to allow the chat to clear before setting the data
-      setTimeout(() => {
-        setData(history.messages)
-      }, 0)
+      setData(history.messages)
     }
   }
 

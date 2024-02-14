@@ -37,11 +37,10 @@ const Sidebar: React.FC<SidebarProps> = ({
         </button>
       </div>
       <div className='overflow-y-auto'>
-        {chatHistory.map((item, index) => (
+        {chatHistory.map((item) => (
           <SidebarItem
             key={item.id}
             item={item}
-            index={index}
             handleSidebarItemClick={handleSidebarItemClick}
             handleRemoveChatHistory={handleRemoveChatHistory}
           />

@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import TrashIcon from '@/components/icon/trash'
+import { ChatHistory } from '@/lib/types'
 
 interface SidebarItemProps {
-  item: any
-  index: number
+  item: ChatHistory
   handleSidebarItemClick: (id: string) => void
   handleRemoveChatHistory: (id: string) => void
 }
 
 const SidebarItem: React.FC<SidebarItemProps> = ({
   item,
-  index,
   handleSidebarItemClick,
   handleRemoveChatHistory,
 }) => {
@@ -24,7 +23,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => handleSidebarItemClick(item.id)}
     >
-      <p className='w-40 text-sm truncate'>Chat {index}</p>
+      <p className='w-50 text-sm truncate'>{item.title}</p>
       {isHovered && (
         <TrashIcon
           className='h-5 w-5'

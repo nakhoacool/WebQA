@@ -5,5 +5,6 @@ export interface Message {
 
 export interface ChatHistory {
   id: string
+  title: string
   messages: Message[]
 }
