@@ -1,4 +1,3 @@
-import React from 'react'
 import { signOut } from 'next-auth/react'
 import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar'
 import {
@@ -20,17 +19,17 @@ export default function Sidebar({
   activeChatHistoryId,
 }: SidebarProps) {
   return (
-    <div className='flex flex-col w-64 border-r border-gray-700'>
-      <div className='px-4 py-2 flex items-center justify-between border-b border-gray-700'>
-        <h2 className='text-lg font-semibold'>New chat</h2>
+    <div className='flex flex-col w-64 border-r border-[#282828] bg-[#171717]'>
+      <div className='border-b border-[#282828] p-2'>
         <button
-          className='p-2 rounded-full hover:bg-gray-600 focus:outline-none focus:ring hover:scale-105 transition-transform duration-200 ease-in-out'
+          className='btn bg-[#1c1528] hover:bg-[#35255c] w-full flex justify-between items-center px-4 py-2 space-x-2'
           onClick={handleClearChat}
         >
-          <PlusIcon className='text-white h-6 w-6' />
+          <span>New chat</span>
+          <PlusIcon />
         </button>
       </div>
-      <div className='overflow-y-auto'>
+      <div className='overflow-y-auto p-2'>
         {chatHistory.map((item) => (
           <SidebarItem
             key={item.id}
@@ -42,7 +41,7 @@ export default function Sidebar({
         ))}
       </div>
       <Popover>
-        <PopoverTrigger className='px-4 py-2 flex items-center space-x-2 border-t border-gray-700 mt-auto'>
+        <PopoverTrigger className='px-4 py-2 flex items-center space-x-2 border-t border-[#282828] hover:bg-[#35255c] bg-[#1c1528] mt-auto'>
           <Avatar>
             <AvatarImage alt='user profile image' src={session?.user?.image} />
             <AvatarFallback>

@@ -15,7 +15,7 @@ export default function ChatBubble({ data }: ChatBubbleProps) {
       <div className='chat-header'>{data.role === 'bot' ? 'Bot' : 'User'}</div>
       <div
         className={`chat-bubble max-w-80 text-white break-all ${
-          data.role === 'user' ? 'chat-bubble-info' : ''
+          data.role === 'user' ? 'bg-[#3F51B5]' : ''
         }`}
       >
         {data.content}

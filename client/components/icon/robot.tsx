@@ -1,4 +1,4 @@
-import React, { JSX, SVGProps } from 'react'
+import { JSX, SVGProps } from 'react'
 function RobotIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg

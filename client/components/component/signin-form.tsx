@@ -112,7 +112,7 @@ export default function SignInForm() {
                         type='email'
                         autoComplete='email'
                         placeholder='Enter your email address'
-                        className='block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
+                        className='h-12 block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
                         {...field}
                       />
                     </FormControl>
@@ -125,13 +125,23 @@ export default function SignInForm() {
                 name='password'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <div className='flex items-center justify-between'>
+                      <FormLabel>Password</FormLabel>
+                      <div className='text-sm'>
+                        <div
+                          onClick={() => router.push('/auth/forgot-password')}
+                          className='cursor-pointer font-semibold text-indigo-400 hover:text-indigo-300'
+                        >
+                          Forgot password?
+                        </div>
+                      </div>
+                    </div>
                     <FormControl>
                       <input
                         type='password'
                         autoComplete='current-password'
                         placeholder='Enter your password'
-                        className='block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
+                        className='h-12 block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
                         {...field}
                       />
                     </FormControl>
@@ -141,7 +151,7 @@ export default function SignInForm() {
               />
               <button
                 type='submit'
-                className='flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
+                className='btn w-full bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500'
               >
                 Sign In
               </button>

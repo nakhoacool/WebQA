@@ -96,7 +96,7 @@ export default function Home() {
   }
 
   return (
-    <div className='flex h-screen bg-gray-800 text-white'>
+    <div className='flex h-screen text-white'>
       {/* Sidebar */}
       <Sidebar
         session={session}
