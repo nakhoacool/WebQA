@@ -1,14 +1,14 @@
 'use client'
-import React, { useState, useEffect, useRef } from 'react'
-import ChatBubble from '@/components/component/chat-bubble'
-import { ChatForm } from '@/components/component/chat-form'
-import BotTyping from '@/components/ui/bot-typing'
-import Sidebar from '@/components/component/sidebar'
-import Loading from '@/components/ui/loading'
+import { useState, useEffect, useRef } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
 import { Message, ChatHistory } from '@/lib/types'
+import ChatBubble from '@/components/component/chat-bubble'
+import ChatForm from '@/components/component/chat-form'
+import BotTyping from '@/components/ui/bot-typing'
+import Sidebar from '@/components/component/sidebar'
+import Loading from '@/components/ui/loading'
 
 export default function Home() {
   const [isBotTyping, setIsBotTyping] = useState(false)

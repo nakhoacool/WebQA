@@ -1,4 +1,5 @@
 import React from 'react'
+import { signOut } from 'next-auth/react'
 import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar'
 import {
   Popover,
@@ -8,25 +9,16 @@ import {
 import PlusIcon from '@/components/icon/plus'
 import LogOutIcon from '@/components/icon/logout'
 import SidebarItem from '@/components/component/sidebar-item'
-import { signOut } from 'next-auth/react'
-import { ChatHistory } from '@/lib/types'
-interface SidebarProps {
-  session: any
-  chatHistory: ChatHistory[]
-  handleClearChat: () => void
-  handleSidebarItemClick: (id: string) => void
-  handleRemoveChatHistory: (id: string) => void
-  activeChatHistoryId: string | null
-}
+import { SidebarProps } from '@/lib/types'
 
-const Sidebar: React.FC<SidebarProps> = ({
+export default function Sidebar({
   session,
   chatHistory,
   handleClearChat,
   handleSidebarItemClick,
   handleRemoveChatHistory,
   activeChatHistoryId,
-}) => {
+}: SidebarProps) {
   return (
     <div className='flex flex-col w-64 border-r border-gray-700'>
       <div className='px-4 py-2 flex items-center justify-between border-b border-gray-700'>
@@ -52,10 +44,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       <Popover>
         <PopoverTrigger className='px-4 py-2 flex items-center space-x-2 border-t border-gray-700 mt-auto'>
           <Avatar>
-            <AvatarImage
-              alt='user profile image'
-              src= {session?.user?.image}
-            />
+            <AvatarImage alt='user profile image' src={session?.user?.image} />
             <AvatarFallback>
               <span>{session?.user?.email[0].toUpperCase()}</span>
             </AvatarFallback>
@@ -75,5 +64,3 @@ const Sidebar: React.FC<SidebarProps> = ({
     </div>
   )
 }
-
-export default Sidebar

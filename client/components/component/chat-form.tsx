@@ -6,20 +6,13 @@ import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
 import IconSend from '@/components/icon/send'
-import { Message } from '@/lib/types'
-
-type ChildProps = {
-  onSubmit: (message: Message) => void
-  setIsTyping: (isBotTyping: boolean) => void
-  isTyping: boolean
-  chatHistory: Message[]
-}
+import { ChatFormProps } from '@/lib/types'
 
 const formSchema = z.object({
   chatMessage: z.string(),
 })
 
-export function ChatForm(props: ChildProps) {
+export default function ChatForm(props: ChatFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

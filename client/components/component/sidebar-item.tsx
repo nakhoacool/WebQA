@@ -1,20 +1,13 @@
 import React, { useState } from 'react'
 import TrashIcon from '@/components/icon/trash'
-import { ChatHistory } from '@/lib/types'
+import { SidebarItemProps } from '@/lib/types'
 
-interface SidebarItemProps {
-  item: ChatHistory
-  handleSidebarItemClick: (id: string) => void
-  handleRemoveChatHistory: (id: string) => void
-  activeChatHistoryId: string | null
-}
-
-const SidebarItem: React.FC<SidebarItemProps> = ({
+export default function SidebarItem({
   item,
   handleSidebarItemClick,
   handleRemoveChatHistory,
   activeChatHistoryId,
-}) => {
+}: SidebarItemProps) {
   const [isHovered, setIsHovered] = useState(false)
   const isActive = item.id === activeChatHistoryId
 
@@ -41,5 +34,3 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
     </div>
   )
 }
-
-export default SidebarItem

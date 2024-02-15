@@ -1,14 +1,8 @@
 import RobotIcon from '@/components/icon/robot'
 import UserIcon from '@/components/icon/user'
+import { ChatBubbleProps } from '@/lib/types'
 
-interface ChatBubbleProps {
-  data: {
-    role: string
-    content: string
-  }
-}
-
-const ChatBubble: React.FC<ChatBubbleProps> = ({ data }) => {
+export default function ChatBubble({ data }: ChatBubbleProps) {
   return (
     <div
       className={`p-4 chat ${data.role === 'bot' ? 'chat-start' : 'chat-end'}`}
@@ -29,5 +23,3 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ data }) => {
     </div>
   )
 }
-
-export default ChatBubble
