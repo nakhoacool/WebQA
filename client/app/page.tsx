@@ -104,6 +104,7 @@ export default function Home() {
         handleClearChat={handleClearChat}
         handleSidebarItemClick={handleSidebarItemClick}
         handleRemoveChatHistory={handleRemoveChatHistory}
+        activeChatHistoryId={activeChatHistoryId}
       />
       {/* Chat */}
       <div className='flex-1 flex flex-col'>

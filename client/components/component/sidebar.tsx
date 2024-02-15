@@ -16,6 +16,7 @@ interface SidebarProps {
   handleClearChat: () => void
   handleSidebarItemClick: (id: string) => void
   handleRemoveChatHistory: (id: string) => void
+  activeChatHistoryId: string | null
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -24,6 +25,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   handleClearChat,
   handleSidebarItemClick,
   handleRemoveChatHistory,
+  activeChatHistoryId,
 }) => {
   return (
     <div className='flex flex-col w-64 border-r border-gray-700'>
@@ -43,6 +45,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             item={item}
             handleSidebarItemClick={handleSidebarItemClick}
             handleRemoveChatHistory={handleRemoveChatHistory}
+            activeChatHistoryId={activeChatHistoryId}
           />
         ))}
       </div>

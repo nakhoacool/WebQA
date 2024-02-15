@@ -9,7 +9,7 @@ function BotTyping() {
         </div>
       </div>
       <div className='chat-header'>Bot</div>
-      <div className='chat-bubble'>
+      <div className='chat-bubble max-w-80'>
         <div className='animate-pulse bg-gray-500 rounded-full h-2 w-2 mr-1 inline-block'></div>
         <div className='animate-pulse bg-gray-500 rounded-full h-2 w-2 mr-1 inline-block'></div>
         <div className='animate-pulse bg-gray-500 rounded-full h-2 w-2 inline-block'></div>

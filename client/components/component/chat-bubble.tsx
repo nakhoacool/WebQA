@@ -20,7 +20,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ data }) => {
       </div>
       <div className='chat-header'>{data.role === 'bot' ? 'Bot' : 'User'}</div>
       <div
-        className={`chat-bubble text-white ${
+        className={`chat-bubble max-w-80 text-white ${
           data.role === 'user' ? 'chat-bubble-info' : ''
         }`}
       >
