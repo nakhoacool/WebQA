@@ -14,7 +14,7 @@ export default function Home() {
   const [isBotTyping, setIsBotTyping] = useState(false)
   const [data, setData] = useState<Message[]>([])
   const [chatHistory, setChatHistory] = useState<ChatHistory[]>([])
-  const [isNewChat, setIsNewChat] = useState(false)
+  const [isNewChat, setIsNewChat] = useState(true)
   const [activeChatHistoryId, setActiveChatHistoryId] = useState<string | null>(
     null
   )
