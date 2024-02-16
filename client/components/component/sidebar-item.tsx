@@ -21,10 +21,10 @@ export default function SidebarItem({
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => handleSidebarItemClick(item.id)}
     >
-      <p className='w-36 text-sm truncate grow'>{item.title}</p>
+      <p className='text-sm truncate'>{item.title}</p>
       {(isHovered || isActive) && (
         <TrashIcon
-          className='h-5 w-5'
+          className='h-5 w-5 hover:text-red-500 transition-colors duration-200 ease-in-out'
           onClick={(event) => {
             event.stopPropagation()
             handleRemoveChatHistory(item.id)

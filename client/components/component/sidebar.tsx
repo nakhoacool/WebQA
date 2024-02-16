@@ -50,7 +50,7 @@ export default function Sidebar({
           </Avatar>
           <span className='text-sm'>{session?.user?.email}</span>
         </PopoverTrigger>
-        <PopoverContent className='w-[15rem] pl-2 pr-2'>
+        <PopoverContent className='w-[15rem] px-2'>
           <button
             onClick={() => signOut()}
             className='py-2 hover:bg-gray-700 w-full flex items-center rounded space-x-2'
