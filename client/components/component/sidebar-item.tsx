@@ -16,15 +16,15 @@ export default function SidebarItem({
       key={item.id}
       className={`btn mb-2 flex justify-between items-center hover:bg-[#35255c] w-full ${
         isActive || isHovered ? 'bg-[#35255c]' : 'bg-[#1c1528]'
-      }`}
+      } flex-nowrap`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => handleSidebarItemClick(item.id)}
     >
-      <p className='text-sm truncate'>{item.title}</p>
+      <p className='text-sm truncate text-clip'>{item.title}</p>
       {(isHovered || isActive) && (
         <TrashIcon
-          className='h-5 w-5 hover:text-red-500 transition-colors duration-200 ease-in-out'
+          className='h-5 w-5 hover:text-red-500 transition-colors duration-200 ease-in-out flex-shrink-0'
           onClick={(event) => {
             event.stopPropagation()
             handleRemoveChatHistory(item.id)
