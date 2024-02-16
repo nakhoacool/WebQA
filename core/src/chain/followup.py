@@ -27,7 +27,7 @@ class LocalFollowUpChain:
             google_api_key=config.load_gemini_token()
         )
         self.prompt = ChatPromptTemplate.from_messages([
-            ("system", f'You are a helpful admission assitant for Ton Duc Thang university.\nGive you the following context to answer my questions. Output "None" if you cannot answer:\n```\n{doc_content}\n```\n'),
+            ("system", f'You are a helpful admission assitant for Ton Duc Thang university.\nAnswer the question mainly using the following context. Output "None" if you cannot answer:\n```\n{doc_content}\n```\n'),
             MessagesPlaceholder(variable_name="history"),
             ("human", "{question}")])
 
@@ -46,7 +46,8 @@ class LocalFollowUpChain:
 
     @traceable(tags=["followup"])
     def answer(self, question: str) -> str:
-        inputs = {"question": question}
+        template = f"Only use the given context to answer '{question}'. Output 'None' if you cannot answer."
+        inputs = {"question": template}
         response = self.chain.invoke(inputs)
         self.memory.save_context(inputs=inputs, outputs={"output": response.content})
         return response.content
