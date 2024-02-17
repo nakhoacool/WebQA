@@ -4,7 +4,10 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 from langchain.memory import ConversationBufferMemory
 from operator import itemgetter
+import sys
+sys.path.append("../")
 from src.config import Configuration
+from src.service.applog import AppLogService
 
 class LocalFollowUpChain:
     """
@@ -26,13 +29,32 @@ class LocalFollowUpChain:
             convert_system_message_to_human=True,
             google_api_key=config.load_gemini_token()
         )
+        self.doc = doc_content
+        self.logservice = AppLogService(name="followup.log")
+        self.memory = ConversationBufferMemory(return_messages=True)
+        self.chain = self.__build_chain(reset_memory=False)
+        return
+    
+    def set_doc(self, doc_content: str, reset_memory: bool):
+        """
+            Rebuild the chain with new input document.
+            @reset_memory: reset previous memory if true
+        """
+        self.doc = doc_content
+        self.chain = self.__build_chain(reset_memory=reset_memory)
+        pass    
+
+    def __build_chain(self, reset_memory:bool = False):
+        sys_msg = "You are a helpful admission assitant for Ton Duc Thang university.\n"
+        sys_msg += 'Answer the question mainly using the following context. Output "None" if you cannot answer:\n'
+        sys_msg += f'```\n{self.doc}\n```\n'
         self.prompt = ChatPromptTemplate.from_messages([
-            ("system", f'You are a helpful admission assitant for Ton Duc Thang university.\nAnswer the question mainly using the following context. Output "None" if you cannot answer:\n```\n{doc_content}\n```\n'),
+            ("system", sys_msg),
             MessagesPlaceholder(variable_name="history"),
             ("human", "{question}")])
-
-        self.memory = ConversationBufferMemory(return_messages=True)
-        self.chain = RunnablePassthrough.aschain = (
+        if reset_memory:
+            self.memory = ConversationBufferMemory(return_messages=True)
+        chain = RunnablePassthrough.aschain = (
             {
                 "question": itemgetter("question")
             }
@@ -42,12 +64,16 @@ class LocalFollowUpChain:
             | self.prompt
             | self.chat_model
         )
-        return
+        return chain
 
     @traceable(tags=["followup"])
     def answer(self, question: str) -> str:
         template = f"Only use the given context to answer '{question}'. Output 'None' if you cannot answer."
-        inputs = {"question": template}
-        response = self.chain.invoke(inputs)
-        self.memory.save_context(inputs=inputs, outputs={"output": response.content})
+        inputs = {"questiond": template}
+        try:
+            response = self.chain.invoke(inputs)
+            self.memory.save_context(inputs=inputs, outputs={"output": response.content})
+        except Exception as err:
+            self.logservice.logger.exception("InvokeChainError")
+            return "[Followup] Sorry! something went wrong"
         return response.content

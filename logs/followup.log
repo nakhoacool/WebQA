@@ -1,0 +1,27 @@
+2024-02-17 17:24:29,068 - followup.log - ERROR - InvokeChainError
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/../src/chain/followup.py", line 74, in answer
+    response = self.chain.invoke(inputs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2053, in invoke
+    input = step.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2692, in invoke
+    output = {key: future.result() for key, future in zip(steps, futures)}
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2692, in <dictcomp>
+    output = {key: future.result() for key, future in zip(steps, futures)}
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/concurrent/futures/_base.py", line 446, in result
+    return self.__get_result()
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3507, in invoke
+    return self._call_with_config(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 1246, in _call_with_config
+    context.run(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3383, in _invoke
+    output = call_func_with_variable_args(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+KeyError: 'question'
