@@ -9,3 +9,4 @@ pandas
 langchain-community
 langchainhub
 langchain-openai
+google-cloud-aiplatform
