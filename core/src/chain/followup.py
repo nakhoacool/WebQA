@@ -69,7 +69,7 @@ class LocalFollowUpChain:
     @traceable(tags=["followup"])
     def answer(self, question: str) -> str:
         template = f"Only use the given context to answer '{question}'. Output 'None' if you cannot answer."
-        inputs = {"questiond": template}
+        inputs = {"question": template}
         try:
             response = self.chain.invoke(inputs)
             self.memory.save_context(inputs=inputs, outputs={"output": response.content})

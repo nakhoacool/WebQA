@@ -1,14 +1,13 @@
 import os
-from elasticsearch import Elasticsearch
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from typing import List
 
-class Configuration:
+class ConfigurationService:
     """
-        This class responsible for loading API key, ES connection, LLM
+        A service designed to load secret keys, API keys...
     """
     def __init__(self):
         self.env_path = os.path.dirname(__file__)
-        self.path = f"{self.env_path}/../.keys"
+        self.path = f"{self.env_path}/../../.keys"
         return
 
     def load_hg_token(self, nth:int = 0) -> str:
@@ -67,43 +66,18 @@ class Configuration:
         os.environ["LANGCHAIN_PROJECT"]=project.strip()
         return
 
-    def load_elasticsearch_connection(self) -> Elasticsearch:
+    def load_elasticsearch_config(self):
         """
-            load elastic search connection from hosted cloud
+            load elastic search configuration
 
-            @return a es connection
+            @return an array of size 3
+            1. the nodes
+            2. the auth
+            3. ca_cert
         """
-        with open(f"{self.env_path}/../.keys/elastic.nodes") as f:
+        with open(f"{self.path}/elastic.nodes") as f:
             nodes = f.readlines()
-        with open(f"{self.env_path}/../.keys/elastic.auth") as f:
+        with open(f"{self.path}/elastic.auth") as f:
             auth = f.read().strip().split(":")
-        es = Elasticsearch(
-            nodes, 
-            basic_auth=auth, 
-            ca_certs=f'{self.env_path}/../.keys/ca.crt')
-        return es
-    
-    def get_gemini_pro(self, convert_system_message:bool) -> ChatGoogleGenerativeAI:
-        """
-            get an instance of gemini pro
-
-            @return gemini chat model
-        """
-        chat_model = ChatGoogleGenerativeAI(
-            model="gemini-pro", 
-            temperature=0, 
-            google_api_key=self.load_gemini_token(),
-            convert_system_message_to_human=convert_system_message
-        )
-        return chat_model
-    
-    def get_gemini_embeddings(self) -> GoogleGenerativeAIEmbeddings:
-        """
-            get an instance of gemini embedding model
-
-            @return embedding model
-        """
-        model = GoogleGenerativeAIEmbeddings(
-            model="models/embedding-001", 
-            google_api_key=self.load_gemini_token())
-        return model
+        ca_cert = f'{self.path}/ca.crt'
+        return nodes, auth, ca_cert

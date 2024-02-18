@@ -41,7 +41,7 @@ class HybridGeminiRag:
         template += "Question: {question}\n"
         prompt = ChatPromptTemplate.from_template(template)
         self._init_retriever(es_index=es_index, embed_model=embed_model, config=config)
-        self.rag = (
+        self.chain = (
             {"context": itemgetter("question") | self.ensemble_retriever, 
              "question": itemgetter("question"), "ask_id": itemgetter("ask_id")}
             | RunnableLambda(self._format_doc)
@@ -79,7 +79,7 @@ class HybridGeminiRag:
             return "No question was asked"
         if ask_id == None:
             return "Went wrong. Cannot generate uuid"
-        answer = self.rag.invoke({"question": question, "ask_id": ask_id})
+        answer = self.chain.invoke({"question": question, "ask_id": ask_id})
         resp = RAGResponse(
             answer=answer.strip(), 
             category=RAGCategories.major, 
