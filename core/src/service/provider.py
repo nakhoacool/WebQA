@@ -2,14 +2,15 @@ from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from elasticsearch import Elasticsearch
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from src.service.config import ConfigurationService
-from src.service.docstore import DocStore, DocCategories
+from src.service.docstore import DocStore
+from src.rag.types import RAGCategories
 
 class ProviderService:
 
     def __init__(self) -> None:
         self.config = ConfigurationService()
         self.docstore = DocStore()
-        self.categories = DocCategories()
+        self.categories = RAGCategories()
         pass
 
     def get_docstore(self) -> DocStore:
@@ -18,7 +19,7 @@ class ProviderService:
         """
         return self.docstore
     
-    def get_categories(self) -> DocCategories:
+    def get_categories(self) -> RAGCategories:
         return self.categories
 
     def load_elasticsearch_connection(self) -> Elasticsearch:
@@ -34,7 +35,7 @@ class ProviderService:
             ca_certs=ca_certs)
         return es
     
-    def get_gemini_pro(self, convert_system_message:bool) -> ChatGoogleGenerativeAI:
+    def get_gemini_pro(self, convert_system_message:bool = False) -> ChatGoogleGenerativeAI:
         """
             get an instance of gemini pro
 
