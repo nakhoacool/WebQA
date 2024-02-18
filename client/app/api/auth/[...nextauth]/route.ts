@@ -7,6 +7,18 @@ export const authOptions = {
   pages: {
     signIn: '/auth/signin',
   },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id
+      }
+      return token
+    },
+    async session({ session, token }) {
+      session.user.id = token.id
+      return session
+    },
+  },
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -16,14 +28,16 @@ export const authOptions = {
           auth,
           (credentials as any).email || '',
           (credentials as any).password || ''
-        )
-          .then((userCredential) => {
-            if (userCredential.user) {
-              // *TODO: Add role based access control here
-              return userCredential.user
+        ).then((userCredential) => {
+          if (userCredential) {
+            // *TODO: Add role based access control here
+            return {
+              id: userCredential.user.uid,
+              email: userCredential.user.email,
             }
-            return null
-          })
+          }
+          return null
+        })
       },
     }),
   ],
