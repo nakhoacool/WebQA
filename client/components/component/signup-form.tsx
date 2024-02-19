@@ -1,8 +1,9 @@
 'use client'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { doc, setDoc } from 'firebase/firestore'
+import { auth, db } from '@/lib/firebase/config'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
-import { auth } from '@/lib/firebase/config'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Bounce, ToastContainer, toast } from 'react-toastify'
@@ -44,7 +45,10 @@ export default function SignUpForm() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     createUserWithEmailAndPassword(auth, values.email, values.password)
-      .then(() => {
+      .then((userCredential) => {
+        const uid = userCredential.user.uid
+        const userRef = doc(db, 'thesis', uid)
+        setDoc(userRef, { user_profile: { role: 'user' } })
         localStorage.setItem('signupSuccess', 'Successfully registered')
         router.replace('/auth/signin')
       })
