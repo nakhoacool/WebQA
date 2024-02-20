@@ -61,9 +61,9 @@ class DocDataLoader:
         
             @return a dict of id, documents
         """
-        db_df = pd.read_csv(f'{self.env_path}/../../data/test_major/docs.csv')
+        db_df = pd.read_csv(f'{self.env_path}/../../data/db/majors_info.csv')
         db = {}
         for i, data in db_df.iterrows():
-            db[data['id']] = TDTDoc(content=data['content'], src=data['source'], id=int(data['id']))
+            db[data['id']] = TDTDoc(content=data['content'], src=data['source'], id=int(data['id']), title=data['title'])
         print(f"From {db_df.shape} to {len(db)}")
         return db

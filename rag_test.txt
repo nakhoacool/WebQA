@@ -1,44 +1,11 @@
-{"answer":"Ngành Dược là ngành học ứng dụng công nghệ để nghiên cứu về sự quan hệ với cơ thể người và cách sử dụng trong điều trị bệnh, cũng như cung cấp thông tin, hướng dẫn sử dụng cho cộng đồng.
-
-Sinh viên sau khi tốt nghiệp được trang bị kiến thức và kỹ năng về lý, chế, sản xuất và lưu thông để có thể tự tin hòa nhập vào y tế cộng đồng và tham gia vào các cơ sở hành dược với các vị trí như:
-
-* Dược sĩ tư vấn sử dụng tại các nhà thuốc
-* Dược sĩ nghiên cứu và phát triển của các công ty, doanh nghiệp sản xuất tân dược, dược phẩm và sinh phẩm y tế, công ty xuất nhập và phân phố
-* Viên kiểm nghiệm chất lượng và nguyên liệu làm việc tại các bệnh viện, trung tâm kiểm nghiệm của Trung ương, địa phương
-* Dược sĩ cung ứng nội - ngoại trú bệnh viện
-* Giảng viên giảng dạy ngành Dược tại các trường đại học, ...
-
-Sinh viên theo học ngành Dược được trang bị kiến thức cơ bản và dược học cơ sở như:
-
-* Hóa đại cương
-* Sinh học đại cương
-* Vật lý đại cương
-* Giải phẫu - sinh lý
-* Thực vật dược
-* Công nghệ sinh học Dược
-* Hóa lý dược
-* Hóa phân tích
-
-Ngoài ra, sinh viên còn được học các kiến thức về các lĩnh vực của ngành dược như:
-
-* Hóa dược
-* Dược liệu
-* Dược lý
-* Dược lâm sàng
-* Kiểm nghiệm - Đảm bảo chất lượng
-* Kinh tế dược
-* Lý và phân phố
-
-Sinh viên được thực hành tại các phòng thí nghiệm liên tục cập nhật trang thiết bị và máy mọc hiện đại. Giáo trình lý thuyết và thực hành được thiết kế theo xu hướng nghề nghiệp nhằm cung cấp kiến thức mới nhất cho sinh viên.
-
-Sinh viên được tham gia công tác nghiên cứu với các đề tài có liên quan mật thiết đến nghiên cứu, phát triển và ứng dụng của ngành với sức khỏe con người, sự hướng dẫn tận tình của các giảng viên kinh nghiệm, giúp sinh viên bước đầu tiếp xúc với công tác nghiên cứu, ứng dụng kiến thức đã học vào thực tế.
-
-Chương trình học được xây dựng theo hướng kết nối với nghề nghiệp, sinh viên được tạo điều kiện để tham gia học và thực tập tại các cơ sở hành Dược uy tín như chuỗi nhà thuốc Long Châu, An Khang, công ty Bepharco, Tipharco, Trung tâm bảo tốn Dược liệu Mepydica, Bệnh viện Pháp Việt, Vinmec, ... giúp sinh viên làm quen với môi trường nghề nghiệp thực tế, rèn luyện tác phong, kỷ luật làm việc cũng như tích lũy kinh nghiệm nghề nghiệp.","category":"major","notfound":false,"question":"cho em hỏi về ngành dược ạ","status":200}
-
-###
-
-{"answer":"Sinh viên theo học ngành Dược được trang bị khối kiến thức khoa học cơ bản và dược học cơ sở như hoá đại cương, sinh học đại cương, vật lý đại cương, giải phẫu - sinh lý, thực vật dược, công nghệ sinh học Dược, hóa lý dược, hóa phân tích, … Nhà trường còn cung cấp kiến thức chuyên môn cũng như kỹ năng về tất cả các lĩnh vực của chuyên ngành dược như hoá dược, dược liệu, dược lý, dược lâm sàng, kiểm nghiệm - đảm bảo chất lượng thuốc, kinh tế dược, quản lý và phân phối thuốc, …","category":"local","notfound":false,"question":"sinh viên theo học ngành này của trường được học những gì?","status":200}
-{"answer":"None","category":"local","notfound":true,"question":"cho em hỏi về ngành CNTT của trường đi ạ","status":200}
-{"answer":"None","category":"major","notfound":true,"question":"em muốn biết thêm về ngành CNTT ạ","status":200}
-{"answer":"None","category":"local","notfound":true,"question":"em muốn học ngành kỹ thuật phần mềm của trường ạ","status":200}
-{"answer":"Ngành Kỹ thuật phần mềm tại Trường Đại học Tôn Đức Thắng là ngành ứng dụng kiến thức về lập trình, thiết kế phần mềm, quy trình vận hành và phát triển phần mềm, phân tích yêu cầu hệ thống, trí tuệ nhân tạo … để tạo ra sản phẩm phần mềm đạt chất lượng cao, đáp ứng xu hướng phát triển mạnh mẽ của công nghệ và nhu cầu nghiệp vụ cụ thể trong nền sản xuất của xã hội.","category":"major","notfound":false,"question":"cho em hỏi về ngành kỹ thuật phần mềm của trường ạ","status":200}
+{"answer":"Kỹ thuật cơ điện tử","category":"local","notfound":false,"question":"ngành đang tư vấn có tên là gì vậy ạ?","status":200}
+{"answer":"Có","category":"major","notfound":false,"question":"trường có ngành học nào chuyên về Việt Nam không ạ?","status":200}
+{"answer":"- Cơ quan ngoại giao
+- Tổ chức quốc tế
+- Công ty du lịch
+- Văn phòng thương mại
+- Tổ chức chính phủ và phi chính phủ
+- Phiên dịch
+- Biên dịch
+- Nghiên cứu
+- Giảng dạy tiếng Việt","category":"local","notfound":false,"question":"sinh viên tốt nghiệp ngành này có thể ứng tuyển vào vị trí nào vậy ạ?","status":200}

@@ -1,6 +1,7 @@
 from pandas import DataFrame
 import os
 import pandas as pd
+from datetime import datetime
 
 def test_major(qa_df: DataFrame, ques_col: str, retriever, error_limit: int = 20):
     correct = 0
@@ -35,13 +36,17 @@ class MajorBlogPostEvaluation:
 
     def _eval_retriever(self, file_name: str, target_file: str, ques_col: str, retriever, metadata):
         df = pd.read_csv(os.path.join(self.data_folder, target_file))
+        START = datetime.now()
         correct, total = test_major(df, ques_col, retriever, error_limit=20)
+        END = datetime.now()
         with open(os.path.join(self.save_path, file_name), "a") as f:
             f.write("\n->\n")
+            f.write(f"Start: {START}\n")
             [f.write(f"Param {k}: {v}\n") for k, v in metadata.items()]
             f.write(f"Correct: {str(correct)}\n")
             f.write(f"Total: {str(total)}\n")
             f.write(f"Score: {str(correct/total)}\n")
+            f.write(f"End: {END}\n")
         return
     
     def eval_sample(self, file_name: str, retriever, metadata):

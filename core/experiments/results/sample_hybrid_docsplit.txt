@@ -40,3 +40,19 @@ Param technique: models/embedding-001 + Hybrid (full text at BM25)
 Correct: 3
 Total: 3
 Score: 1.0
+
+->
+Start: 2024-02-18 19:52:14.999564
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-major
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 3
+Total: 3
+Score: 1.0
+End: 2024-02-18 19:52:57.937496

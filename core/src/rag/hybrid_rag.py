@@ -7,7 +7,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableLambda
 from operator import itemgetter
 import uuid
-from src.rag.types import RAGResponse
+from src.rag.types import RAGResponse, RAGConfig
 from src.service.provider import ProviderService
 from src.custom.es_bm25_retriever import MyElasticSearchBM25Retriever
 from src.service.applog import AppLogService
@@ -29,23 +29,19 @@ class HybridGeminiRAG:
         - Elastic search as vector database
     """
     def __init__(
-            self, vector_es_index: str, txt_es_index: str, db_category: str,  
-            provider: ProviderService, embed_model: str = ""):
+            self, provider: ProviderService, 
+            rag_config: RAGConfig, 
+            update_notification_func):
         """
             Initialize the RAG
-            @param vector_es_index vector data index, 
-            @param txt_es_index text data index,
-            @param embed_model hugging face sentence-transformer model
+           
+            @param rag_config RAGConfig
             @param provider ProviderService
         """
         self.retrieve_parent_document = None
-        self.vector_es_index = vector_es_index
-        self.txt_es_index = txt_es_index
-        self.db_category = db_category
+        self.rag_config = rag_config
         self.database = provider.get_docstore()
-        self.embed_model = embed_model
-
-        self.log = AppLogService(f"hybrid_gemini_rag-{self.db_category}.log")
+        self.log = AppLogService(f"hybrid_gemini_rag-{self.rag_config.db_category}.log")
         # Build chain
         chat_model = provider.get_gemini_pro(convert_system_message=False)
         prompt = ChatPromptTemplate.from_template(TEMPLATE)
@@ -58,9 +54,11 @@ class HybridGeminiRAG:
             | prompt
             | chat_model
             | StrOutputParser()
+            | RunnableLambda(update_notification_func)
+            | RunnableLambda(self.__format_answer)
         ) 
         return
-
+    
     def __format_doc(self, input_dict):
         """
             Note! for internal class use only.
@@ -70,10 +68,23 @@ class HybridGeminiRAG:
         """
         retrieve_doc = input_dict['context'][0]
         doc_id = retrieve_doc.metadata['id']
-        document = self.database.find_document(category=self.db_category, id=doc_id)
+        document = self.database.find_document(category=self.rag_config.db_category, id=doc_id)
         input_dict['context'] = document.content
         self.retrieve_parent_document = document
         return input_dict
+    
+    def __format_answer(self, answer):
+        """
+            Note! for internal class use only.
+
+            This method formats the retrieved documnents from the retriever.
+            It helps the chat model understands the context better.
+        """
+        resp = RAGResponse(
+            answer=answer.strip(), 
+            category=self.rag_config.db_category,
+            document=self.retrieve_parent_document)
+        return resp
 
     @traceable(tags=['hybrid_gemini'])
     def ask_rag(self, question: str) -> RAGResponse:
@@ -92,7 +103,7 @@ class HybridGeminiRAG:
             answer = self.chain.invoke({"question": question})
             resp = RAGResponse(
                 answer=answer.strip(), 
-                category=self.db_category,
+                category=self.rag_config.db_category,
                 document=self.retrieve_parent_document)
         except Exception:
             self.log.logger.exception(msg="can't answer RAG")
@@ -106,16 +117,17 @@ class HybridGeminiRAG:
             Initialize Elastic, BM25 instances and combine them into hybrid search
             This method is intented for private use. Please be cautious modifying.
         """
-        embeddings = provider.get_hf_api_embeddings(self.embed_model)
+        embeddings = provider.get_hf_api_embeddings(self.rag_config.embed_model)
         # elastic
         es_connect = provider.load_elasticsearch_connection()
         es = ElasticsearchStore(
             es_connection=es_connect,
             embedding=embeddings,
-            index_name=self.vector_es_index, distance_strategy="EUCLIDEAN_DISTANCE") 
+            index_name=self.rag_config.vector_index, 
+            distance_strategy="EUCLIDEAN_DISTANCE") 
         es_retriever = es.as_retriever(search_kwargs={"k": 1})
         # BM-25
-        bm25_retriever = MyElasticSearchBM25Retriever(client=es_connect, index_name=self.txt_es_index)
+        bm25_retriever = MyElasticSearchBM25Retriever(client=es_connect, index_name=self.rag_config.text_index)
         bm25_retriever.k = 1
         self.ensemble_retriever = EnsembleRetriever(
             retrievers=[bm25_retriever, es_retriever],

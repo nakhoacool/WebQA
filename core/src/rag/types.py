@@ -1,10 +1,28 @@
 from src.prepare.types import TDTDoc
 
 class RAGCategories:
-    major = "major"
 
     def __init__(self) -> None:
-        pass
+        self.major = RAGConfig(
+            embed_model = "sentence-transformers/LaBSE",
+            text_index = "text-split-major",
+            vector_index = "labse-major",
+            db_category = "major")
+        return
+
+
+class RAGConfig:
+    text_index: str
+    vector_index: str
+    db_category: str
+    embed_model: str
+
+    def __init__(self, embed_model, text_index, vector_index, db_category) -> None:
+        self.embed_model = embed_model
+        self.text_index = text_index
+        self.vector_index = vector_index
+        self.db_category = db_category
+        return
 
 class RAGResponse:
 
