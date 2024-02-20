@@ -4,4 +4,5 @@ class TDTDoc:
         self.content = content
         self.source = src
         self.id = id
+        self.title = title
         return

@@ -29,7 +29,9 @@ class HybridGeminiRAG:
         - Elastic search as vector database
     """
     def __init__(
-            self, provider: ProviderService, rag_config: RAGConfig):
+            self, provider: ProviderService, 
+            rag_config: RAGConfig, 
+            update_notification_func):
         """
             Initialize the RAG
            
@@ -39,7 +41,6 @@ class HybridGeminiRAG:
         self.retrieve_parent_document = None
         self.rag_config = rag_config
         self.database = provider.get_docstore()
-
         self.log = AppLogService(f"hybrid_gemini_rag-{self.rag_config.db_category}.log")
         # Build chain
         chat_model = provider.get_gemini_pro(convert_system_message=False)
@@ -53,9 +54,11 @@ class HybridGeminiRAG:
             | prompt
             | chat_model
             | StrOutputParser()
+            | RunnableLambda(update_notification_func)
+            | RunnableLambda(self.__format_answer)
         ) 
         return
-
+    
     def __format_doc(self, input_dict):
         """
             Note! for internal class use only.
@@ -69,6 +72,19 @@ class HybridGeminiRAG:
         input_dict['context'] = document.content
         self.retrieve_parent_document = document
         return input_dict
+    
+    def __format_answer(self, answer):
+        """
+            Note! for internal class use only.
+
+            This method formats the retrieved documnents from the retriever.
+            It helps the chat model understands the context better.
+        """
+        resp = RAGResponse(
+            answer=answer.strip(), 
+            category=self.rag_config.db_category,
+            document=self.retrieve_parent_document)
+        return resp
 
     @traceable(tags=['hybrid_gemini'])
     def ask_rag(self, question: str) -> RAGResponse:

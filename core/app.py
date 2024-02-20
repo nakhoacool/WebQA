@@ -1,24 +1,26 @@
 from flask import Flask, request
 from markupsafe import escape
 from src.config import Configuration
+from src.service.applog import AppLogService
 from langsmith.run_helpers import traceable
-from src.userbot import UserBot
-from src.masterbot import MasterBot
 import os
 from flask_cors import CORS
+from src.service.provider import ProviderService
+from src.robot import RAGRobot
 
 # When call API, please check the "status" field first
 # 200 is success, else is error
-
-master = MasterBot()
-user_bots = {"u12": UserBot("u12", masterRef=master)}
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     # enable CORS
     CORS(app=app)
+    log_service = AppLogService(name="app.log")
     config = Configuration()
-    config.enable_tracing("LEARN")
+    config.enable_tracing("DEMO")
+    provider = ProviderService()
+    robot = RAGRobot(provider=provider)
+
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
@@ -29,8 +31,7 @@ def create_app(test_config=None):
     try:
         os.makedirs(app.instance_path)
     except OSError:
-        with open("./rag.log", "a") as f:
-            f.write('ERROR: cannot make dir '+app.instance_path)
+        log_service.logger.error(msg='ERROR: cannot make dir '+app.instance_path)
     
     ### End Points ###
     @app.route('/')
@@ -47,7 +48,7 @@ def create_app(test_config=None):
         return data
 
     @app.route("/qa", methods=["POST"])
-    @traceable(tags=["rag_live", "major"])
+    @traceable(tags=["rag_live"])
     def answer_major():
         """
             Ask RAG major blog post Service.
@@ -64,8 +65,8 @@ def create_app(test_config=None):
         try:
             question = request.form.get("question")
             userid = "u12"
-            bot = user_bots[userid]
-            rag_resp = bot.ask(question=escape(question))
+            bot = robot
+            rag_resp = bot.answer(escape(question))
             data = {
                 "question": question, 
                 "answer": rag_resp.answer,
@@ -73,8 +74,7 @@ def create_app(test_config=None):
                 "status": 200, 
                 "notfound": rag_resp.is_notfound()}
         except Exception as Argument:
-            with open("rag.log", "a") as f:
-                f.write(f"[ERROR] {str(Argument)}")
+            log_service.logger.exception(msg="[APP] answer_major went wrong!")
             return {"status": 404}
         return data
     
