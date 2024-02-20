@@ -20,17 +20,16 @@ export default function Home() {
   )
   const messagesEndRef = useRef<HTMLDivElement | null>(null)
 
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [data])
+
   const { data: session, status } = useSession({
     required: true,
     onUnauthenticated() {
       redirect('/auth/signin')
     },
   })
-
-  const date = new Date()
-  const dateString = `${date.getFullYear()}-${
-    date.getMonth() + 1
-  }-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`
 
   const handleFormSubmit = (message: Message) => {
     setData((prev) => {
@@ -50,6 +49,10 @@ export default function Home() {
         }
       } else {
         // If there's no chat history or a new chat is started, create a new one
+        const date = new Date()
+        const dateString = `${date.getFullYear()}-${
+          date.getMonth() + 1
+        }-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`
         const newChatHistoryId = uuidv4()
         setActiveChatHistoryId(newChatHistoryId)
         setChatHistory([
@@ -86,10 +89,6 @@ export default function Home() {
       setData(history.messages)
     }
   }
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [data])
 
   if (status === 'loading') {
     return <Loading />
