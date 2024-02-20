@@ -1,3 +1,4 @@
+import type { Session } from "next-auth"
 export interface Message {
   role: string
   content: string
@@ -24,7 +25,7 @@ export interface ChatFormProps {
 }
 
 export interface SidebarProps {
-  session: any
+  session: Session
   chatHistory: ChatHistory[]
   handleClearChat: () => void
   handleSidebarItemClick: (id: string) => void
