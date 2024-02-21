@@ -7,9 +7,25 @@ import os
 from flask_cors import CORS
 from src.service.provider import ProviderService
 from src.robot import RAGRobot
+from typing import Dict
 
 # When call API, please check the "status" field first
 # 200 is success, else is error
+
+class RobotManager:
+    """
+        This class is designed to manage multiple robots for multiple users.
+        Simply put, it get the correct robot that serving for a particular user.
+    """
+    def __init__(self) -> None:
+        self.robots: Dict[str, RAGRobot] = {}
+        self.provider = ProviderService()
+        return
+ 
+    def get_robot(self, id: str) -> RAGRobot:
+        if id in self.robots.keys():
+            return self.robots[id]
+        return RAGRobot(provider=self.provider)
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -18,8 +34,7 @@ def create_app(test_config=None):
     log_service = AppLogService(name="app.log")
     config = Configuration()
     config.enable_tracing("DEMO")
-    provider = ProviderService()
-    robot = RAGRobot(provider=provider)
+    MANAGER = RobotManager()
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -48,7 +63,6 @@ def create_app(test_config=None):
         return data
 
     @app.route("/qa", methods=["POST"])
-    @traceable(tags=["rag_live"])
     def answer_major():
         """
             Ask RAG major blog post Service.
@@ -65,7 +79,7 @@ def create_app(test_config=None):
         try:
             question = request.form.get("question")
             userid = "u12"
-            bot = robot
+            bot = MANAGER.get_robot(id=userid)
             rag_resp = bot.answer(escape(question))
             data = {
                 "question": question, 
