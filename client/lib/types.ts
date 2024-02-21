@@ -21,7 +21,7 @@ export interface ChatFormProps {
   onSubmit: (message: Message) => void
   setIsTyping: (isBotTyping: boolean) => void
   isTyping: boolean
-  chatHistory: Message[]
+  session: Session
 }
 
 export interface SidebarProps {

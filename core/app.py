@@ -78,7 +78,7 @@ def create_app(test_config=None):
             return {"status": 404}
         try:
             question = request.form.get("question")
-            userid = "u12"
+            userid = request.form.get("userid")
             bot = MANAGER.get_robot(id=userid)
             rag_resp = bot.answer(escape(question))
             data = {
