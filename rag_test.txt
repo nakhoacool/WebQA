@@ -1,11 +1,9 @@
-{"answer":"Kỹ thuật cơ điện tử","category":"local","notfound":false,"question":"ngành đang tư vấn có tên là gì vậy ạ?","status":200}
-{"answer":"Có","category":"major","notfound":false,"question":"trường có ngành học nào chuyên về Việt Nam không ạ?","status":200}
-{"answer":"- Cơ quan ngoại giao
-- Tổ chức quốc tế
-- Công ty du lịch
-- Văn phòng thương mại
-- Tổ chức chính phủ và phi chính phủ
-- Phiên dịch
-- Biên dịch
-- Nghiên cứu
-- Giảng dạy tiếng Việt","category":"local","notfound":false,"question":"sinh viên tốt nghiệp ngành này có thể ứng tuyển vào vị trí nào vậy ạ?","status":200}
+{"answer":"- Ngành Kỹ thuật phần mềm ứng dụng kiến thức về lập trình, thiết kế phần mềm, quy trình vận hành và phát triển phần mềm, phân tích yêu cầu hệ thống, trí tuệ nhân tạo … để tạo ra sản phẩm phần mềm đạt chất lượng cao.
+- Cử nhân Kỹ thuật phần mềm có thể tự tin khởi nghiệp hoặc ứng tuyển vào các doanh nghiệp trong và ngoài nước, các cơ quan, ban ngành ở những vị trí: Chuyên viên phân tích yêu cầu (BA), Kiến trúc sư phần mềm (SA), Lập trình viên (Developer), Chuyên viên thử nghiệm phần mềm (Tester), chuyên viên cầu nối (BrSE), chuyên viên nghiên cứu và phát triển ứng dụng (R&D), giảng viên giảng dạy các môn học về ngành kỹ thuật phần mềm hoặc có thể tiếp tục nghiên cứu và học lên cao học.
+- Sinh viên được cung cấp kiến thức nền cơ sở của kỹ thuật phần mềm và những kiến thức mang tính định hướng theo nhu cầu phát triển của xã hội như: phát triển ứng dụng trên các nền tảng số, thiết bị máy tính, di động thông minh; thiết kế giao diện thân thiện với người dùng; phân tích hệ thống; an toàn thông tin; quản lý dự án công nghệ thông tin; …
+- Các học phần được thiết kế mang tính ứng dụng cao, theo hướng tăng dần từ cấp độ cơ bản đến cấp độ sinh viên có đủ kiến thức và kỹ năng để tự thực hiện được một dự án phần mềm, từ giai đoạn thu thập yêu cầu, phân tích, thiết kế, lập trình, kiểm thử đến giai đoạn vận hành và bảo trì phần mềm.","category":"major","notfound":false,"question":"cho biết thông tin về ngành phần mềm","status":200}
+{"answer":"- Kỹ sư thiết kế, chế tạo máy móc tự động hóa
+- Kỹ sư vận hành, bảo trì các thống điện tử công nghiệp, robot công nghiệp trong các dây chuyền sản xuất lắp ráp thông minh
+- Chuyên viên tư vấn, thiết kế, phân tích mô phỏng nhằm cung cấp giải pháp công nghệ theo yêu cầu của khách hàng là các đơn vị sản xuất kinh doanh hoặc hành chính sự nghiệp
+- Nhân viên hỗ trợ kỹ thuật hoặc giới thiệu sản phẩm cho các tập đoàn sản xuất thiết bị cơ khí – cơ điện tử","category":"local","notfound":false,"question":"cử nhân tốt nghiệp ngành này có thể ứng tuyển vào vị trí nào?","status":200}
+{"answer":"None","category":"major","notfound":true,"question":"ngành này có đào tạo AI không ạ?","status":200}
