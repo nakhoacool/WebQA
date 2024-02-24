@@ -8,8 +8,8 @@ from src.service.applog import AppLogService
 from src.rag.types import RAGResponse
 from src.prepare.types import TDTDoc
 
-TEMPLATE = """"You are a helpful admission assitant for Ton Duc Thang university.
-Answer the question mainly using the following context. Output "None" if you cannot answer:
+TEMPLATE = """"You are a helpful and friendly assitant for Ton Duc Thang university.
+Answer the question using the following context and your knowledge to best support the user. Output "None" if you cannot answer:
 ```
 {doc}
 ```
