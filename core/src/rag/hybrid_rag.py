@@ -94,21 +94,12 @@ class HybridGeminiRAG:
 
             @return answer, 'None' if it can't
         """
-        ask_id = uuid.uuid1().int
-        if question == None:
-            return "No question was asked"
-        if ask_id == None:
-            return "Went wrong. Cannot generate uuid"
         try:
             answer = self.chain.invoke({"question": question})
-            resp = RAGResponse(
-                answer=answer.strip(), 
-                category=self.rag_config.db_category,
-                document=self.retrieve_parent_document)
         except Exception:
             self.log.logger.exception(msg="can't answer RAG")
             return None
-        return resp
+        return answer
 
     def __init_retriever(self, provider: ProviderService):
         """
@@ -126,9 +117,11 @@ class HybridGeminiRAG:
             index_name=self.rag_config.vector_index, 
             distance_strategy="EUCLIDEAN_DISTANCE") 
         es_retriever = es.as_retriever(search_kwargs={"k": 1})
+        self.es = es_retriever
         # BM-25
         bm25_retriever = MyElasticSearchBM25Retriever(client=es_connect, index_name=self.rag_config.text_index)
         bm25_retriever.k = 1
+        self.bm25 = bm25_retriever
         self.ensemble_retriever = EnsembleRetriever(
             retrievers=[bm25_retriever, es_retriever],
             weights=[0.5, 0.5])

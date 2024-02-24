@@ -1,0 +1,5 @@
+2024-02-24 11:33:56,212 - hybrid_gemini_rag-major.log - ERROR - can't answer RAG
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/../src/rag/hybrid_rag.py", line 105, in ask_rag
+    answer=answer.strip(),
+AttributeError: 'RAGResponse' object has no attribute 'strip'

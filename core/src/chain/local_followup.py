@@ -26,8 +26,8 @@ class LocalFollowUpChain:
     def __init__(self, provider: ProviderService, document: TDTDoc) -> None:
         """
             Initialize the chain. (a chain is a RAG but without the retriever)
-            @param doc_content the input document
-            @param config Configuration
+            @param document the input document
+            @param provider the service provider
         """
         self.chat_model = provider.get_gemini_pro(convert_system_message=True)
         self.doc:TDTDoc = document

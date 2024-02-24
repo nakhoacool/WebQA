@@ -1,3 +1,4 @@
+from langchain_core.runnables import RunnableLambda
 from langchain_core.runnables import RunnableBranch
 from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -11,9 +12,9 @@ from src.prepare.types import TDTDoc
 
 TEMPLATE = """Given the user question below, classify it as either being about `Major`, `Local` or `Other`. Known that:
 ```
-    Local: when the question related to "ngành kỹ thuật hóa học" or "ngành kỹ thuật hóa học trường Tôn Đức Thắng. This have the highest priority.
     Major: when the question related to a training program (major) of Ton Duc Thang university.
     Major: khi câu hỏi liên quan đến ngành đào tạo của trường đại học Tôn Đức Thắng. Ví dụ: hỏi về ngành học, trường đào tạo ngành học gì, các ngành học có ...
+    Local: when the question specifically related to "{local}" or "{local} trường Tôn Đức Thắng".
 ```
 Do not respond with more than one word.
 
@@ -23,10 +24,18 @@ Do not respond with more than one word.
 
 Classification:"""
 
+DEFAULT_TEMPLATE = """Given the context below
+<context>
+{context}
+</context>
+
+Please answer my question: {question}"""
+
 PROMPT_TEMPLATE = """Given the user question below, classify it as either being about `Major` or `Other`. Known that:
 ```
     Major: when the question related to a training program (major) of Ton Duc Thang university.
-    Major: khi câu hỏi liên quan đến ngành đào tạo của trường đại học Tôn Đức Thắng. Ví dụ: hỏi về ngành học, trường đào tạo ngành học gì, các ngành học có ...
+    Major: khi đối tượng được hỏi liên quan đến một ngành đào tạo nào đó.
+    Major: khi câu hỏi liên quan đến ngành đào tạo của trường đại học Tôn Đức Thắng. Ví dụ: tư vấn về ngành học, hỏi về ngành học, trường đào tạo ngành học gì, các ngành học có ...
 ```
 Do not respond with more than one word.
 
@@ -39,19 +48,22 @@ Classification:"""
 class RAGRobot:
 
     def __init__(self, provider: ProviderService) -> None:
+        """
+            Initialize Master Robot. Its purpose is to choose which RAG for which question
+            @provider the service provider
+        """
         self.provider = provider
         self.major_rag = HybridGeminiRAG(
             provider=provider, 
             rag_config=provider.get_categories().major, 
             update_notification_func=self.__invoke_update_notification)
-        # local
-        self.followup = self.__build_followup()
-        # default
-        self.other = self.__build_default()
-        self.refresh = False
-        self.main_chain = self.__build_routing()
+        # states
         self.is_document_update = False
         self.previous_doc:TDTDoc = None
+        # chains
+        self.default_chain = self.__build_default()
+        self.followup = self.__build_followup()
+        self.main_chain = self.__build_routing()
         return
     
     def __invoke_update_notification(self, input):
@@ -62,7 +74,10 @@ class RAGRobot:
         doc_loader = DocDataLoader()
         docs = doc_loader.load_major_docs_full_asmap()
         d1 = docs[15]
-        followup = LocalFollowUpChain(provider=self.provider, document=d1)
+        self.previous_doc = d1
+        followup = LocalFollowUpChain(
+            provider=self.provider, 
+            document=d1)
         return followup
     
     def __build_routing(self):
@@ -73,14 +88,13 @@ class RAGRobot:
         )
 
         branch = RunnableBranch(
-            (lambda x: "local" in x["topic"].lower(), self.followup.chain),
             (lambda x: "major" in x['topic'].lower(), self.major_rag.chain),
-            self.other
+            self.default_chain
         )
         full_chain = {"topic": self.router, "question": lambda x: x["question"]} | branch
         return full_chain
     
-    def __update_followup(self, doc:TDTDoc):
+    def __update_followup(self, doc: TDTDoc):
         if not self.is_document_update:
             return
         self.followup.set_doc(document=doc, reset_memory=True)
@@ -88,11 +102,19 @@ class RAGRobot:
         return
 
     def __build_default(self):
-        template = "Tell me a joke about {question}"
+        docs = DocDataLoader().load_major_docs_full_asmap()
+        d1 = docs[1]
+
+        def __format_default_answer(resp):
+            result = RAGResponse(answer=resp, category="default", document=d1)
+            return result
+
+        template  = DEFAULT_TEMPLATE.format(context=d1.content, question="{question}")
         chain = (
             PromptTemplate.from_template(template=template)
             | self.provider.get_gemini_pro(False)
             | StrOutputParser()
+            | RunnableLambda(__format_default_answer)
         )
         return chain
     
@@ -103,7 +125,7 @@ class RAGRobot:
             return resp
         resp:RAGResponse = self.main_chain.invoke({"question": question})
         if self.is_document_update:
+            self.previous_doc = resp.document
             self.__update_followup(doc=resp.document)
             self.is_document_update = False
-            self.previous_doc = resp.document
         return resp
