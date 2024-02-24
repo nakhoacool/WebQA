@@ -29,6 +29,7 @@ class LocalFollowUpChain:
             @param document the input document
             @param provider the service provider
         """
+        self.webloader = provider.webloader
         self.chat_model = provider.get_gemini_pro(convert_system_message=True)
         self.doc:TDTDoc = document
         self.logservice = AppLogService(name="local_followup.log")
@@ -41,9 +42,11 @@ class LocalFollowUpChain:
             Rebuild the chain with new input document.
             @reset_memory: reset previous memory if true
         """
+        doc = self.webloader.load_page(link=document.source)
+        document.content = doc
         self.doc = document
         self.chain = self.__build_chain(reset_memory=reset_memory)
-        pass    
+        pass
 
     def __build_chain(self, reset_memory:bool = False):
         self.prompt = ChatPromptTemplate.from_messages([

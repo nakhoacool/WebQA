@@ -4,6 +4,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmb
 from src.service.config import ConfigurationService
 from src.service.docstore import DocStore
 from src.rag.types import RAGCategories
+from src.prepare.website_load import WebPageMDLoader
 
 class ProviderService:
 
@@ -11,7 +12,8 @@ class ProviderService:
         self.config = ConfigurationService()
         self.docstore = DocStore()
         self.categories = RAGCategories()
-        pass
+        self.webloader = WebPageMDLoader()
+        return
 
     def get_docstore(self) -> DocStore:
         """

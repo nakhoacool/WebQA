@@ -4,3 +4,22 @@
 2024-02-24 14:41:35,650 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
 2024-02-24 14:48:20,994 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
 2024-02-24 15:00:26,511 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-24 23:53:18,098 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-24 23:55:09,944 - app.log - ERROR - [APP] answer_major went wrong!
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/app.py", line 83, in answer_major
+    rag_resp = bot.answer(escape(question))
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langsmith/run_helpers.py", line 453, in wrapper
+    raise e
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langsmith/run_helpers.py", line 449, in wrapper
+    function_result = func(*args, **kwargs)
+  File "/home/h4438/Desktop/graduate/WebQA/core/src/robot.py", line 129, in answer
+    self.__update_followup(doc=resp.document)
+  File "/home/h4438/Desktop/graduate/WebQA/core/src/robot.py", line 100, in __update_followup
+    self.followup.set_doc(document=doc, reset_memory=True)
+  File "/home/h4438/Desktop/graduate/WebQA/core/src/chain/local_followup.py", line 46, in set_doc
+    self.chain = self.__build_chain(reset_memory=reset_memory)
+  File "/home/h4438/Desktop/graduate/WebQA/core/src/chain/local_followup.py", line 51, in __build_chain
+    ("system", TEMPLATE.format(doc = self.doc.content)),
+AttributeError: 'str' object has no attribute 'content'
+2024-02-24 23:56:43,994 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
