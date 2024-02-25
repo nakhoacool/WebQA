@@ -40,3 +40,19 @@ Param technique: sentence-transformers/LaBSE + Hybrid
 Correct: 138
 Total: 153
 Score: 0.9019607843137255
+
+->
+Start: 2024-02-25 11:05:27.183720
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-major
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 132
+Total: 153
+Score: 0.8627450980392157
+End: 2024-02-25 11:09:36.616440

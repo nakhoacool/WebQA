@@ -8,6 +8,13 @@ class RAGCategories:
             text_index = "text-split-major",
             vector_index = "labse-major",
             db_category = "major")
+        
+        self.uni = RAGConfig(
+            embed_model = "sentence-transformers/LaBSE",
+            text_index = "text-split-uni",
+            vector_index = "labse-uni",
+            db_category="uni"
+        )
         return
 
 

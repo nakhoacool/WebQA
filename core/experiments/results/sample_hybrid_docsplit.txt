@@ -1,48 +1,6 @@
 
 ->
-Param model: sentence-transformers/LaBSE
-Param doc_size: 460
-Param doc_overlap: 20
-Param bm25-weight: 0.5
-Param elastic-weight: 0.5
-Param index: labse-major
-Param top k: 2
-Param distance: EUCLIDEAN_DISTANCE
-Param technique: sentence-transformers/LaBSE + Hybrid (full text at BM25)
-Correct: 3
-Total: 3
-Score: 1.0
-
-->
-Param model: sentence-transformers/LaBSE
-Param doc_size: 460
-Param doc_overlap: 20
-Param bm25-weight: 0.5
-Param elastic-weight: 0.5
-Param index: gemini-major
-Param top k: 2
-Param distance: EUCLIDEAN_DISTANCE
-Param technique: sentence-transformers/LaBSE + Hybrid (full text at BM25)
-Correct: 3
-Total: 3
-Score: 1.0
-
-->
-Param model: models/embedding-001
-Param doc_size: 460
-Param doc_overlap: 20
-Param bm25-weight: 0.5
-Param elastic-weight: 0.5
-Param index: gemini-major
-Param top k: 2
-Param distance: EUCLIDEAN_DISTANCE
-Param technique: models/embedding-001 + Hybrid (full text at BM25)
-Correct: 3
-Total: 3
-Score: 1.0
-
-->
-Start: 2024-02-18 19:52:14.999564
+Start: 2024-02-25 11:31:01.594126
 Param model: sentence-transformers/LaBSE
 Param doc_size: 460
 Param doc_overlap: 20
@@ -55,4 +13,37 @@ Param technique: sentence-transformers/LaBSE + Hybrid
 Correct: 3
 Total: 3
 Score: 1.0
-End: 2024-02-18 19:52:57.937496
+End: 2024-02-25 11:31:47.322856
+
+->
+Start: 2024-02-25 12:35:02.512736
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-uni
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 2
+Total: 2
+Score: 1.0
+End: 2024-02-25 12:35:45.730155
+
+->
+Test on: ../data/test_uni/sample_test_case.csv
+Start: 2024-02-25 12:38:53.639838
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-uni
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 2
+Total: 2
+Score: 1.0
+End: 2024-02-25 12:38:56.496879
