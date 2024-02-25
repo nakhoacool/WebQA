@@ -44,7 +44,8 @@ class LocalFollowUpChain:
         """
         if document.source.lower() != "none":
             doc = self.webloader.load_page(link=document.source)
-            document.content = doc
+            if not doc == None:
+                document.content = doc
         self.doc = document
         self.chain = self.__build_chain(reset_memory=reset_memory)
         pass

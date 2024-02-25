@@ -23,3 +23,39 @@ Traceback (most recent call last):
     ("system", TEMPLATE.format(doc = self.doc.content)),
 AttributeError: 'str' object has no attribute 'content'
 2024-02-24 23:56:43,994 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-25 20:01:46,759 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-25 21:02:02,245 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-25 21:06:00,380 - app.log - ERROR - [APP] answer_major went wrong!
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/app.py", line 83, in answer_major
+    rag_resp = bot.answer(question.strip())
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langsmith/run_helpers.py", line 453, in wrapper
+    raise e
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langsmith/run_helpers.py", line 449, in wrapper
+    function_result = func(*args, **kwargs)
+  File "/home/h4438/Desktop/graduate/WebQA/core/src/robot.py", line 138, in answer
+    self.__update_followup(doc=resp.document)
+  File "/home/h4438/Desktop/graduate/WebQA/core/src/robot.py", line 109, in __update_followup
+    self.followup.set_doc(document=doc, reset_memory=True)
+  File "/home/h4438/Desktop/graduate/WebQA/core/src/chain/local_followup.py", line 49, in set_doc
+    self.chain = self.__build_chain(reset_memory=reset_memory)
+  File "/home/h4438/Desktop/graduate/WebQA/core/src/chain/local_followup.py", line 54, in __build_chain
+    self.prompt = ChatPromptTemplate.from_messages([
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/prompts/chat.py", line 748, in from_messages
+    _messages = [_convert_to_message(message) for message in messages]
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/prompts/chat.py", line 748, in <listcomp>
+    _messages = [_convert_to_message(message) for message in messages]
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/prompts/chat.py", line 952, in _convert_to_message
+    _message = _create_template_from_message_type(message_type_str, template)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/prompts/chat.py", line 911, in _create_template_from_message_type
+    message = SystemMessagePromptTemplate.from_template(cast(str, template))
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/prompts/chat.py", line 336, in from_template
+    prompt: Union[StringPromptTemplate, List] = PromptTemplate.from_template(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/prompts/prompt.py", line 247, in from_template
+    input_variables = get_template_variables(template, template_format)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/prompts/string.py", line 145, in get_template_variables
+    input_variables = {
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/prompts/string.py", line 145, in <setcomp>
+    input_variables = {
+ValueError: unexpected '{' in field name
+2024-02-25 21:15:56,342 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance

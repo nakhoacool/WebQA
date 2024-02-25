@@ -39,7 +39,7 @@ class WebPageMDLoader:
         # remove
         if not content:
             self.log.logger.info(f"[NEW] {link}")
-            return soup
+            return None
         for selector in self.remove_selectors:
             [hit.decompose() for hit in content.select(selector=selector)]
             content.smooth()
