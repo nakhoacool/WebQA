@@ -80,6 +80,21 @@ class DocDataLoader:
         print(f"From {db_df.shape} to {len(db)}")
         return db
     
+    def load_docs_full_asmap(self, file_name: str) -> Dict[int, TDTDoc]:
+        """
+            This method loads major blog post data into documents AS A WHOLE.
+            
+            @param csv file_name the name of the file in "db" folder
+
+            @return a dict of id, documents
+        """
+        db_df = pd.read_csv(f'{self.env_path}/../../data/db/{file_name}')
+        db = {}
+        for i, data in db_df.iterrows():
+            db[data['id']] = TDTDoc(content=data['content'], src=data['source'], id=int(data['id']), title=data['title'])
+        print(f"From {db_df.shape} to {len(db)}")
+        return db
+    
     def load_major_docs_full_asmap(self) -> Dict[int, TDTDoc]:
         """
             This method loads major blog post data into documents AS A WHOLE.
@@ -89,6 +104,6 @@ class DocDataLoader:
         db_df = pd.read_csv(f'{self.env_path}/../../data/db/majors_info.csv')
         db = {}
         for i, data in db_df.iterrows():
-            db[data['id']] = TDTDoc(content=data['content'], src=data['source'], id=int(data['id']), title=data['title'])
+            db[data['id']] = TDTDoc(content=data['content'], src=str(data['source']), id=int(data['id']), title=data['title'])
         print(f"From {db_df.shape} to {len(db)}")
         return db

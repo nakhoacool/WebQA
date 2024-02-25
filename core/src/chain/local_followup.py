@@ -42,15 +42,17 @@ class LocalFollowUpChain:
             Rebuild the chain with new input document.
             @reset_memory: reset previous memory if true
         """
-        doc = self.webloader.load_page(link=document.source)
-        document.content = doc
+        if document.source.lower() != "none":
+            doc = self.webloader.load_page(link=document.source)
+            document.content = doc
         self.doc = document
         self.chain = self.__build_chain(reset_memory=reset_memory)
         pass
 
     def __build_chain(self, reset_memory:bool = False):
+        doc_content = self.doc.content
         self.prompt = ChatPromptTemplate.from_messages([
-            ("system", TEMPLATE.format(doc = self.doc.content)),
+            ("system", TEMPLATE.format(doc = doc_content)),
             MessagesPlaceholder(variable_name="history"),
             ("human", "{question}")])
         if reset_memory:

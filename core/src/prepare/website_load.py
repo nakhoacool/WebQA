@@ -24,7 +24,11 @@ class WebPageMDLoader:
 
             @return a clean text in md format
         """
-        html = requests.get(link)
+        try:
+            html = requests.get(link)
+        except Exception:
+            self.log.logger.error(f"[Error] {link} can't get")
+            return ""
         soup = BeautifulSoup(html.content, 'html.parser')
         content = None
         # find content

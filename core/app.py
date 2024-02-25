@@ -80,7 +80,7 @@ def create_app(test_config=None):
             question = request.form.get("question")
             userid = request.form.get("userid")
             bot = MANAGER.get_robot(id=userid)
-            rag_resp = bot.answer(escape(question))
+            rag_resp = bot.answer(question.strip())
             data = {
                 "question": question, 
                 "answer": rag_resp.answer,

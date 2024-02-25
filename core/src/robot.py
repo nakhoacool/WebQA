@@ -31,11 +31,13 @@ DEFAULT_TEMPLATE = """Given the context below
 
 Please answer my question: {question}"""
 
-PROMPT_TEMPLATE = """Given the user question below, classify it as either being about `Major` or `Other`. Known that:
+PROMPT_TEMPLATE = """Given the user question below, classify it as either being about `Major`, `Uni` or `Other`. Known that:
 ```
     Major: when the question related to a training program (major) of Ton Duc Thang university.
     Major: khi đối tượng được hỏi liên quan đến một ngành đào tạo nào đó.
     Major: khi câu hỏi liên quan đến ngành đào tạo của trường đại học Tôn Đức Thắng. Ví dụ: tư vấn về ngành học, hỏi về ngành học, trường đào tạo ngành học gì, các ngành học có ...
+    Uni: when the question asks something specifically about Ton Duc Thang university. For example: what is the university email, location, rules...
+    Uni: khi đối tượng được hỏi cụ thể về trường đại học Tôn Đức Thắng, ví dụ: hỏi về thông tin trường, địa chỉ liên lạc, thành tích, ... 
 ```
 Do not respond with more than one word.
 
@@ -56,7 +58,13 @@ class RAGRobot:
         self.major_rag = HybridGeminiRAG(
             provider=provider, 
             rag_config=provider.get_categories().major, 
-            update_notification_func=self.__invoke_update_notification)
+            update_notification_func=self.__invoke_update_notification
+        )
+        self.uni_rag = HybridGeminiRAG(
+            provider=provider,
+            rag_config=provider.get_categories().uni,
+            update_notification_func=self.__invoke_update_notification
+        )
         # states
         self.is_document_update = False
         self.previous_doc:TDTDoc = None
@@ -89,6 +97,7 @@ class RAGRobot:
 
         branch = RunnableBranch(
             (lambda x: "major" in x['topic'].lower(), self.major_rag.chain),
+            (lambda x: "uni" in x['topic'].lower(), self.uni_rag.chain),
             self.default_chain
         )
         full_chain = {"topic": self.router, "question": lambda x: x["question"]} | branch
