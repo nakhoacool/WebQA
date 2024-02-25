@@ -60,3 +60,20 @@ Correct: 62
 Total: 67
 Score: 0.9253731343283582
 End: 2024-02-25 12:44:42.695466
+
+->
+Test on: ../data/test_training_program/sample_test_case.csv
+Start: 2024-02-25 16:33:54.069283
+Param model: sentence-transformers/LaBSE
+Param doc_size: 800
+Param doc_overlap: 40
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-training_program
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 27
+Total: 38
+Score: 0.7105263157894737
+End: 2024-02-25 16:34:48.076261
