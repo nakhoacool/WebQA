@@ -56,3 +56,71 @@ Correct: 132
 Total: 153
 Score: 0.8627450980392157
 End: 2024-02-25 11:09:36.616440
+
+->
+Test on: ../data/test_major/hard_private_test_case.csv
+Start: 2024-02-25 19:37:17.725481
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-major
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 117
+Total: 153
+Score: 0.7647058823529411
+End: 2024-02-25 19:41:37.084055
+
+->
+Test on: ../data/test_major/hard_private_test_case.csv
+Start: 2024-02-25 19:45:41.584679
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-major
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 0
+Total: 20
+Score: 0.0
+End: 2024-02-25 19:46:00.490373
+
+->
+Test on: ../data/test_major/hard_private_test_case.csv
+Start: 2024-02-25 19:50:22.604279
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-major
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 0
+Total: 20
+Score: 0.0
+End: 2024-02-25 19:50:40.534334
+
+->
+Test on: ../data/test_major/hard_private_test_case.csv
+Start: 2024-02-25 19:52:34.282130
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-major
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 129
+Total: 153
+Score: 0.8431372549019608
+End: 2024-02-25 19:56:44.800410
