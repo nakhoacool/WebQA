@@ -15,6 +15,13 @@ class RAGCategories:
             vector_index = "labse-uni",
             db_category="uni"
         )
+
+        self.training_program = RAGConfig(
+            embed_model = "sentence-transformers/LaBSE",
+            text_index = "text-split-training_program",
+            vector_index = "labse-training_program",
+            db_category="training"
+        )
         return
 
 
