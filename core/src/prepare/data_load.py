@@ -66,13 +66,13 @@ class DocDataLoader:
         print(f"From {db_df.shape} to {Counter(dist)}")
         return db
     
-    def load_major_docs_full(self) -> List[Document]:
+    def load_major_docs_full(self, data_folder: str) -> List[Document]:
         """
             This method loads major blog post data into documents AS A WHOLE.
         
             @return a list of documents
         """
-        db_df = pd.read_csv(f'{self.env_path}/../../data/test_major/docs.csv')
+        db_df = pd.read_csv(f'{self.env_path}/../../data/{data_folder}/docs.csv')
         db = []
         for i, data in db_df.iterrows():
             doc = Document(page_content=data['content'], metadata={"id": data['id']})

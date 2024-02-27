@@ -7,6 +7,7 @@ import os
 from flask_cors import CORS
 from src.service.provider import ProviderService
 from src.robot import RAGRobot
+from src.service.googledrive import GoogleDriveService
 from typing import Dict
 
 # When call API, please check the "status" field first
@@ -61,6 +62,14 @@ def create_app(test_config=None):
             answer = "".join(f.readlines()) 
         data = {"question": "What is life", "answer": answer, "status": 200}
         return data
+
+    @app.route("/test_gdrive/")
+    def getFileListFromGDrive():
+        selected_fields="files(id,name,webViewLink)"
+        g_drive_service=GoogleDriveService().service
+        list_file=g_drive_service.files().list(fields=selected_fields).execute()
+        return {"files":list_file.get("files")}
+
 
     @app.route("/qa", methods=["POST"])
     def answer_major():
