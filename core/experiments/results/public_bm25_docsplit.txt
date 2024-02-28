@@ -1,0 +1,17 @@
+
+->
+Test on: ../data/test_major/public_test_case.csv
+Start: 2024-02-27 21:54:33.813351
+Param model: sentence-transformers/LaBSE
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param index: labse-major
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: sentence-transformers/LaBSE + Hybrid
+Correct: 119
+Total: 156
+Score: 0.7628205128205128
+End: 2024-02-27 21:54:43.330413

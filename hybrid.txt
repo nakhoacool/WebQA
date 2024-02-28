@@ -1,0 +1,7 @@
+https://python.langchain.com/docs/modules/data_connection/retrievers/ensemble
+
+https://python.langchain.com/docs/modules/data_connection/retrievers/vectorstore
+
+https://github.com/langchain-ai/langchain/blob/master/libs/langchain/langchain/retrievers/ensemble.py
+
+https://github.com/langchain-ai/langchain/blob/master/libs/community/langchain_community/vectorstores/elasticsearch.py#L932

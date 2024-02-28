@@ -59,3 +59,9 @@ Traceback (most recent call last):
     input_variables = {
 ValueError: unexpected '{' in field name
 2024-02-25 21:15:56,342 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-27 08:59:48,151 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-28 00:16:33,253 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-28 00:38:04,070 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-28 00:39:39,573 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-28 00:40:27,705 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-28 06:20:38,210 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
