@@ -3,10 +3,8 @@ from langchain.retrievers import EnsembleRetriever
 from langchain_core.output_parsers import StrOutputParser
 from langsmith.run_helpers import traceable
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableLambda
 from operator import itemgetter
-import uuid
 from src.rag.types import RAGResponse, RAGConfig
 from src.service.provider import ProviderService
 from src.custom.es_bm25_retriever import MyElasticSearchBM25Retriever
@@ -19,6 +17,17 @@ Answer the question mainly using the following context. Output "None" if you can
 ```
 Question: {question}
 """
+
+TEMPLATE = """Bạn là một người tư vấn viên thân thiện và đầy hiểu biết. Nhiệm vụ của bạn là hỗ trợ người dùng hiểu biết hơn về trường đại học Tôn Đức Thắng.
+
+Đây là thông tin mà bạn biết:
+```
+{context}
+```
+Hãy hỗ trợ thật tốt với yêu cầu sau đến từ người dùng. Output "None" if you cannot answer.
+Yêu cầu: {question}
+"""
+
 
 class HybridGeminiRAG:
     """
@@ -42,6 +51,8 @@ class HybridGeminiRAG:
         self.rag_config = rag_config
         self.database = provider.get_docstore()
         self.log = AppLogService(f"hybrid_gemini_rag-{self.rag_config.db_category}.log")
+        # Filter chain
+        self.filter_chain = self.__build_filter_chain(provider=provider)
         # Build chain
         chat_model = provider.get_gemini_pro(convert_system_message=False)
         prompt = ChatPromptTemplate.from_template(TEMPLATE)
@@ -50,7 +61,7 @@ class HybridGeminiRAG:
             {"context": itemgetter("question") | self.ensemble_retriever, 
              "question": itemgetter("question")
             }
-            | RunnableLambda(self.__format_doc)
+            | RunnableLambda(self.__filter_format_doc)
             | prompt
             | chat_model
             | StrOutputParser()
@@ -59,18 +70,41 @@ class HybridGeminiRAG:
         ) 
         return
     
-    def __format_doc(self, input_dict):
+    def __build_filter_chain(self, provider: ProviderService):
+        """
+            Build a filter chain to filter relevant retrieved documents to user query.
+        """
+        template = "Is this question '{question}' relevant to '{title}'"
+        prompt = ChatPromptTemplate.from_template(template=template)
+        chain = ({
+            "question": itemgetter("question"),
+            "title": itemgetter("title")
+        }
+        | prompt
+        | provider.get_gemini_pro()
+        | StrOutputParser())
+        return chain
+
+    def __filter_format_doc(self, input_dict):
         """
             Note! for internal class use only.
 
             This method formats the retrieved documnents from the retriever.
             It helps the chat model understands the context better.
         """
-        retrieve_doc = input_dict['context'][0]
-        doc_id = retrieve_doc.metadata['id']
-        document = self.database.find_document(category=self.rag_config.db_category, id=doc_id)
-        input_dict['context'] = document.content
-        self.retrieve_parent_document = document
+        retrieve_docs = input_dict['context']
+        correct_doc = None
+        print(len(retrieve_docs))
+        print(input_dict['question'])
+        for retrieve_doc in retrieve_docs:
+            doc_id = retrieve_doc.metadata['id']
+            document = self.database.find_document(category=self.rag_config.db_category, id=doc_id)
+            filter = self.filter_chain.invoke({"question": input_dict['question'], "title": document.title})
+            correct_doc = document
+            if filter.lower() != 'none':
+                break
+        input_dict['context'] = correct_doc.content
+        self.retrieve_parent_document = correct_doc
         return input_dict
     
     def __format_answer(self, answer):
