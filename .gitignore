@@ -24,3 +24,4 @@ build/
 flaksr/
 .vscode/
 core/flaskr/
+.DS_Store
