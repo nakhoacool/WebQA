@@ -24,9 +24,10 @@ class RobotManager:
         return
  
     def get_robot(self, id: str) -> RAGRobot:
-        if id in self.robots.keys():
+        if id in self.robots:
             return self.robots[id]
-        return RAGRobot(provider=self.provider)
+        self.robots[id] = RAGRobot(provider=self.provider)
+        return self.robots[id]
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -63,7 +64,7 @@ def create_app(test_config=None):
         data = {"question": "What is life", "answer": answer, "status": 200}
         return data
 
-    @app.route("/test_gdrive/")
+    @app.route("/list_gdrive/")
     def getFileListFromGDrive():
         selected_fields="files(id,name,webViewLink)"
         g_drive_service=GoogleDriveService().service
@@ -87,12 +88,20 @@ def create_app(test_config=None):
             return {"status": 404}
         try:
             question = request.form.get("question")
-            userid = request.form.get("userid")
+            # userid = request.form.get("userid")
+            userid = "hada121sa"
             bot = MANAGER.get_robot(id=userid)
             rag_resp = bot.answer(question.strip())
+            doc = rag_resp.document
             data = {
                 "question": question, 
                 "answer": rag_resp.answer,
+                "doc": {
+                    "id": doc.id,
+                    "title": doc.title,
+                    "content": doc.content,
+                    "source": doc.source,
+                },
                 "category": rag_resp.category, 
                 "status": 200, 
                 "notfound": rag_resp.is_notfound()}

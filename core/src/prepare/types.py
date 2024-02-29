@@ -6,3 +6,10 @@ class TDTDoc:
         self.id = id
         self.title = title
         return
+
+    def set_content(self, content: str):
+        if content == None or len(content) == 0:
+            return
+        self.content = content
+        return
+        

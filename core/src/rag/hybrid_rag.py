@@ -74,7 +74,7 @@ class HybridGeminiRAG:
         """
             Build a filter chain to filter relevant retrieved documents to user query.
         """
-        template = "Is this question '{question}' relevant to '{title}'"
+        template = "Is this question '{question}' relevant to '{title}'. Output yes or no."
         prompt = ChatPromptTemplate.from_template(template=template)
         chain = ({
             "question": itemgetter("question"),
@@ -92,16 +92,14 @@ class HybridGeminiRAG:
             This method formats the retrieved documnents from the retriever.
             It helps the chat model understands the context better.
         """
-        retrieve_docs = input_dict['context']
         correct_doc = None
-        print(len(retrieve_docs))
-        print(input_dict['question'])
+        retrieve_docs = input_dict['context']
         for retrieve_doc in retrieve_docs:
             doc_id = retrieve_doc.metadata['id']
             document = self.database.find_document(category=self.rag_config.db_category, id=doc_id)
             filter = self.filter_chain.invoke({"question": input_dict['question'], "title": document.title})
             correct_doc = document
-            if filter.lower() != 'none':
+            if filter.lower() == 'yes':
                 break
         input_dict['context'] = correct_doc.content
         self.retrieve_parent_document = correct_doc

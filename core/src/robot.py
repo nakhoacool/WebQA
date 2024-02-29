@@ -67,10 +67,10 @@ class RAGRobot:
         )
         # states
         self.is_document_update = False
-        self.previous_doc:TDTDoc = None
+        self.current_doc:TDTDoc = None
         # chains
         self.default_chain = self.__build_default()
-        self.followup = self.__build_followup()
+        self.followup = None
         self.main_chain = self.__build_routing()
         return
     
@@ -78,16 +78,6 @@ class RAGRobot:
         self.is_document_update = True
         return input
 
-    def __build_followup(self):
-        doc_loader = DocDataLoader()
-        docs = doc_loader.load_major_docs_full_asmap()
-        d1 = docs[15]
-        self.previous_doc = d1
-        followup = LocalFollowUpChain(
-            provider=self.provider, 
-            document=d1)
-        return followup
-    
     def __build_routing(self):
         self.router = (
             PromptTemplate.from_template(template=PROMPT_TEMPLATE)
@@ -104,16 +94,16 @@ class RAGRobot:
         return full_chain
     
     def __update_followup(self, doc: TDTDoc):
-        if not self.is_document_update:
+        if self.followup == None:
+            self.followup = LocalFollowUpChain(provider=self.provider, document=doc)
             return
         self.followup.set_doc(document=doc, reset_memory=True)
-        self.main_chain = self.__build_routing()
         return
 
     def __build_default(self):
+        # TODO: replace with index answering
         docs = DocDataLoader().load_major_docs_full_asmap()
         d1 = docs[1]
-
         def __format_default_answer(resp):
             result = RAGResponse(answer=resp, category="default", document=d1)
             return result
@@ -129,12 +119,14 @@ class RAGRobot:
     
     @traceable(tags=["robot"])
     def answer(self, question:str) -> RAGResponse:
-        resp:RAGResponse = self.followup.chain.invoke({"question": question})
-        if "none" != resp.answer.lower():
-            return resp
-        resp:RAGResponse = self.main_chain.invoke({"question": question})
+        resp: RAGResponse = None
+        if self.followup != None:
+            resp = self.followup.chain.invoke({"question": question})
+            if "none" != resp.answer.lower():
+                return resp
+        resp = self.main_chain.invoke({"question": question})
         if self.is_document_update:
-            self.previous_doc = resp.document
+            self.current_doc = resp.document
             self.__update_followup(doc=resp.document)
             self.is_document_update = False
         return resp
