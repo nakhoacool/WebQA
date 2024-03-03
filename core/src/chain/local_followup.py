@@ -41,7 +41,6 @@ class LocalFollowUpChain:
         self.webloader = provider.webloader
         self.chat_model = provider.get_gemini_pro(convert_system_message=True)
         self.logservice = AppLogService(name="local_followup.log")
-        # self.current_document = document
         self.memory = ConversationBufferMemory(return_messages=True)
         self.set_doc(document=document, reset_memory=False)
         self.chain = self.__build_chain(doc=document,reset_memory=False)
@@ -68,11 +67,12 @@ class LocalFollowUpChain:
             ("human", "Yêu cầu: {question}")])
         if reset_memory:
             self.memory = ConversationBufferMemory(return_messages=True)
+
         chain = RunnablePassthrough.aschain = (
             {
                 "question": itemgetter("question")
             }
-            | RunnableLambda(self.__save_inputs)
+            | RunnableLambda(self.__save_input_format_question)
             |RunnablePassthrough.assign(
                 history=RunnableLambda(self.memory.load_memory_variables) | itemgetter("history"),
             )
@@ -82,8 +82,13 @@ class LocalFollowUpChain:
         )
         return chain
 
-    def __save_inputs(self, input):
-        self.inputs = {"question": input['question']}
+    def __save_input_format_question(self, input):
+        # save input for history
+        question = input["question"]
+        # format question
+        self.inputs = {"question": question}
+        template = f"Hãy tham khảo từ văn bản được cho để trả lời câu hỏi '{question}'. Output 'None' if you cannot answer or there are no information metioned."
+        input['question'] = template
         return input
 
     def __save_format_answer(self, resp):
@@ -95,13 +100,10 @@ class LocalFollowUpChain:
         return result
 
     @traceable(tags=["followup"])
-    def answer(self, question: str) -> str:
-        template = f"Only use the given context to answer '{question}'. Output 'None' if you cannot answer."
-        inputs = {"question": template}
+    def answer(self, question: str) -> RAGResponse:
         try:
-            response = self.chain.invoke(inputs)
-            self.memory.save_context(inputs=inputs, outputs={"output": response.content})
+            response = self.chain.invoke({"question": question})
         except Exception as err:
             self.logservice.logger.exception("InvokeChainError")
             return "[Followup] Sorry! something went wrong"
-        return response.content
+        return response

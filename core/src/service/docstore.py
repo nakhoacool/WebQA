@@ -19,5 +19,5 @@ class DocStore:
         self.database['training'] = doc_loader.load_docs_full_asmap(file_name="training_program_info.csv")
         return
 
-    def find_document(self, category:str, id: str) -> TDTDoc:
+    def find_document(self, category:str, id: int) -> TDTDoc:
         return self.database[category][id]
