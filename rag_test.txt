@@ -1,0 +1,216 @@
+{"answer":"None","category":"major","doc":{"content":"
+## [Kỹ thuật phần mềm](/dai-hoc/nganh-hoc/ky-thuat-phan-mem)
+## Kỹ thuật phần mềm
+[Đăng ký xét tuyển](https://xettuyen.tdtu.edu.vn/dangky) 
+[Đặt câu hỏi](https://connect.tdtu.edu.vn:8443/) Kỹ thuật phần mềm là ngành ứng dụng kiến thức về lập trình, thiết kế phần mềm,
+quy trình vận hành và phát triển phần mềm, phân tích yêu cầu hệ thống, trí tuệ
+nhân tạo … để tạo ra sản phẩm phần mềm đạt chất lượng cao, đáp ứng xu hướng phát
+triển mạnh mẽ của công nghệ và nhu cầu nghiệp vụ cụ thể trong nền sản xuất của
+xã hội. Cử nhân Kỹ thuật phần mềm có thể tự tin khởi nghiệp hoặc ứng tuyển vào các
+doanh nghiệp trong và ngoài nước, các cơ quan, ban ngành ở những vị trí: Chuyên
+viên phân tích yêu cầu (BA), Kiến trúc sư phần mềm (SA), Lập trình viên
+(Developer), Chuyên viên thử nghiệm phần mềm (Tester), chuyên viên cầu nối
+(BrSE), chuyên viên nghiên cứu và phát triển ứng dụng (R&D), giảng viên giảng
+dạy các môn học về ngành kỹ thuật phần mềm hoặc có thể tiếp tục nghiên cứu và
+học lên cao học.
+[Phương thức tuyển sinh](../../../../dai-hoc/tuyen-sinh/phuong-thuc-2023) 
+[Tư vấn trực tuyến](https://www.facebook.com/tuyensinhtdtu) 
+[Gọi hotline tư vấn](../../../../hoc-tai-tdtu/ho-tro-sinh-vien) 
+## Vì sao nên chọn ngành Kỹ thuật phần mềm tại Trường Đại học Tôn Đức Thắng
+ TDTU thuộc top 500 đại học tốt nhất thế giới (THE World University Rankings) Học phí thấp 100% sinh viên ra trường có việc làm trong vòng 12 tháng kể từ khi tốt nghiệp ## Các chương trình của ngành Kỹ thuật phần mềm
+* [Tiêu chuẩn](#tab-mx70h-1)
+* [Chất lượng cao](#tab-mx70h-2)
+* [Đại học bằng tiếng Anh](#tab-mx70h-3)
+* 
+**Kỹ thuật phần mềm - Mã ngành:** 
+**7480103** Sinh viên được cung cấp kiến thức nền cơ sở của kỹ thuật phần mềm và những
+kiến thức mang tính định hướng theo nhu cầu phát triển của xã hội như: phát
+triển ứng dụng trên các nền tảng số, thiết bị máy tính, di động thông minh;
+thiết kế giao diện thân thiện với người dùng; phân tích hệ thống; an toàn thông
+tin; quản lý dự án công nghệ thông tin; … Ngoài ra, sinh viên còn được tạo điều
+kiện để củng cố kiến thức chuyên môn và nâng cao tay nghề thông qua các tiết học
+thực hành trong phòng học được trang bị đầy đủ trang thiết bị tiên tiến và liên
+tục cập nhật. Số tiết học thực hành được thiết kế để cân bằng với số buổi học lý
+thuyết, giúp sinh viên có cơ hội rèn luyện và vận dụng những kiến thức đã học
+vào thực tế. Các học phần được thiết kế mang tính ứng dụng cao, theo hướng tăng dần từ cấp
+độ cơ bản đến cấp độ sinh viên có đủ kiến thức và kỹ năng để tự thực hiện được
+một dự án phần mềm, từ giai đoạn thu thập yêu cầu, phân tích, thiết kế, lập
+trình, kiểm thử đến giai đoạn vận hành và bảo trì phần mềm. Nhà trường còn đẩy
+mạnh chương trình kết nối mạng lưới doanh nghiệp thân hữu nhằm tạo điều kiện cho
+sinh viên có cơ hội tham quan và kiến tập từ năm học thứ 2. Bên cạnh đó, đối với
+một số môn học mang tính chuyên môn, giảng viên sẽ kết hợp với các chuyên gia
+dày dặn kinh nghiệm trực tiếp giảng dạy, góp phần bồi dưỡng thêm kiến thức và
+liiên tục cập nhật các tiêu chuẩn mới nhất về công nghệ để tăng khả năng cạnh
+tranh và hội nhập với nhu cầu ngày càng cao của xã hội. Sinh viên ngành Kỹ thuật phần mềm sau khi tốt nghiệp sẽ được trang bị đầy đủ
+các kỹ năng như: kỹ năng phân tích, thiết kế, lập trình và kiểm thử các hệ thống
+phần mềm; kỹ năng triển khai và quản lý các dự án phần mềm cho doanh nghiệp;
+thuần thục việc ứng dụng các công cụ phần mềm vào việc khai thác, phân tích dữ
+liệu doanh nghiệp; có khả năng tư vấn giải pháp xây dựng các hệ thống phần mềm,
+…
+**Thông tin cần biết** Bằng cấp Cử nhân
+ Thời gian đào tạo Toàn thời gian: 4 năm
+ Chương trình đào tạo [Xem thông tin chi tiết về chương trình đào
+tạo](https://cktt-cdr.tdtu.edu.vn/chuongtrinhdaotao?type=tuyensinh&hedaotao=0)
+ Chuẩn đầu ra [Xem thông tin chi tiết về chuẩn đầu
+ra](https://cktt-cdr.tdtu.edu.vn/chuandaura?type=tuyensinh&hedaotao=0)
+ Phương thức xét tuyển riêng Tổ hợp: Toán\*2, Anh, Lý KQ ĐGNL của ĐHQG TP. HCM Ưu tiên xét tuyển theo TDTU
+ Xét tuyển theo điểm thi THPT Tổ hợp: A00; A01; D01 Điểm trúng tuyển 2022 (thang 40): **35.4**
+ Khai giảng Tháng 9, năm 2023
+ Học phí 28.800.000 (đồng/năm)
+**Kỹ thuật phần mềm - Mã ngành:** 
+**F7480103** Chương trình đào tạo chất lượng cao (CLC) về Kỹ thuật phần mềm được xây dựng
+nhu cầu của thị trường lao động; gắn kết lý thuyết với thực tiễn; kết hợp kiến
+thức chuyên môn và chuyên ngành với rèn luyện kỹ năng thực hành; chú trọng đến
+các kỹ năng mềm và thực tập doanh nghiệp Ngành Kỹ thuật phần mềm đào tạo ra các Kỹ sư phần mềm nắm vững các thức liên
+quan đến quy trình phát triển phần mềm một cách chuyên nghiệp nhằm tạo ra sản
+phẩm phần mềm đạt chất lượng cao, đáp ứng các nhu cầu nghiệp vụ cụ thể trong nền
+sản xuất của xã hội. Sinh viên được trang bị các kiến thức chuyên sâu về công
+nghiệp phần mềm, bao gồm: quy trình phát triển phần mềm, kỹ năng vận dụng các
+công cụ phần mềm vào việc hỗ trợ phát triển các phần mềm khác; các kiến thức cần
+thiết liên quan đến các pha thực hiện trong một dự án phần mềm như: thu thập yêu
+cầu, phân tích, thiết kế, lập trình, kiểm thử, vận hành và bảo trì phần mềm.
+**Thông tin cần biết** Bằng cấp Cử nhân
+ Thời gian đào tạo Toàn thời gian: 4 năm
+ Chương trình đào tạo [Xem thông tin chi tiết về chương trình đào
+tạo](https://cktt-cdr.tdtu.edu.vn/chuongtrinhdaotao?type=tuyensinh&hedaotao=H)
+ Chuẩn đầu ra [Xem thông tin chi tiết về chuẩn đầu
+ra](https://cktt-cdr.tdtu.edu.vn/chuandaura?type=tuyensinh&hedaotao=H)
+ Phương thức xét tuyển riêng Tổ hợp: Toán\*2, Anh, Lý KQ ĐGNL của ĐHQG TP. HCM Ưu tiên xét tuyển theo TDTU
+ Xét tuyển theo điểm thi THPT Tổ hợp: A00; A01; D01 Điểm trúng tuyển 2022 (thang 40): **34.5**
+ Khai giảng Tháng 9, năm 2023
+ Học phí Năm 1: 40.790.000 (đồng) Năm 2: 47.588.000 (đồng) Năm 3: 52.235.000 (đồng) Năm 4: 52.235.000 (đồng)
+**Kỹ thuật phần mềm - Mã ngành:** 
+**FA7480103** Đang cập nhật ...
+**Thông tin cần biết** Bằng cấp Cử nhân
+ Thời gian đào tạo Toàn thời gian: 4 năm
+ Chương trình đào tạo [Xem thông tin chi tiết về chương trình đào
+tạo](https://cktt-cdr.tdtu.edu.vn/chuongtrinhdaotao?type=tuyensinh&hedaotao=K)
+ Chuẩn đầu ra [Xem thông tin chi tiết về chuẩn đầu
+ra](https://cktt-cdr.tdtu.edu.vn/chuandaura?type=tuyensinh&hedaotao=K)
+ Phương thức xét tuyển riêng Xét theo điểm trung bình HK KQ ĐGNL của ĐHQG TP. HCM Ưu tiên xét tuyển theo TDTU
+ Xét tuyển theo điểm thi THPT Tổ hợp: E03; E06; A01; D01 Điểm trúng tuyển 2022 (thang 40): **24**
+ Khai giảng Tháng 9, năm 2023
+ Học phí Năm 1: 62.372.000 (đồng) Năm 2: 76.406.000 (đồng) Năm 3: 78.322.000 (đồng) Năm 4: 78.052.000 (đồng)
+## Cựu sinh viên nói gì về ngành Kỹ thuật phần mềm
+![](https://admission.tdtu.edu.vn) Đang cập nhật ...
+## Các ngành học liên quan
+[Khoa học máy tính](../../../../dai-hoc/nganh-hoc/khoa-hoc-may-tinh) 
+[Mạng máy tính và truyền thông dữ liệu](../../../../dai-hoc/nganh-hoc/mang-may-tinh-va-truyen-thong-du-lieu) 
+[Toán ứng dụng](../../../../dai-hoc/nganh-hoc/toan-ung-dung) 
+## Làm gì tiếp theo?
+[Đăng ký xét tuyển](https://xettuyen.tdtu.edu.vn/dangky) 
+[Đặt câu hỏi](https://connect.tdtu.edu.vn:8443/) 
+Tải cẩm nang tuyển sinh
+[Xem thông báo tuyển sinh](../../../../dai-hoc/tuyen-sinh/phuong-thuc-2023) 
+[Cơ sở vật chất TDTU](../../../../gioi-thieu/co-so-vat-chat) 
+[Xem thông tin về Khoa](https://it.tdtu.edu.vn/) 
+","id":17,"source":"https://admission.tdtu.edu.vn/dai-hoc/nganh-hoc/ky-thuat-phan-mem","title":"Ngành Kỹ thuật phần mềm"},"notfound":true,"question":"điểm trúng tuyển ngành phần mềm là bao nhiêu","status":200}
+{"answer":"**Tiêu chuẩn:** 35.4
+**Chất lượng cao:** 34.5
+**Đại học bằng tiếng Anh:** 24","category":"local","doc":{"content":"
+## [Kỹ thuật phần mềm](/dai-hoc/nganh-hoc/ky-thuat-phan-mem)
+## Kỹ thuật phần mềm
+[Đăng ký xét tuyển](https://xettuyen.tdtu.edu.vn/dangky) 
+[Đặt câu hỏi](https://connect.tdtu.edu.vn:8443/) Kỹ thuật phần mềm là ngành ứng dụng kiến thức về lập trình, thiết kế phần mềm,
+quy trình vận hành và phát triển phần mềm, phân tích yêu cầu hệ thống, trí tuệ
+nhân tạo … để tạo ra sản phẩm phần mềm đạt chất lượng cao, đáp ứng xu hướng phát
+triển mạnh mẽ của công nghệ và nhu cầu nghiệp vụ cụ thể trong nền sản xuất của
+xã hội. Cử nhân Kỹ thuật phần mềm có thể tự tin khởi nghiệp hoặc ứng tuyển vào các
+doanh nghiệp trong và ngoài nước, các cơ quan, ban ngành ở những vị trí: Chuyên
+viên phân tích yêu cầu (BA), Kiến trúc sư phần mềm (SA), Lập trình viên
+(Developer), Chuyên viên thử nghiệm phần mềm (Tester), chuyên viên cầu nối
+(BrSE), chuyên viên nghiên cứu và phát triển ứng dụng (R&D), giảng viên giảng
+dạy các môn học về ngành kỹ thuật phần mềm hoặc có thể tiếp tục nghiên cứu và
+học lên cao học.
+[Phương thức tuyển sinh](../../../../dai-hoc/tuyen-sinh/phuong-thuc-2023) 
+[Tư vấn trực tuyến](https://www.facebook.com/tuyensinhtdtu) 
+[Gọi hotline tư vấn](../../../../hoc-tai-tdtu/ho-tro-sinh-vien) 
+## Vì sao nên chọn ngành Kỹ thuật phần mềm tại Trường Đại học Tôn Đức Thắng
+ TDTU thuộc top 500 đại học tốt nhất thế giới (THE World University Rankings) Học phí thấp 100% sinh viên ra trường có việc làm trong vòng 12 tháng kể từ khi tốt nghiệp ## Các chương trình của ngành Kỹ thuật phần mềm
+* [Tiêu chuẩn](#tab-mx70h-1)
+* [Chất lượng cao](#tab-mx70h-2)
+* [Đại học bằng tiếng Anh](#tab-mx70h-3)
+* 
+**Kỹ thuật phần mềm - Mã ngành:** 
+**7480103** Sinh viên được cung cấp kiến thức nền cơ sở của kỹ thuật phần mềm và những
+kiến thức mang tính định hướng theo nhu cầu phát triển của xã hội như: phát
+triển ứng dụng trên các nền tảng số, thiết bị máy tính, di động thông minh;
+thiết kế giao diện thân thiện với người dùng; phân tích hệ thống; an toàn thông
+tin; quản lý dự án công nghệ thông tin; … Ngoài ra, sinh viên còn được tạo điều
+kiện để củng cố kiến thức chuyên môn và nâng cao tay nghề thông qua các tiết học
+thực hành trong phòng học được trang bị đầy đủ trang thiết bị tiên tiến và liên
+tục cập nhật. Số tiết học thực hành được thiết kế để cân bằng với số buổi học lý
+thuyết, giúp sinh viên có cơ hội rèn luyện và vận dụng những kiến thức đã học
+vào thực tế. Các học phần được thiết kế mang tính ứng dụng cao, theo hướng tăng dần từ cấp
+độ cơ bản đến cấp độ sinh viên có đủ kiến thức và kỹ năng để tự thực hiện được
+một dự án phần mềm, từ giai đoạn thu thập yêu cầu, phân tích, thiết kế, lập
+trình, kiểm thử đến giai đoạn vận hành và bảo trì phần mềm. Nhà trường còn đẩy
+mạnh chương trình kết nối mạng lưới doanh nghiệp thân hữu nhằm tạo điều kiện cho
+sinh viên có cơ hội tham quan và kiến tập từ năm học thứ 2. Bên cạnh đó, đối với
+một số môn học mang tính chuyên môn, giảng viên sẽ kết hợp với các chuyên gia
+dày dặn kinh nghiệm trực tiếp giảng dạy, góp phần bồi dưỡng thêm kiến thức và
+liiên tục cập nhật các tiêu chuẩn mới nhất về công nghệ để tăng khả năng cạnh
+tranh và hội nhập với nhu cầu ngày càng cao của xã hội. Sinh viên ngành Kỹ thuật phần mềm sau khi tốt nghiệp sẽ được trang bị đầy đủ
+các kỹ năng như: kỹ năng phân tích, thiết kế, lập trình và kiểm thử các hệ thống
+phần mềm; kỹ năng triển khai và quản lý các dự án phần mềm cho doanh nghiệp;
+thuần thục việc ứng dụng các công cụ phần mềm vào việc khai thác, phân tích dữ
+liệu doanh nghiệp; có khả năng tư vấn giải pháp xây dựng các hệ thống phần mềm,
+…
+**Thông tin cần biết** Bằng cấp Cử nhân
+ Thời gian đào tạo Toàn thời gian: 4 năm
+ Chương trình đào tạo [Xem thông tin chi tiết về chương trình đào
+tạo](https://cktt-cdr.tdtu.edu.vn/chuongtrinhdaotao?type=tuyensinh&hedaotao=0)
+ Chuẩn đầu ra [Xem thông tin chi tiết về chuẩn đầu
+ra](https://cktt-cdr.tdtu.edu.vn/chuandaura?type=tuyensinh&hedaotao=0)
+ Phương thức xét tuyển riêng Tổ hợp: Toán\*2, Anh, Lý KQ ĐGNL của ĐHQG TP. HCM Ưu tiên xét tuyển theo TDTU
+ Xét tuyển theo điểm thi THPT Tổ hợp: A00; A01; D01 Điểm trúng tuyển 2022 (thang 40): **35.4**
+ Khai giảng Tháng 9, năm 2023
+ Học phí 28.800.000 (đồng/năm)
+**Kỹ thuật phần mềm - Mã ngành:** 
+**F7480103** Chương trình đào tạo chất lượng cao (CLC) về Kỹ thuật phần mềm được xây dựng
+nhu cầu của thị trường lao động; gắn kết lý thuyết với thực tiễn; kết hợp kiến
+thức chuyên môn và chuyên ngành với rèn luyện kỹ năng thực hành; chú trọng đến
+các kỹ năng mềm và thực tập doanh nghiệp Ngành Kỹ thuật phần mềm đào tạo ra các Kỹ sư phần mềm nắm vững các thức liên
+quan đến quy trình phát triển phần mềm một cách chuyên nghiệp nhằm tạo ra sản
+phẩm phần mềm đạt chất lượng cao, đáp ứng các nhu cầu nghiệp vụ cụ thể trong nền
+sản xuất của xã hội. Sinh viên được trang bị các kiến thức chuyên sâu về công
+nghiệp phần mềm, bao gồm: quy trình phát triển phần mềm, kỹ năng vận dụng các
+công cụ phần mềm vào việc hỗ trợ phát triển các phần mềm khác; các kiến thức cần
+thiết liên quan đến các pha thực hiện trong một dự án phần mềm như: thu thập yêu
+cầu, phân tích, thiết kế, lập trình, kiểm thử, vận hành và bảo trì phần mềm.
+**Thông tin cần biết** Bằng cấp Cử nhân
+ Thời gian đào tạo Toàn thời gian: 4 năm
+ Chương trình đào tạo [Xem thông tin chi tiết về chương trình đào
+tạo](https://cktt-cdr.tdtu.edu.vn/chuongtrinhdaotao?type=tuyensinh&hedaotao=H)
+ Chuẩn đầu ra [Xem thông tin chi tiết về chuẩn đầu
+ra](https://cktt-cdr.tdtu.edu.vn/chuandaura?type=tuyensinh&hedaotao=H)
+ Phương thức xét tuyển riêng Tổ hợp: Toán\*2, Anh, Lý KQ ĐGNL của ĐHQG TP. HCM Ưu tiên xét tuyển theo TDTU
+ Xét tuyển theo điểm thi THPT Tổ hợp: A00; A01; D01 Điểm trúng tuyển 2022 (thang 40): **34.5**
+ Khai giảng Tháng 9, năm 2023
+ Học phí Năm 1: 40.790.000 (đồng) Năm 2: 47.588.000 (đồng) Năm 3: 52.235.000 (đồng) Năm 4: 52.235.000 (đồng)
+**Kỹ thuật phần mềm - Mã ngành:** 
+**FA7480103** Đang cập nhật ...
+**Thông tin cần biết** Bằng cấp Cử nhân
+ Thời gian đào tạo Toàn thời gian: 4 năm
+ Chương trình đào tạo [Xem thông tin chi tiết về chương trình đào
+tạo](https://cktt-cdr.tdtu.edu.vn/chuongtrinhdaotao?type=tuyensinh&hedaotao=K)
+ Chuẩn đầu ra [Xem thông tin chi tiết về chuẩn đầu
+ra](https://cktt-cdr.tdtu.edu.vn/chuandaura?type=tuyensinh&hedaotao=K)
+ Phương thức xét tuyển riêng Xét theo điểm trung bình HK KQ ĐGNL của ĐHQG TP. HCM Ưu tiên xét tuyển theo TDTU
+ Xét tuyển theo điểm thi THPT Tổ hợp: E03; E06; A01; D01 Điểm trúng tuyển 2022 (thang 40): **24**
+ Khai giảng Tháng 9, năm 2023
+ Học phí Năm 1: 62.372.000 (đồng) Năm 2: 76.406.000 (đồng) Năm 3: 78.322.000 (đồng) Năm 4: 78.052.000 (đồng)
+## Cựu sinh viên nói gì về ngành Kỹ thuật phần mềm
+![](https://admission.tdtu.edu.vn) Đang cập nhật ...
+## Các ngành học liên quan
+[Khoa học máy tính](../../../../dai-hoc/nganh-hoc/khoa-hoc-may-tinh) 
+[Mạng máy tính và truyền thông dữ liệu](../../../../dai-hoc/nganh-hoc/mang-may-tinh-va-truyen-thong-du-lieu) 
+[Toán ứng dụng](../../../../dai-hoc/nganh-hoc/toan-ung-dung) 
+## Làm gì tiếp theo?
+[Đăng ký xét tuyển](https://xettuyen.tdtu.edu.vn/dangky) 
+[Đặt câu hỏi](https://connect.tdtu.edu.vn:8443/) 
+Tải cẩm nang tuyển sinh
+[Xem thông báo tuyển sinh](../../../../dai-hoc/tuyen-sinh/phuong-thuc-2023) 
+[Cơ sở vật chất TDTU](../../../../gioi-thieu/co-so-vat-chat) 
+[Xem thông tin về Khoa](https://it.tdtu.edu.vn/) 
+","id":17,"source":"https://admission.tdtu.edu.vn/dai-hoc/nganh-hoc/ky-thuat-phan-mem","title":"Ngành Kỹ thuật phần mềm"},"notfound":false,"question":"ngành này điểm chuẩn bao nhiêu","status":200}

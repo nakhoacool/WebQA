@@ -65,3 +65,17 @@ ValueError: unexpected '{' in field name
 2024-02-28 00:39:39,573 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
 2024-02-28 00:40:27,705 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
 2024-02-28 06:20:38,210 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-29 00:25:08,680 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-29 00:31:34,240 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-29 00:38:27,570 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-29 00:54:21,063 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-29 01:03:31,817 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-29 01:20:00,227 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-29 01:20:08,047 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-29 01:21:36,407 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-29 06:31:33,055 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-02-29 19:12:22,295 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-03-02 05:42:44,714 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-03-02 06:15:56,435 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-03-02 10:09:52,220 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-03-02 10:59:07,276 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance

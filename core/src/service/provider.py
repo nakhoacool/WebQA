@@ -1,6 +1,6 @@
 from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from elasticsearch import Elasticsearch
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_google_genai import GoogleGenerativeAI, ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from src.service.config import ConfigurationService
 from src.service.docstore import DocStore
 from src.rag.types import RAGCategories
@@ -39,7 +39,7 @@ class ProviderService:
     
     def get_gemini_pro(self, convert_system_message:bool = False) -> ChatGoogleGenerativeAI:
         """
-            get an instance of gemini pro
+            get an instance of gemini pro chat model
 
             @return gemini chat model
         """
@@ -50,6 +50,17 @@ class ProviderService:
             convert_system_message_to_human=convert_system_message
         )
         return chat_model
+    
+    def get_simple_gemini_pro(self) -> GoogleGenerativeAI:
+        """
+            get an instance of gemini model
+
+            @return gemini model
+        """
+        model = GoogleGenerativeAI(
+            model="gemini-pro", 
+            temperature=0, google_api_key=self.config.load_gemini_token())
+        return model
     
     def get_gemini_embeddings(self) -> GoogleGenerativeAIEmbeddings:
         """

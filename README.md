@@ -1,3 +1,19 @@
+## How to run
+At the top of parent directory, run
+```bash
+cd client
+npm i
+npm run dev
+``` 
+
+At the top directory, run
+```bash
+cd core
+pip install -r requirements.txt
+cd ../
+flask --app core/app.py run
+```
+
 ## To run Flask server
 At the top directory, run
 ```bash

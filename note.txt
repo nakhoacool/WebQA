@@ -1,0 +1,4 @@
+1. Data xây dựng được bao nhiêu?
+2. Phương pháp
+3. User case
+4. đánh giá model (tự động, human)
