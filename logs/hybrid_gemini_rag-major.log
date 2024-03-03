@@ -3,3 +3,22 @@ Traceback (most recent call last):
   File "/home/h4438/Desktop/graduate/WebQA/core/experiments/../src/rag/hybrid_rag.py", line 105, in ask_rag
     answer=answer.strip(),
 AttributeError: 'RAGResponse' object has no attribute 'strip'
+2024-03-03 16:44:30,273 - hybrid_gemini_rag-major.log - ERROR - can't answer RAG
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/../src/rag/hybrid_rag.py", line 119, in ask_rag
+    answer = self.chain.invoke({"question": question})
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2053, in invoke
+    input = step.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3507, in invoke
+    return self._call_with_config(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 1246, in _call_with_config
+    context.run(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3383, in _invoke
+    output = call_func_with_variable_args(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/../src/rag/hybrid_rag.py", line 104, in __update_format_answer
+    self.update_notification_func()
+TypeError: <lambda>() missing 1 required positional argument: 'x'

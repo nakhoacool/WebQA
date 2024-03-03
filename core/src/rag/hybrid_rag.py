@@ -24,8 +24,9 @@ TEMPLATE = """Bạn là một người tư vấn viên thân thiện và đầy 
 ```
 {context}
 ```
-Hãy hỗ trợ thật tốt với yêu cầu sau đến từ người dùng. Output "None" if you cannot answer.
+Hãy hỗ trợ thật tốt với yêu cầu sau đến từ người dùng.
 Yêu cầu: {question}
+Hãy trả lời một cách thật ngắn gọn và xúc tích. Output "None" if you cannot answer
 """
 
 
@@ -39,7 +40,7 @@ class HybridGeminiRAG:
     """
     def __init__(
             self, provider: ProviderService, 
-            rag_config: RAGConfig, 
+            rag_config: RAGConfig,
             update_notification_func):
         """
             Initialize the RAG
@@ -51,39 +52,22 @@ class HybridGeminiRAG:
         self.rag_config = rag_config
         self.database = provider.get_docstore()
         self.log = AppLogService(f"hybrid_gemini_rag-{self.rag_config.db_category}.log")
-        # Filter chain
-        self.filter_chain = self.__build_filter_chain(provider=provider)
+        self.update_notification_func = update_notification_func 
         # Build chain
         chat_model = provider.get_gemini_pro(convert_system_message=False)
+        self.gemini = provider.get_simple_gemini_pro()
         prompt = ChatPromptTemplate.from_template(TEMPLATE)
         self.__init_retriever(provider=provider)
         self.chain = (
-            {"context": itemgetter("question") | self.ensemble_retriever, 
+            {"context": itemgetter("question") | RunnableLambda(self.ensemble_retriever.invoke), 
              "question": itemgetter("question")
             }
             | RunnableLambda(self.__filter_format_doc)
             | prompt
             | chat_model
-            | StrOutputParser()
-            | RunnableLambda(update_notification_func)
-            | RunnableLambda(self.__format_answer)
+            | RunnableLambda(self.__update_format_answer)
         ) 
         return
-    
-    def __build_filter_chain(self, provider: ProviderService):
-        """
-            Build a filter chain to filter relevant retrieved documents to user query.
-        """
-        template = "Is this question '{question}' relevant to '{title}'. Output yes or no."
-        prompt = ChatPromptTemplate.from_template(template=template)
-        chain = ({
-            "question": itemgetter("question"),
-            "title": itemgetter("title")
-        }
-        | prompt
-        | provider.get_gemini_pro()
-        | StrOutputParser())
-        return chain
 
     def __filter_format_doc(self, input_dict):
         """
@@ -93,27 +77,37 @@ class HybridGeminiRAG:
             It helps the chat model understands the context better.
         """
         correct_doc = None
-        retrieve_docs = input_dict['context']
-        for retrieve_doc in retrieve_docs:
-            doc_id = retrieve_doc.metadata['id']
-            document = self.database.find_document(category=self.rag_config.db_category, id=doc_id)
-            filter = self.filter_chain.invoke({"question": input_dict['question'], "title": document.title})
-            correct_doc = document
-            if filter.lower() == 'yes':
-                break
+        question = input_dict['question']
+        parent_docs = [
+            self.database.find_document(category=self.rag_config.db_category, id=d.metadata['id']) 
+            for d in input_dict['context']]
+        
+        title1 = parent_docs[0].title
+        title2 = parent_docs[1].title
+        prompt=f"""Do not output more than one word
+        Title 1: {title1}
+        Title 2: {title2}
+        Which title is more relevant to the "{question}". Output "one" or "two"."""
+        filter = self.gemini(prompt)
+        
+        if filter.lower() == 'one':
+            correct_doc = parent_docs[0]
+        else:
+            correct_doc = parent_docs[1]
         input_dict['context'] = correct_doc.content
         self.retrieve_parent_document = correct_doc
         return input_dict
     
-    def __format_answer(self, answer):
+    def __update_format_answer(self, answer):
         """
             Note! for internal class use only.
 
             This method formats the retrieved documnents from the retriever.
             It helps the chat model understands the context better.
         """
+        self.update_notification_func() 
         resp = RAGResponse(
-            answer=answer.strip(), 
+            answer=answer.content.strip(), 
             category=self.rag_config.db_category,
             document=self.retrieve_parent_document)
         return resp
@@ -123,7 +117,6 @@ class HybridGeminiRAG:
         """
             Ask the RAG a question.
             @param question
-
             @return answer, 'None' if it can't
         """
         try:
@@ -148,7 +141,7 @@ class HybridGeminiRAG:
             embedding=embeddings,
             index_name=self.rag_config.vector_index, 
             distance_strategy="EUCLIDEAN_DISTANCE") 
-        es_retriever = es.as_retriever(search_kwargs={"k": 1})
+        es_retriever = es.as_retriever(search_kwargs={"k": 1, "fetch_k": 10})
         self.es = es_retriever
         # BM-25
         bm25_retriever = MyElasticSearchBM25Retriever(client=es_connect, index_name=self.rag_config.text_index)
