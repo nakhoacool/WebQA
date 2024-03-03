@@ -31,13 +31,30 @@ DEFAULT_TEMPLATE = """Given the context below
 
 Please answer my question: {question}"""
 
-PROMPT_TEMPLATE = """Given the user question below, classify it as either being about `Major`, `Uni` or `Other`. Known that:
+PROMPT_TEMPLATE_v1 = """Given the user question below, classify it as either being about `Major`, `Uni` or `Other`. Known that:
 ```
     Major: when the question related to a training program (major) of Ton Duc Thang university.
     Major: khi đối tượng được hỏi liên quan đến một ngành đào tạo nào đó.
     Major: khi câu hỏi liên quan đến ngành đào tạo của trường đại học Tôn Đức Thắng. Ví dụ: tư vấn về ngành học, hỏi về ngành học, trường đào tạo ngành học gì, các ngành học có ...
     Uni: when the question asks something specifically about Ton Duc Thang university. For example: what is the university email, location, rules...
     Uni: khi đối tượng được hỏi cụ thể về trường đại học Tôn Đức Thắng, ví dụ: hỏi về thông tin trường, địa chỉ liên lạc, thành tích, ... 
+```
+Do not respond with more than one word.
+
+<question>
+{question}
+</question>
+
+Classification:"""
+
+PROMPT_TEMPLATE = """Given the user question below, classify it as either being about `Major`, `Uni`, `Training` or `Other`. Known that:
+```
+    Major: when the question related to a training program (major) of Ton Duc Thang university.
+    Major: khi đối tượng được hỏi liên quan đến một ngành đào tạo nào đó.
+    Major: khi câu hỏi liên quan đến ngành đào tạo của trường đại học Tôn Đức Thắng. Ví dụ: tư vấn về ngành học, hỏi về ngành học, trường đào tạo ngành học gì, các ngành học có ...
+    Uni: when the question asks something specifically about Ton Duc Thang university. For example: what is the university email, location, rules...
+    Uni: khi đối tượng được hỏi cụ thể về trường đại học Tôn Đức Thắng, ví dụ: hỏi về thông tin trường, địa chỉ liên lạc, thành tích, ... 
+    Training: khi đối tượng được hỏi liên quan các chương trình đào tạo của trường đại học Tôn Đức Thắng, ví dụ: hỏi về chương trình 4 + 1, chương trình đào tạo tiêu chuẩn,... 
 ```
 Do not respond with more than one word.
 
@@ -65,6 +82,11 @@ class RAGRobot:
             rag_config=provider.get_categories().uni,
             update_notification_func=self.__invoke_update_notification
         )
+        self.training_prop_rag = HybridGeminiRAG(
+            provider=provider,
+            rag_config=provider.get_categories().training_program,
+            update_notification_func=self.__invoke_update_notification
+        )
         # states
         self.is_document_update = False
         self.current_doc:TDTDoc = None
@@ -74,9 +96,9 @@ class RAGRobot:
         self.main_chain = self.__build_routing()
         return
     
-    def __invoke_update_notification(self, input):
+    def __invoke_update_notification(self):
         self.is_document_update = True
-        return input
+        return
 
     def __build_routing(self):
         self.router = (
@@ -84,10 +106,10 @@ class RAGRobot:
             | self.provider.get_gemini_pro()
             | StrOutputParser()
         )
-
         branch = RunnableBranch(
             (lambda x: "major" in x['topic'].lower(), self.major_rag.chain),
             (lambda x: "uni" in x['topic'].lower(), self.uni_rag.chain),
+            (lambda x: "training" in x['topic'].lower(), self.training_prop_rag.chain),
             self.default_chain
         )
         full_chain = {"topic": self.router, "question": lambda x: x["question"]} | branch
@@ -117,14 +139,24 @@ class RAGRobot:
         )
         return chain
     
+    def __is_local_question(self, doc: str, question: str) -> bool:
+        data = "\n".join([c[:20]+"..." for c in doc.split("\n")]) 
+        prompt = f"""Đây là thông tin mà bạn biết:
+        ```
+        {data}
+        ```
+        Câu hỏi '{question}' có thể được trả lời bằng đoạn thông tin trên không? 
+        Output true or false."""
+        ai = self.provider.get_simple_gemini_pro()
+        return True if ai(prompt).lower() == "true" else False
+
     @traceable(tags=["robot"])
     def answer(self, question:str) -> RAGResponse:
         resp: RAGResponse = None
-        if self.followup != None:
+        if self.followup != None and self.__is_local_question(self.current_doc.content, question):
             resp = self.followup.chain.invoke({"question": question})
-            if "none" != resp.answer.lower():
-                return resp
-        resp = self.main_chain.invoke({"question": question})
+        else:
+            resp = self.main_chain.invoke({"question": question})
         if self.is_document_update:
             self.current_doc = resp.document
             self.__update_followup(doc=resp.document)

@@ -83,7 +83,10 @@ class HybridGeminiRAG:
             for d in input_dict['context']]
         
         title1 = parent_docs[0].title
-        title2 = parent_docs[1].title
+        if len(parent_docs) > 1:
+            title2 = parent_docs[1].title
+        else:
+            title2 = title1
         prompt=f"""Do not output more than one word
         Title 1: {title1}
         Title 2: {title2}
