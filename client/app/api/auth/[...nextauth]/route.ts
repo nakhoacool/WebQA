@@ -1,22 +1,23 @@
-import NextAuth from 'next-auth'
+import NextAuth, { Session, User } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { doc, getDoc } from 'firebase/firestore'
 import { auth, db } from '@/lib/firebase/config'
+import { JWT } from 'next-auth/jwt'
 
 export const authOptions = {
   pages: {
     signIn: '/auth/signin',
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: { token: JWT, user: User }) {
       if (user) {
         token.id = user.id
         token.role = user.role
       }
       return token
     },
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session, token: JWT }) {
       session.user.id = token.id
       session.user.role = token.role
       return session
