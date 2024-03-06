@@ -48,12 +48,13 @@ def list_files(items):
 import os
 from googleapiclient.discovery import build
 from oauth2client.service_account import ServiceAccountCredentials
-
+from src.service.applog import AppLogService
 
 class GoogleDriveService:
 
     def __init__(self):
         self._SCOPES=['https://www.googleapis.com/auth/drive']
+        self.log = AppLogService(name="google_drive.log")
         env_path = os.path.dirname(__file__)
         _base_path = f"{env_path}/../../.keys"
         _credential_path=os.path.join(_base_path, 'drive_master.json')
@@ -65,3 +66,14 @@ class GoogleDriveService:
         creds = ServiceAccountCredentials.from_json_keyfile_name(os.getenv("GOOGLE_APPLICATION_CREDENTIALS"), self._SCOPES)
         service = build('drive', 'v3', credentials=creds)
         return service
+    
+    def search_file_or_folder(self, name):
+        """Search for a file or folder in the user's Google Drive."""
+        query = f"name='{name}'"
+        results = self.service.files().list(q=query, fields="nextPageToken, files(id, name, mimeType, size, parents, modifiedTime)").execute()
+        items = results.get('files', [])
+        if not items:
+            return None
+        else:
+            list_files(items)
+            return items
