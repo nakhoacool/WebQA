@@ -79,3 +79,73 @@ ValueError: unexpected '{' in field name
 2024-03-02 06:15:56,435 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
 2024-03-02 10:09:52,220 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
 2024-03-02 10:59:07,276 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-03-07 03:52:16,974 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-03-07 03:54:43,832 - app.log - ERROR - [APP] answer_major went wrong!
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/app.py", line 94, in answer_major
+    rag_resp = bot.answer(question.strip())
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langsmith/run_helpers.py", line 453, in wrapper
+    raise e
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langsmith/run_helpers.py", line 449, in wrapper
+    function_result = func(*args, **kwargs)
+  File "/home/h4438/Desktop/graduate/WebQA/core/src/robot.py", line 159, in answer
+    resp = self.main_chain.invoke({"question": question})
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2053, in invoke
+    input = step.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/branch.py", line 201, in invoke
+    output = runnable.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2053, in invoke
+    input = step.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 166, in invoke
+    self.generate_prompt(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 544, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 408, in generate
+    raise e
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 398, in generate
+    self._generate_with_cache(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 577, in _generate_with_cache
+    return self._generate(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_community/chat_models/openai.py", line 439, in _generate
+    response = self.completion_with_retry(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_community/chat_models/openai.py", line 356, in completion_with_retry
+    return self.client.create(**kwargs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/openai/_utils/_utils.py", line 275, in wrapper
+    return func(*args, **kwargs)
+TypeError: create() got an unexpected keyword argument 'convert_system_message_to_human'
+2024-03-07 03:56:35,406 - app.log - ERROR - [APP] answer_major went wrong!
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/app.py", line 94, in answer_major
+    rag_resp = bot.answer(question.strip())
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langsmith/run_helpers.py", line 453, in wrapper
+    raise e
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langsmith/run_helpers.py", line 449, in wrapper
+    function_result = func(*args, **kwargs)
+  File "/home/h4438/Desktop/graduate/WebQA/core/src/robot.py", line 159, in answer
+    resp = self.main_chain.invoke({"question": question})
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2053, in invoke
+    input = step.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/branch.py", line 201, in invoke
+    output = runnable.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2053, in invoke
+    input = step.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 166, in invoke
+    self.generate_prompt(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 544, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 408, in generate
+    raise e
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 398, in generate
+    self._generate_with_cache(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 577, in _generate_with_cache
+    return self._generate(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_community/chat_models/openai.py", line 439, in _generate
+    response = self.completion_with_retry(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_community/chat_models/openai.py", line 356, in completion_with_retry
+    return self.client.create(**kwargs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/openai/_utils/_utils.py", line 275, in wrapper
+    return func(*args, **kwargs)
+TypeError: create() got an unexpected keyword argument 'convert_system_message_to_human'
+2024-03-07 04:02:18,839 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-03-07 04:10:59,248 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance
+2024-03-07 04:27:42,570 - app.log - ERROR - ERROR: cannot make dir /home/h4438/Desktop/graduate/WebQA/core/instance

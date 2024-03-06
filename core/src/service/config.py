@@ -31,6 +31,16 @@ class ConfigurationService:
             key = f.read()
         return key.strip()
  
+    def load_openai_token(self) -> str:
+        """
+            load OpenAI token
+
+            @return the token
+        """
+        with open(self.path+"/openai") as f:
+            key = f.read()
+        return key.strip()
+
     def load_gemini_token(self) -> str:
         """
             load google gemini API token

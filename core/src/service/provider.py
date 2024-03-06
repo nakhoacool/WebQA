@@ -1,5 +1,7 @@
 from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from elasticsearch import Elasticsearch
+from langchain_community.chat_models import ChatOpenAI
+from langchain_community.llms.openai import OpenAI
 from langchain_google_genai import GoogleGenerativeAI, ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from src.service.config import ConfigurationService
 from src.service.docstore import DocStore
@@ -62,6 +64,27 @@ class ProviderService:
             temperature=0, google_api_key=self.config.load_gemini_token())
         return model
     
+    def get_chat_openai(self):
+        """
+            get an instance of OpenAI chat model
+
+            @return a chat model
+        """
+        model = ChatOpenAI(
+            temperature=0,
+            max_tokens=1800,
+            openai_api_key=self.config.load_openai_token())
+        return model
+    
+    def get_openai(self):
+        """
+            get an instance of OpenAI model
+
+            @return model
+        """
+        model = OpenAI(temperature=0, max_tokens=1800, openai_api_key=self.config.load_openai_token())
+        return model
+
     def get_gemini_embeddings(self) -> GoogleGenerativeAIEmbeddings:
         """
             get an instance of gemini embedding model
