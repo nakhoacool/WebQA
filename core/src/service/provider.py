@@ -1,21 +1,33 @@
 from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from elasticsearch import Elasticsearch
 from langchain_community.chat_models import ChatOpenAI
+from langchain_community.vectorstores.elasticsearch import ElasticsearchStore
 from langchain_community.llms.openai import OpenAI
 from langchain_google_genai import GoogleGenerativeAI, ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from src.service.config import ConfigurationService
 from src.service.docstore import DocStore
 from src.rag.types import RAGCategories
+from src.retreiver.es_bm25_retriever import MyElasticSearchBM25Retriever
+from src.retreiver.firebase_retriever import FirebaseRetriever
 from src.prepare.website_load import WebPageMDLoader
+from langchain_openai import OpenAIEmbeddings
 
 class ProviderService:
 
     def __init__(self) -> None:
         self.config = ConfigurationService()
         self.docstore = DocStore()
+        self.firebase = FirebaseRetriever()
         self.categories = RAGCategories()
         self.webloader = WebPageMDLoader()
         return
+
+
+    def get_firebase(self) -> FirebaseRetriever:
+        """
+            get an instance of Firebase retriever
+        """
+        return self.firebase
 
     def get_docstore(self) -> DocStore:
         """
@@ -105,3 +117,45 @@ class ProviderService:
         embeddings = HuggingFaceInferenceAPIEmbeddings(
             model_name=embed_model, api_key=self.config.load_hg_token())
         return embeddings
+
+
+    def get_openai_embeddings(self, embed_model:str = "text-embedding-3-small") -> OpenAIEmbeddings:
+        """
+            get open ai embedding model
+        """
+        embeddings = OpenAIEmbeddings(model=embed_model,api_key=self.config.load_openai_token())
+        return embeddings
+    
+
+    def get_elasticsearch_store(self, index:str, embed_type:str="gemini", dist:str="EUCLIDEAN_DISTANCE") -> ElasticsearchStore:
+        """
+            get elastic search with model
+
+            @param embed_type model provider: hg (hugging face), gemini, openai
+        """
+        embed = None
+        if embed_type == "hg":
+            embed = self.get_hf_api_embeddings()
+        elif embed_type == "openai":
+            embed = self.get_openai_embeddings()
+        else:
+            embed = self.get_gemini_embeddings()
+
+        es = ElasticsearchStore(
+            es_connection=self.load_elasticsearch_connection(),
+            embedding=embed,
+            index_name=index, 
+            distance_strategy=dist)
+        return es
+    
+
+    def get_elasticsearch_bm25(self, index: str) -> MyElasticSearchBM25Retriever:
+        """
+            get elastic search with BM25
+
+            @param index index name
+        """
+        bm25_retriever = MyElasticSearchBM25Retriever(
+            client=self.load_elasticsearch_connection(), 
+            index_name=index)
+        return bm25_retriever

@@ -24,6 +24,10 @@ class MyElasticSearchBM25Retriever(BaseRetriever):
     index_name: str
     """Name of the index to use in Elasticsearch."""
 
+    def check_index_exist(self):
+        result = self.client.indices.exists(index=self.index_name)
+        return result
+
     def add_texts(
         self,
         texts: Iterable[str],
@@ -80,11 +84,29 @@ class MyElasticSearchBM25Retriever(BaseRetriever):
         metadatas = [doc.metadata for doc in documents]
         return self.add_texts(texts, metadatas, **kwargs)
     
-    def delete_document(self, index_name: str, document_id: str):
+    def delete_document(self, document_ids: List[str], refresh_indices:bool=True):
         """
-            Delete a document wiht id
+            Delete documents by ids
         """
-        self.client.delete(index=index_name, id=document_id)
+        try:
+            from elasticsearch.helpers import bulk
+        except ImportError:
+            raise ValueError(
+                "Could not import elasticsearch python package. "
+                "Please install it with `pip install elasticsearch`."
+            )
+        requests = []
+        for i, doc_id in enumerate(document_ids):
+            request = {
+                "_op_type": "delete",
+                "_index": self.index_name,
+                "_id": doc_id,
+            }
+            requests.append(request)
+        bulk(self.client, requests)
+
+        if refresh_indices:
+            self.client.indices.refresh(index=self.index_name)
         return
 
     def get_relevant_documents(

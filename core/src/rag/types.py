@@ -22,6 +22,13 @@ class RAGCategories:
             vector_index = "labse-training_program",
             db_category="training"
         )
+        
+        self.sample = RAGConfig(
+            embed_model = "gemini",
+            text_index = "text-split-sample",
+            vector_index = "gemini-sample",
+            db_category="sample" 
+        )
         return
 
 

@@ -1,6 +1,5 @@
 from langchain_community.vectorstores.elasticsearch import ElasticsearchStore
 from langchain.retrievers import EnsembleRetriever
-from langchain_core.output_parsers import StrOutputParser
 from langsmith.run_helpers import traceable
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableLambda
