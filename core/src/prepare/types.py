@@ -4,10 +4,10 @@ from langchain_core.documents.base import Document
 class TDTDoc:
 
     def __init__(self, content: str = "", src: str = "", id: str = "", title: str = "") -> None:
-        self.content = content
-        self.source = src
-        self.id = id
-        self.title = title
+        self.content = content.strip()
+        self.source = src.strip()
+        self.id = id.strip()
+        self.title = title.strip()
         self.vec_child_ids = None
         self.txt_child_ids = None
         return

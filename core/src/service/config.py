@@ -54,7 +54,7 @@ class ConfigurationService:
             @return the token
         """
         with open(self.path+"/gemini") as f:
-            key = f.read()
+            key = f.readlines()[0]
         return key.strip()
 
     def load_tavily_token(self):

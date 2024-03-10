@@ -1,9 +1,8 @@
 from src.prepare.types import TDTDoc
 from src.service.applog import AppLogService
-import os
-from firebase_admin import credentials, firestore
-from typing import Dict
+from firebase_admin import firestore
 from src.service.config import ConfigurationService
+from google.cloud.firestore_v1.base_query import FieldFilter
 
 class FirebaseStore:
 
@@ -32,7 +31,18 @@ class FirebaseStore:
         else:
             self.log.logger.warn("No such document with "+document_id+" at "+collection)
             return None
-        
+
+    def find_document_by_title(self, collection: str, title: str) -> TDTDoc:
+        docs = (self.db.collection(self.path+collection).where(filter=FieldFilter("title", "==", title)).stream())
+        tmp = {}
+        for d in docs:
+            tmp = d.to_dict()
+            if len(tmp.keys()) > 0:
+                tdt = TDTDoc()
+                tdt.from_json(tmp)
+                return tdt
+        return None
+
     def find_document(self, category: str, id: str) -> TDTDoc:
         return self.read_document(collection=category, document_id=id)
         

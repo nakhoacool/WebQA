@@ -24,7 +24,7 @@ class DataETL:
             index=rag_config.vector_index, 
             embed_type=rag_config.embed_model)
         self.bm25 = provider.get_elasticsearch_bm25(index=rag_config.text_index)
-        self.index_page = ""
+        self.index_page = "A table of content\n"
         return
 
     def create_splitter(self, chunk_size: int = 460, overlap: int = 20) -> RecursiveCharacterTextSplitter:
@@ -58,7 +58,7 @@ class DataETL:
             dist.append(len(doc))
             [d.metadata.update({"id": data['id']}) for d in doc]
             db.extend(doc)
-        print(f"From {db_df.shape} to {Counter(dist)}")
+        print(f"From {db_df.shape} to {Counter(dist)} -> {sum(dist)}")
         return db
 
     def upload_df_docs(self, data_folder:str, size:int = 460, overlap:int = 20) -> List[TDTDoc]:
@@ -79,7 +79,7 @@ class DataETL:
                 text_splitter=text_splitter)
             results.append(tmp_doc)
             # update index page
-            self.index_page += f"{tmp_doc.title}: {tmp_doc.content[:20]}...\n"
+            self.index_page += f"{i}. {tmp_doc.title}\n"
         tmp_idx = self.upload_index_page(index_page=self.index_page)
         results.append(tmp_idx)
         print("DONE")
@@ -91,7 +91,7 @@ class DataETL:
         print("-> Update index doc")
         return index_doc
 
-    def upload_doc(self, data, text_splitter) -> TDTDoc:
+    def upload_doc(self, data, text_splitter: RecursiveCharacterTextSplitter) -> TDTDoc:
         """
             Upload a single document    
         
@@ -101,18 +101,25 @@ class DataETL:
                 "title": str
             }
         """
-        parent_id = str(uuid4())
+        title =  data['title']
+        firebase_doc = self.fire.find_document_by_title(collection=self.config.db_category, title=title)
+        if firebase_doc == None:
+            parent_id = str(uuid4())
+            firebase_doc = TDTDoc(content=data['content'], src=data['source'], id=parent_id, title=title)
+        else:
+            parent_id = firebase_doc.id
         # upload to elastic
         split_docs = text_splitter.create_documents([data['content']])
-        [d.metadata.update({"id": parent_id}) for d in split_docs]
+        for d in split_docs:
+            d.metadata.update({"id": parent_id})
+            d.page_content = f"{data['title']} \n {d.page_content}"
         vec_child_ids = self.es.add_documents(documents=split_docs)
         txt_child_ids = self.bm25.add_documents(documents=split_docs)
-        print(f"-> DONE: upload to elastic search {len(vec_child_ids)} & {len(txt_child_ids)} docs")
+        print(f"-> DONE: if upload to elastic search {len(vec_child_ids)} & {len(txt_child_ids)} docs")
         # upload to firebase
-        firebase_doc = TDTDoc(content=data['content'], src=data['source'], id=parent_id, title=data['title'])
         firebase_doc.set_vector_child_ids(vec_child_ids)
         firebase_doc.set_text_child_ids(txt_child_ids)
-        self.fire.create_document(self.config.db_category, firebase_doc.id, document_data=firebase_doc)
+        self.fire.update_document(collection=self.config.db_category, document_id=parent_id, update_document=firebase_doc)
         print(f"-> DONE: upload to firebase at {self.config.db_category}")
         return firebase_doc
 
@@ -132,4 +139,3 @@ class DataETL:
         self.delete_doc(doc)
         self.update_doc(doc)
         return
-    

@@ -50,6 +50,11 @@ class HybridGeminiRAG:
         self.retrieve_parent_document = None
         self.rag_config = rag_config
         self.database = provider.get_docstore()
+        self.index_doc = self.database.find_document(category=rag_config.db_category, id="index")
+
+        if self.index_doc != None:
+            print("loaded index doc") 
+
         self.log = AppLogService(f"hybrid_gemini_rag-{self.rag_config.db_category}.log")
         self.update_notification_func = update_notification_func 
         # Build chain
@@ -86,16 +91,23 @@ class HybridGeminiRAG:
             title2 = parent_docs[1].title
         else:
             title2 = title1
-        prompt=f"""Do not output more than one word
-        Title 1: {title1}
-        Title 2: {title2}
-        Which title is more relevant to the "{question}". Output "one" or "two"."""
+        
+        prompt=f"""Do not output more than one word.
+        You are searching for an answer to the question: "{question}".
+        Which chapter is likely where the answer from?
+        chapter 1: {title1}
+        chapter 2: {title2}
+        chapter 3: the table of content for the other chapters (you should consider when the question is board and ask about quantity) 
+        Output "one", "two", "three"."""
+                
         filter = self.gemini(prompt)
         
         if filter.lower() == 'one':
             correct_doc = parent_docs[0]
-        else:
+        elif filter.lower() == "two":
             correct_doc = parent_docs[1]
+        else:
+            correct_doc = self.index_doc
         input_dict['context'] = correct_doc.content
         self.retrieve_parent_document = correct_doc
         return input_dict
@@ -135,14 +147,11 @@ class HybridGeminiRAG:
             Initialize Elastic, BM25 instances and combine them into hybrid search
             This method is intented for private use. Please be cautious modifying.
         """
-        embeddings = provider.get_hf_api_embeddings(self.rag_config.embed_model)
         # elastic
         es_connect = provider.load_elasticsearch_connection()
-        es = ElasticsearchStore(
-            es_connection=es_connect,
-            embedding=embeddings,
-            index_name=self.rag_config.vector_index, 
-            distance_strategy="EUCLIDEAN_DISTANCE") 
+        es = provider.get_elasticsearch_store(
+            index=self.rag_config.vector_index, 
+            embed_type=self.rag_config.embed_model)
         es_retriever = es.as_retriever(search_kwargs={"k": 1, "fetch_k": 10})
         self.es = es_retriever
         # BM-25

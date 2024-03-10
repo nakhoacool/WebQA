@@ -3,23 +3,55 @@ from src.prepare.types import TDTDoc
 class RAGCategories:
 
     def __init__(self) -> None:
+        # Major
         self.major = RAGConfig(
             embed_model = "sentence-transformers/LaBSE",
             text_index = "text-split-major",
             vector_index = "labse-major",
             db_category = "major")
         
+        self.major_gemini = RAGConfig(
+            embed_model="gemini",
+            text_index="major-text-split-gemini",
+            vector_index="major-vec-gemini",
+            db_category="major"
+        )
+        
+        # University
         self.uni = RAGConfig(
             embed_model = "sentence-transformers/LaBSE",
             text_index = "text-split-uni",
             vector_index = "labse-uni",
             db_category="uni"
         )
+        self.uni_labse = self.uni
+        
+        self.uni_openai =  RAGConfig(
+            embed_model="openai",
+            text_index="uni-text-split-openai",
+            vector_index="uni-vec-openai",
+            db_category="uni"
+        )
 
+        self.uni_gemini =  RAGConfig(
+            embed_model="gemini",
+            text_index="uni-text-split-gemini",
+            vector_index="uni-vec-gemini",
+            db_category="uni"
+        )
+
+        # Training program
         self.training_program = RAGConfig(
             embed_model = "sentence-transformers/LaBSE",
             text_index = "text-split-training_program",
             vector_index = "labse-training_program",
+            db_category="training"
+        )
+
+        self.training_gemini = RAGConfig(
+            embed_model="gemini",
+            text_index="training-text-split-gemini",
+            vector_index="training-vec-gemini",
             db_category="training"
         )
         
