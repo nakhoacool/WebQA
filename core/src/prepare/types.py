@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, List
 from langchain_core.documents.base import Document
 
 class TDTDoc:
@@ -8,6 +8,20 @@ class TDTDoc:
         self.source = src
         self.id = id
         self.title = title
+        self.vec_child_ids = None
+        self.txt_child_ids = None
+        return
+    
+    def set_text_child_ids(self, ids: List[str]):
+        if self.txt_child_ids == None:
+            self.txt_child_ids = []
+        self.txt_child_ids = ids
+        return
+
+    def set_vector_child_ids(self, ids: List[str]):
+        if self.vec_child_ids == None:
+            self.vec_child_ids = []
+        self.vec_child_ids = ids
         return
 
     def set_content(self, content: str):
@@ -21,7 +35,9 @@ class TDTDoc:
             "id": self.id,
             "content": self.content,
             "title": self.title,
-            "source": self.source
+            "source": self.source,
+            "vec_child_ids": self.vec_child_ids,
+            "txt_child_ids": self.txt_child_ids
         }
         return data
     
@@ -30,35 +46,6 @@ class TDTDoc:
         self.content = data['content']
         self.source = data['source']
         self.title = data['title']
-        return
-    
-
-class FirebaseTDTDoc:
-
-    def __init__(self, doc: TDTDoc) -> None:
-        self.doc = doc
-        self.vec_child_ids = []
-        self.txt_child_ids = []
-        return
-
-    def to_json(self) -> Dict:
-        data = {
-            "id": self.doc.id,
-            "content": self.doc.content,
-            "title": self.doc.title,
-            "source": self.doc.source,
-            "vec_child_ids": self.vec_child_ids,
-            "txt_child_ids": self.txt_child_ids
-        }
-        return data
-    
-    def from_json(self, data: Dict):
-        doc = TDTDoc()
-        doc.content = data['content']
-        doc.title = data['title']
-        doc.id = data['id']
-        doc.source = data['source']
-        self.doc = doc
-        self.txt_child_ids = data['txt_child_ids']
-        self.vec_child_ids = data['vec_child_ids']
+        self.set_text_child_ids(data['txt_child_ids'])
+        self.set_vector_child_ids(data['vec_child_ids'])
         return

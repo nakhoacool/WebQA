@@ -1,5 +1,7 @@
 import os
 from typing import List
+import firebase_admin
+from firebase_admin import credentials
 
 class ConfigurationService:
     """
@@ -20,6 +22,10 @@ class ConfigurationService:
         with open(self.path+"/hg_keys") as f:
             key = f.readlines()
         return key[nth].strip()
+
+    def init_firebase_connection(self):
+        cred = credentials.Certificate(self.path+'/firebaseAccountKey.json')
+        return firebase_admin.initialize_app(cred)
 
     def load_langsmith_token(self) -> str:
         """
