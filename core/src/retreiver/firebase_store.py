@@ -65,3 +65,12 @@ class FirebaseStore:
             self.log.logger.exception(f"Can't delete doc with id {document_id} at {collection}")
         return
     
+    def delete_all(self, collection: str):
+        """
+            Be careful!! This method wipes out all data
+        """
+        doc_refs = self.db.collection(self.path+collection).list_documents()
+        for ref in doc_refs:
+            ref.delete() 
+        return
+    

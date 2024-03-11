@@ -41,18 +41,22 @@ class RAGCategories:
         )
 
         # Training program
-        self.training_program = RAGConfig(
+        self.training_hg = RAGConfig(
             embed_model = "sentence-transformers/LaBSE",
-            text_index = "text-split-training_program",
-            vector_index = "labse-training_program",
-            db_category="training"
+            text_index = "training-text-split-hg",
+            vector_index = "training-vec-hg",
+            db_category="training",
+            size=800,
+            overlap=40
         )
 
         self.training_gemini = RAGConfig(
             embed_model="gemini",
             text_index="training-text-split-gemini",
             vector_index="training-vec-gemini",
-            db_category="training"
+            db_category="training",
+            size=800,
+            overlap=40
         )
         
         self.sample = RAGConfig(
@@ -69,12 +73,21 @@ class RAGConfig:
     vector_index: str
     db_category: str
     embed_model: str
+    size: int
+    overlap: int
+    folder_name: str
 
-    def __init__(self, embed_model, text_index, vector_index, db_category) -> None:
+    def __init__(self, embed_model, text_index, vector_index, db_category, size=460, overlap=20) -> None:
         self.embed_model = embed_model
         self.text_index = text_index
         self.vector_index = vector_index
         self.db_category = db_category
+        self.size = size
+        self.overlap = overlap
+        if db_category == "training":
+            self.folder_name = "test_training_program"
+        else:
+            self.folder_name = f"test_{db_category}"
         return
 
 class RAGResponse:

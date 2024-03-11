@@ -7,7 +7,6 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from src.prepare.types import TDTDoc
 from src.service.provider import ProviderService
 from src.rag.types import RAGConfig
-from uuid import uuid4
 
 class DataETL:
     """
@@ -25,6 +24,21 @@ class DataETL:
             embed_type=rag_config.embed_model)
         self.bm25 = provider.get_elasticsearch_bm25(index=rag_config.text_index)
         self.index_page = "A table of content\n"
+        return
+
+    def reset_config_repo(self, provider: ProviderService, rag_config: RAGConfig):
+        """
+            Be careful!! This method wipes out all data
+        """
+        es = provider.load_elasticsearch_connection()
+        idx = [rag_config.vector_index, rag_config.text_index]
+        for i in idx:
+            ok = es.indices.exists(index=i)
+            if ok:
+                es.indices.delete(index=i)
+                print("-> Delete "+i)
+        self.fire.delete_all(collection=rag_config.db_category)
+        print("DONE")
         return
 
     def create_splitter(self, chunk_size: int = 460, overlap: int = 20) -> RecursiveCharacterTextSplitter:
@@ -79,7 +93,7 @@ class DataETL:
                 text_splitter=text_splitter)
             results.append(tmp_doc)
             # update index page
-            self.index_page += f"{i}. {tmp_doc.title}\n"
+            self.index_page += f"{i+1}. {tmp_doc.title}\n"
         tmp_idx = self.upload_index_page(index_page=self.index_page)
         results.append(tmp_idx)
         print("DONE")
@@ -104,7 +118,7 @@ class DataETL:
         title =  data['title']
         firebase_doc = self.fire.find_document_by_title(collection=self.config.db_category, title=title)
         if firebase_doc == None:
-            parent_id = str(uuid4())
+            parent_id = data['id']
             firebase_doc = TDTDoc(content=data['content'], src=data['source'], id=parent_id, title=title)
         else:
             parent_id = firebase_doc.id
