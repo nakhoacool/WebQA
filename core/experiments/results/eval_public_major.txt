@@ -1,0 +1,19 @@
+
+->
+Test on: ../data/test_major/public_test_case.csv
+Start: 2024-03-11 23:53:27.510359
+Param model: gemini
+Param doc_size: 460
+Param doc_overlap: 20
+Param bm25-weight: 0.5
+Param elastic-weight: 0.5
+Param vec_index: major-vec-gemini
+Param txt_index: major-text-split-gemini
+Param db_category: major
+Param top k: 1
+Param distance: EUCLIDEAN_DISTANCE
+Param technique: gemini + Hybrid
+Correct: 126
+Total: 156
+Score: 0.8076923076923077
+End: 2024-03-11 23:54:53.512655

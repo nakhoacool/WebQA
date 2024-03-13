@@ -9,12 +9,12 @@ def test_major(qa_df: DataFrame, ques_col: str, retriever, error_limit: int = 20
     err = 0
     for id, row in qa_df.iterrows():
         query = row[ques_col]
-        ground_result = int(row['doc_id'])
+        ground_result = row['doc_id']
         total += 1
         try:
             res = retriever.get_relevant_documents(query)
             for idx, r in enumerate(res):
-                target_id = int(r.metadata['id'])
+                target_id = r.metadata['id']
                 if target_id == ground_result:
                     correct += 1
                     break

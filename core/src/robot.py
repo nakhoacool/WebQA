@@ -74,17 +74,17 @@ class RAGRobot:
         self.provider = provider
         self.major_rag = HybridGeminiRAG(
             provider=provider, 
-            rag_config=provider.get_categories().major, 
+            rag_config=provider.get_categories().major_gemini, 
             update_notification_func=self.__invoke_update_notification
         )
         self.uni_rag = HybridGeminiRAG(
             provider=provider,
-            rag_config=provider.get_categories().uni,
+            rag_config=provider.get_categories().uni_gemini,
             update_notification_func=self.__invoke_update_notification
         )
         self.training_prop_rag = HybridGeminiRAG(
             provider=provider,
-            rag_config=provider.get_categories().training_program,
+            rag_config=provider.get_categories().training_gemini,
             update_notification_func=self.__invoke_update_notification
         )
         # states
@@ -123,14 +123,11 @@ class RAGRobot:
         return
 
     def __build_default(self):
-        # TODO: replace with index answering
-        docs = DocDataLoader().load_major_docs_full_asmap()
-        d1 = docs[1]
         def __format_default_answer(resp):
-            result = RAGResponse(answer=resp, category="default", document=d1)
+            result = RAGResponse(answer=resp, category="default", document="empty.txt")
             return result
 
-        template  = DEFAULT_TEMPLATE.format(context=d1.content, question="{question}")
+        template  = DEFAULT_TEMPLATE.format(context="There is nothing to provide", question="{question}")
         chain = (
             PromptTemplate.from_template(template=template)
             | self.provider.get_gemini_pro(False)

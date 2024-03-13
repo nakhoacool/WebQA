@@ -1,5 +1,7 @@
 import os
 from typing import List
+import firebase_admin
+from firebase_admin import credentials
 
 class ConfigurationService:
     """
@@ -21,6 +23,10 @@ class ConfigurationService:
             key = f.readlines()
         return key[nth].strip()
 
+    def init_firebase_connection(self):
+        cred = credentials.Certificate(self.path+'/firebaseAccountKey.json')
+        return firebase_admin.initialize_app(cred)
+
     def load_langsmith_token(self) -> str:
         """
             load langsmith token.
@@ -31,6 +37,16 @@ class ConfigurationService:
             key = f.read()
         return key.strip()
  
+    def load_openai_token(self) -> str:
+        """
+            load OpenAI token
+
+            @return the token
+        """
+        with open(self.path+"/openai") as f:
+            key = f.read()
+        return key.strip()
+
     def load_gemini_token(self) -> str:
         """
             load google gemini API token
@@ -38,7 +54,7 @@ class ConfigurationService:
             @return the token
         """
         with open(self.path+"/gemini") as f:
-            key = f.read()
+            key = f.readlines()[0]
         return key.strip()
 
     def load_tavily_token(self):

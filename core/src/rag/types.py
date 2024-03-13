@@ -3,24 +3,67 @@ from src.prepare.types import TDTDoc
 class RAGCategories:
 
     def __init__(self) -> None:
+        # Major
         self.major = RAGConfig(
             embed_model = "sentence-transformers/LaBSE",
             text_index = "text-split-major",
             vector_index = "labse-major",
             db_category = "major")
         
+        self.major_gemini = RAGConfig(
+            embed_model="gemini",
+            text_index="major-text-split-gemini",
+            vector_index="major-vec-gemini",
+            db_category="major"
+        )
+        
+        # University
         self.uni = RAGConfig(
             embed_model = "sentence-transformers/LaBSE",
             text_index = "text-split-uni",
             vector_index = "labse-uni",
             db_category="uni"
         )
+        self.uni_labse = self.uni
+        
+        self.uni_openai =  RAGConfig(
+            embed_model="openai",
+            text_index="uni-text-split-openai",
+            vector_index="uni-vec-openai",
+            db_category="uni"
+        )
 
-        self.training_program = RAGConfig(
+        self.uni_gemini =  RAGConfig(
+            embed_model="gemini",
+            text_index="uni-text-split-gemini",
+            vector_index="uni-vec-gemini",
+            db_category="uni"
+        )
+
+        # Training program
+        self.training_hg = RAGConfig(
             embed_model = "sentence-transformers/LaBSE",
-            text_index = "text-split-training_program",
-            vector_index = "labse-training_program",
-            db_category="training"
+            text_index = "training-text-split-hg",
+            vector_index = "training-vec-hg",
+            db_category="training",
+            size=800,
+            overlap=40
+        )
+
+        self.training_gemini = RAGConfig(
+            embed_model="gemini",
+            text_index="training-text-split-gemini",
+            vector_index="training-vec-gemini",
+            db_category="training",
+            size=800,
+            overlap=40
+        )
+        
+        self.sample = RAGConfig(
+            embed_model = "gemini",
+            text_index = "text-split-sample",
+            vector_index = "gemini-sample",
+            db_category="sample" 
         )
         return
 
@@ -30,12 +73,21 @@ class RAGConfig:
     vector_index: str
     db_category: str
     embed_model: str
+    size: int
+    overlap: int
+    folder_name: str
 
-    def __init__(self, embed_model, text_index, vector_index, db_category) -> None:
+    def __init__(self, embed_model, text_index, vector_index, db_category, size=460, overlap=20) -> None:
         self.embed_model = embed_model
         self.text_index = text_index
         self.vector_index = vector_index
         self.db_category = db_category
+        self.size = size
+        self.overlap = overlap
+        if db_category == "training":
+            self.folder_name = "test_training_program"
+        else:
+            self.folder_name = f"test_{db_category}"
         return
 
 class RAGResponse:
