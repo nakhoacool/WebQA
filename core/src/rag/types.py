@@ -85,9 +85,9 @@ class RAGConfig:
         self.size = size
         self.overlap = overlap
         if db_category == "training":
-            self.folder_name = "test_training_program"
+            self.folder_name = "training_program"
         else:
-            self.folder_name = f"test_{db_category}"
+            self.folder_name = f"{db_category}"
         return
 
 class RAGResponse:
