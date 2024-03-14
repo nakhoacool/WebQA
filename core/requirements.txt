@@ -1,5 +1,5 @@
 langchain
-jupyterlab
+gunicorn
 elasticsearch
 rank_bm25
 langchain-google-genai
