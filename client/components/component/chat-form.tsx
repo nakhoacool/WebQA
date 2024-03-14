@@ -56,12 +56,14 @@ export default function ChatForm() {
       content: values.chatMessage,
     })
     setIsBotTyping(true)
+    const controller = new AbortController()
     axios
       .post(url, data, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         },
+        signal: controller.signal,
       })
       .then(({ data }) => {
         handleFormSubmit({
@@ -70,6 +72,16 @@ export default function ChatForm() {
         })
         setIsBotTyping(false)
       })
+      .catch(function (thrown) {
+        if (axios.isCancel(thrown)) {
+          console.log('Request canceled', thrown.message)
+        } else {
+          console.log(thrown)
+        }
+      })
+    window.addEventListener('beforeunload', (e) => {
+      controller.abort()
+    })
     form.reset()
   }
 
