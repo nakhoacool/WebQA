@@ -22,7 +22,8 @@ export default function ChatForm() {
     throw new Error('useContext must be used within a ChatProvider')
   }
 
-  const { isBotTyping, setIsBotTyping, handleFormSubmit } = context
+  const { isBotTyping, setIsBotTyping, handleFormSubmit, setAbortController } =
+    context
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -57,6 +58,7 @@ export default function ChatForm() {
     })
     setIsBotTyping(true)
     const controller = new AbortController()
+    setAbortController(controller)
     axios
       .post(url, data, {
         headers: {

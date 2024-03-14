@@ -22,6 +22,8 @@ type ChatContextType = {
   setIsNewChat: Dispatch<SetStateAction<boolean>>
   activeChatHistoryId: string | null
   setActiveChatHistoryId: Dispatch<SetStateAction<string | null>>
+  abortController: AbortController | null
+  setAbortController: Dispatch<SetStateAction<AbortController | null>>
   messagesEndRef: MutableRefObject<HTMLDivElement>
   handleFormSubmit: (message: Message) => void
   handleClearChat: () => void
@@ -39,6 +41,8 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const [activeChatHistoryId, setActiveChatHistoryId] = useState<string | null>(
     null
   )
+  const [abortController, setAbortController] =
+    useState<AbortController | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null!)
 
   useEffect(() => {
@@ -95,6 +99,10 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const handleSidebarItemClick = (id: string) => {
+    if (abortController) {
+      abortController.abort()
+      setAbortController(null)
+    }
     setData([])
     setIsNewChat(false)
     setActiveChatHistoryId(id)
@@ -117,6 +125,8 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
         setIsNewChat,
         activeChatHistoryId,
         setActiveChatHistoryId,
+        abortController,
+        setAbortController,
         messagesEndRef,
         handleFormSubmit,
         handleClearChat,
