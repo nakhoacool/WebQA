@@ -7,7 +7,6 @@ Flask
 flask-cors
 pandas
 langchain-community
-langchainhub
 langchain-openai
 google-cloud-aiplatform
 markdownify
