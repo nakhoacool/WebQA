@@ -10,8 +10,9 @@ class AppLogService:
     """
     def __init__(self, name):
         self.env_path = os.path.dirname(__file__)
-        self.path = f"{self.env_path}/../../../logs"
+        self.path = os.path.join(self.env_path, 'logs')
         self.name = name
+        os.makedirs(self.path, exist_ok=True)
         self.logger = self.__build_logger()
         return
 
@@ -19,7 +20,7 @@ class AppLogService:
         logger = logging.getLogger(name=self.name)
         # Create handlers
         c_handler = logging.StreamHandler()
-        f_handler = logging.FileHandler(filename=f"{self.path}/{self.name}")
+        f_handler = logging.FileHandler(filename=os.path.join(self.path, self.name))
         c_handler.setLevel(logging.WARNING)
         f_handler.setLevel(logging.ERROR)
 
