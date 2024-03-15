@@ -47,7 +47,7 @@ export default function ChatForm() {
   }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const url = 'http://127.0.0.1:5000/qa'
+    const url = 'http://158.178.243.160:5000/qa'
     const data = {
       question: values.chatMessage,
       userid: session?.user.id,

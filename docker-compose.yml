@@ -1,7 +1,7 @@
 version: "3"
 services:
-  server:
-    container_name: server
+  core:
+    container_name: core
     build: ./core
     ports:
       - 5000:5000
@@ -11,4 +11,4 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - server
+      - core
