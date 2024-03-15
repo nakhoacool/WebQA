@@ -88,9 +88,14 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const handleClearChat = () => {
+    if (abortController) {
+      abortController.abort()
+      setAbortController(null)
+    }
     setData([])
     setIsNewChat(true)
     setActiveChatHistoryId(null)
+    setIsBotTyping(false)
   }
 
   const handleRemoveChatHistory = (id: string) => {
@@ -106,6 +111,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     setData([])
     setIsNewChat(false)
     setActiveChatHistoryId(id)
+    setIsBotTyping(false)
     const history = chatHistory.find((history) => history.id === id)
     if (history) {
       setData(history.messages)

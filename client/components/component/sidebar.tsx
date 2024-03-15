@@ -58,7 +58,7 @@ export default function Sidebar() {
             </Link>
           )}
           <button
-            onClick={() => signOut()}
+            onClick={() => signOut({ callbackUrl: '/', redirect: true })}
             className='py-2 hover:bg-gray-700 w-full flex items-center rounded space-x-2'
           >
             <LogOutIcon className='text-white' />
