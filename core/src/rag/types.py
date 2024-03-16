@@ -17,6 +17,15 @@ class RAGCategories:
             db_category="major"
         )
         
+        self.major_openai = RAGConfig(
+            embed_model="openai",
+            text_index="major-text-split-openai",
+            vector_index="major-vec-openai",
+            db_category="major",
+            size=1100,
+            overlap=60
+        )
+
         # University
         self.uni = RAGConfig(
             embed_model = "sentence-transformers/LaBSE",
@@ -30,7 +39,9 @@ class RAGCategories:
             embed_model="openai",
             text_index="uni-text-split-openai",
             vector_index="uni-vec-openai",
-            db_category="uni"
+            db_category="uni",
+            size=460,
+            overlap=20
         )
 
         self.uni_gemini =  RAGConfig(
@@ -55,6 +66,15 @@ class RAGCategories:
             text_index="training-text-split-gemini",
             vector_index="training-vec-gemini",
             db_category="training",
+            size=800,
+            overlap=40
+        )
+
+        self.training_openai = RAGConfig(
+            embed_model="openai",
+            text_index="training-text-split-openai",
+            vector_index="training-vec-openai",
+            db_category='training',
             size=800,
             overlap=40
         )
