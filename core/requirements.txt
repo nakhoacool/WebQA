@@ -1,5 +1,4 @@
 langchain
-jupyterlab
 elasticsearch
 rank_bm25
 langchain-google-genai
@@ -7,7 +6,6 @@ Flask
 flask-cors
 pandas
 langchain-community
-langchainhub
 langchain-openai
 google-cloud-aiplatform
 markdownify
