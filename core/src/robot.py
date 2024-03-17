@@ -74,17 +74,17 @@ class RAGRobot:
         self.provider = provider
         self.major_rag = HybridGeminiRAG(
             provider=provider, 
-            rag_config=provider.get_categories().major_openai, 
+            rag_config=provider.get_categories().major_gemini, 
             update_notification_func=self.__invoke_update_notification
         )
         self.uni_rag = HybridGeminiRAG(
             provider=provider,
-            rag_config=provider.get_categories().uni_openai,
+            rag_config=provider.get_categories().uni_gemini,
             update_notification_func=self.__invoke_update_notification
         )
         self.training_prop_rag = HybridGeminiRAG(
             provider=provider,
-            rag_config=provider.get_categories().training_openai,
+            rag_config=provider.get_categories().training_gemini,
             update_notification_func=self.__invoke_update_notification
         )
         # states
