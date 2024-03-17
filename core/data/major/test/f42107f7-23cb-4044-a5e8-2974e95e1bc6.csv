@@ -1,4 +1,13 @@
-,question,answer,context,faith,doc_id
-0,Ngành Kỹ thuật phần mềm tại Trường Đại học Tôn Đức Thắng có những chương trình đào tạo nào?,"Tiêu chuẩn, Chất lượng cao, Đại học bằng tiếng Anh",Các chương trình của ngành Kỹ thuật phần mềm,-1,f42107f7-23cb-4044-a5e8-2974e95e1bc6
-1,Ngành Kỹ thuật phần mềm tại Trường Đại học Tôn Đức Thắng có thời gian đào tạo toàn thời gian là bao lâu?,4 năm,Thời gian đào tạo Toàn thời gian: 4 năm,-1,f42107f7-23cb-4044-a5e8-2974e95e1bc6
-2,Ngành Kỹ thuật phần mềm tại Trường Đại học Tôn Đức Thắng có mã ngành là gì?,FA7480103,**Kỹ thuật phần mềm - Mã ngành:** \n\n**FA7480103**,-1,f42107f7-23cb-4044-a5e8-2974e95e1bc6
+,Unnamed: 0,question,answer,context,faith,doc_id,wrong
+0,0,Ngành Kỹ thuật phần mềm tại Trường Đại học Tôn Đức Thắng có những chương trình đào tạo nào?,"Tiêu chuẩn, Chất lượng cao, Đại học bằng tiếng Anh",Các chương trình của ngành Kỹ thuật phần mềm,-1,f42107f7-23cb-4044-a5e8-2974e95e1bc6,"- Kỹ thuật phần mềm ứng dụng
+- Kỹ thuật phần mềm hệ thống
+- Kỹ thuật phần mềm trí tuệ nhân tạo
+- Kỹ thuật phần mềm di động"
+1,1,Ngành Kỹ thuật phần mềm tại Trường Đại học Tôn Đức Thắng có thời gian đào tạo toàn thời gian là bao lâu?,4 năm,Thời gian đào tạo Toàn thời gian: 4 năm,-1,f42107f7-23cb-4044-a5e8-2974e95e1bc6,"- 3 năm
+- 5 năm
+- 6 năm
+- 7 năm"
+2,2,Ngành Kỹ thuật phần mềm tại Trường Đại học Tôn Đức Thắng có mã ngành là gì?,FA7480103,**Kỹ thuật phần mềm - Mã ngành:** \n\n**FA7480103**,-1,f42107f7-23cb-4044-a5e8-2974e95e1bc6,"- FA7480101
+- FA7480102
+- FA7480104
+- FA7480105"

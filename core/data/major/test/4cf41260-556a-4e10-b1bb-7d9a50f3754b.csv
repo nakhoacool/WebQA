@@ -1,5 +1,17 @@
-,question,answer,context,faith,doc_id
-0,Ngành Kinh doanh quốc tế tại Trường Đại học Tôn Đức Thắng có những chương trình đào tạo nào?,"Tiêu chuẩn, Chất lượng cao, Đại học bằng tiếng Anh, Liên kết quốc tế - K7340120L",Các chương trình của ngành Kinh doanh quốc tế,-1,4cf41260-556a-4e10-b1bb-7d9a50f3754b
-1,Chương trình đào tạo Chất lượng cao của ngành Kinh doanh quốc tế tại Trường Đại học Tôn Đức Thắng có ưu điểm gì?,"Ưu điểm về thiết kế chương trình, quy mô lớp học, môi trường học tập, điều kiện về cơ sở vật chất và tăng cường sự trải nghiệm thực tế tại doanh nghiệp.","Chương trình chất lượng cao của ngành Kinh doanh quốc tế Khoa Quản trị Kinh doanh trường Đại học Tôn Đức Thắng là một chương trình đào tạo với các ưu điểm về thiết kế chương trình, quy mô lớp học, môi trường học tập, điều kiện về cơ sở vật chất và tăng cường sự trải nghiệm thực tế tại doanh nghiệp theo phương châm học đi đôi với hành.",-1,4cf41260-556a-4e10-b1bb-7d9a50f3754b
-2,"Ngành Kinh doanh quốc tế tại Trường Đại học La Trobe, Úc có mã ngành là gì?",K7340120L,**- Mã ngành:** \n\n**K7340120L**,-1,4cf41260-556a-4e10-b1bb-7d9a50f3754b
-3,Ngành Công tác xã hội tại Trường Đại học Tôn Đức Thắng có những ngành học liên quan nào?,"Tài chính - Ngân hàng, Kế toán, Thống kê",## Các ngành học liên quan,-1,4cf41260-556a-4e10-b1bb-7d9a50f3754b
+,Unnamed: 0,question,answer,context,faith,doc_id,wrong
+0,0,Ngành Kinh doanh quốc tế tại Trường Đại học Tôn Đức Thắng có những chương trình đào tạo nào?,"Tiêu chuẩn, Chất lượng cao, Đại học bằng tiếng Anh, Liên kết quốc tế - K7340120L",Các chương trình của ngành Kinh doanh quốc tế,-1,4cf41260-556a-4e10-b1bb-7d9a50f3754b,"- Quản trị kinh doanh
+- Marketing
+- Tài chính
+- Kế toán"
+1,1,Chương trình đào tạo Chất lượng cao của ngành Kinh doanh quốc tế tại Trường Đại học Tôn Đức Thắng có ưu điểm gì?,"Ưu điểm về thiết kế chương trình, quy mô lớp học, môi trường học tập, điều kiện về cơ sở vật chất và tăng cường sự trải nghiệm thực tế tại doanh nghiệp.","Chương trình chất lượng cao của ngành Kinh doanh quốc tế Khoa Quản trị Kinh doanh trường Đại học Tôn Đức Thắng là một chương trình đào tạo với các ưu điểm về thiết kế chương trình, quy mô lớp học, môi trường học tập, điều kiện về cơ sở vật chất và tăng cường sự trải nghiệm thực tế tại doanh nghiệp theo phương châm học đi đôi với hành.",-1,4cf41260-556a-4e10-b1bb-7d9a50f3754b,"- Học phí thấp
+- Chương trình đào tạo ngắn hạn
+- Không có chương trình trao đổi quốc tế
+- Không có cơ hội thực tập tại các doanh nghiệp lớn"
+2,2,"Ngành Kinh doanh quốc tế tại Trường Đại học La Trobe, Úc có mã ngành là gì?",K7340120L,**- Mã ngành:** \n\n**K7340120L**,-1,4cf41260-556a-4e10-b1bb-7d9a50f3754b,"- K7340120M
+- K7340120N
+- K7340120O
+- K7340120P"
+3,3,Ngành Công tác xã hội tại Trường Đại học Tôn Đức Thắng có những ngành học liên quan nào?,"Tài chính - Ngân hàng, Kế toán, Thống kê",## Các ngành học liên quan,-1,4cf41260-556a-4e10-b1bb-7d9a50f3754b,"- Quản trị kinh doanh
+- Marketing
+- Luật
+- Công nghệ thông tin"

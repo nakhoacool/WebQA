@@ -1,4 +1,13 @@
-,question,answer,context,faith,doc_id
-0,Trường Đại học Tôn Đức Thắng có bao nhiêu cơ sở đào tạo?,4,"Trường hiện có các cơ sở đào tạo tại TP.HCM, TP. Bảo Lộc (Lâm Đồng), TP. Nha Trang (Khánh Hòa) và TP.Cà Mau (Cà Mau).",-1,ba62a0d0-c81e-4fc7-b572-db313e678246
-1,Tòa nhà ngoại ngữ có bao nhiêu tầng?,6 tầng,"**Tòa nhà ngoại ngữ** gồm 6 tầng được trang bị đầy đủ trang thiết bị phục vụ\n\ngiảng dạy, học tập và sinh hoạt học thuật các ngoại ngữ: Anh, Nhật, Hàn,\n\nTrung,...",-1,ba62a0d0-c81e-4fc7-b572-db313e678246
-2,Hồ bơi có diện tích mặt nước là bao nhiêu?,"13,5m x 25m","Hồ bơi được xây dựng trên diện tích 778,5 m2, diện tích mặt nước 13,5m x 25m với 6 làn bơi, có khả năng đáp ứng lớp học lên đến 100 học viên.",-1,ba62a0d0-c81e-4fc7-b572-db313e678246
+,Unnamed: 0.1,Unnamed: 0,question,answer,context,faith,doc_id,wrong
+0,0,0,Trường Đại học Tôn Đức Thắng có bao nhiêu cơ sở đào tạo?,4,"Trường hiện có các cơ sở đào tạo tại TP.HCM, TP. Bảo Lộc (Lâm Đồng), TP. Nha Trang (Khánh Hòa) và TP.Cà Mau (Cà Mau).",-1,ba62a0d0-c81e-4fc7-b572-db313e678246,"- 2
+- 3
+- 5
+- 6"
+1,1,1,Tòa nhà ngoại ngữ có bao nhiêu tầng?,6 tầng,"**Tòa nhà ngoại ngữ** gồm 6 tầng được trang bị đầy đủ trang thiết bị phục vụ\n\ngiảng dạy, học tập và sinh hoạt học thuật các ngoại ngữ: Anh, Nhật, Hàn,\n\nTrung,...",-1,ba62a0d0-c81e-4fc7-b572-db313e678246,"- 4 tầng
+- 8 tầng
+- 10 tầng
+- 12 tầng"
+2,2,2,Hồ bơi có diện tích mặt nước là bao nhiêu?,"13,5m x 25m","Hồ bơi được xây dựng trên diện tích 778,5 m2, diện tích mặt nước 13,5m x 25m với 6 làn bơi, có khả năng đáp ứng lớp học lên đến 100 học viên.",-1,ba62a0d0-c81e-4fc7-b572-db313e678246,"- 10m x 20m
+- 15m x 30m
+- 12m x 24m
+- 14m x 26m"

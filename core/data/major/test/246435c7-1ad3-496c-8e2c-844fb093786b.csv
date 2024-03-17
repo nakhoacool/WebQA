@@ -1,3 +1,9 @@
-,question,answer,context,faith,doc_id
-0,Ngành Dược tại Trường Đại học Tôn Đức Thắng được xếp hạng như thế nào trên thế giới?,Top 500,TDTU thuộc top 500 đại học tốt nhất thế giới (THE World University Rankings),-1,246435c7-1ad3-496c-8e2c-844fb093786b
-1,Ngành Dược tại Trường Đại học Tôn Đức Thắng đào tạo theo hình thức nào?,Toàn thời gian,Thời gian đào tạo Toàn thời gian: 5 năm,-1,246435c7-1ad3-496c-8e2c-844fb093786b
+,Unnamed: 0,question,answer,context,faith,doc_id,wrong
+0,0,Ngành Dược tại Trường Đại học Tôn Đức Thắng được xếp hạng như thế nào trên thế giới?,Top 500,TDTU thuộc top 500 đại học tốt nhất thế giới (THE World University Rankings),-1,246435c7-1ad3-496c-8e2c-844fb093786b,"- Top 100
+- Top 200
+- Top 300
+- Top 400"
+1,1,Ngành Dược tại Trường Đại học Tôn Đức Thắng đào tạo theo hình thức nào?,Toàn thời gian,Thời gian đào tạo Toàn thời gian: 5 năm,-1,246435c7-1ad3-496c-8e2c-844fb093786b,"- Bán thời gian
+- Từ xa
+- Liên kết đào tạo
+- Cấp tốc"

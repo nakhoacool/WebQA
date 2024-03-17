@@ -1,3 +1,9 @@
-,question,answer,context,faith,doc_id
-0,Ngành Quản lý xây dựng tại Trường Đại học Tôn Đức Thắng được đào tạo trong bao nhiêu năm?,4 năm,"Chương trình Quản lý xây dựng được thiết kế trong 4 năm học, chia thành 8 học kỳ.",-1,9569e94f-d094-4a37-8a8e-75fa48f6903a
-1,Ngành Kỹ thuật xây dựng tại Trường Đại học Tôn Đức Thắng có những phương thức xét tuyển nào?,Phương thức xét tuyển riêng và xét tuyển theo điểm thi THPT,"Phương thức xét tuyển riêng Tổ hợp: Toán\\*2, Anh, Lý KQ ĐGNL\xa0của ĐHQG TP. HCM Ưu tiên xét tuyển theo TDTU\n\n Xét tuyển theo điểm thi THPT Tổ hợp: A00; A01; C01",-1,9569e94f-d094-4a37-8a8e-75fa48f6903a
+,Unnamed: 0,question,answer,context,faith,doc_id,wrong
+0,0,Ngành Quản lý xây dựng tại Trường Đại học Tôn Đức Thắng được đào tạo trong bao nhiêu năm?,4 năm,"Chương trình Quản lý xây dựng được thiết kế trong 4 năm học, chia thành 8 học kỳ.",-1,9569e94f-d094-4a37-8a8e-75fa48f6903a,"- 3 năm
+- 5 năm
+- 6 năm
+- 7 năm"
+1,1,Ngành Kỹ thuật xây dựng tại Trường Đại học Tôn Đức Thắng có những phương thức xét tuyển nào?,Phương thức xét tuyển riêng và xét tuyển theo điểm thi THPT,"Phương thức xét tuyển riêng Tổ hợp: Toán\\*2, Anh, Lý KQ ĐGNL\xa0của ĐHQG TP. HCM Ưu tiên xét tuyển theo TDTU\n\n Xét tuyển theo điểm thi THPT Tổ hợp: A00; A01; C01",-1,9569e94f-d094-4a37-8a8e-75fa48f6903a,"- Xét tuyển theo học bạ THPT
+- Xét tuyển theo kết quả thi năng khiếu
+- Xét tuyển theo điểm chuẩn của Bộ Giáo dục và Đào tạo
+- Xét tuyển theo kết quả phỏng vấn"

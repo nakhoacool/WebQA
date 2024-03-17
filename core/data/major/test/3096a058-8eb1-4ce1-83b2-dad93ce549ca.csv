@@ -1,3 +1,9 @@
-,question,answer,context,faith,doc_id
-0,Chuyên ngành Golf tại Trường Đại học Tôn Đức Thắng đào tạo sinh viên những kỹ năng gì?,"Kỹ năng tổ chức và điều hành hoạt động kinh doanh, quản trị cơ sở vật chất, trang thiết bị trong các sân tập golf; kỹ năng tổ chức và vận hành cơ bản các giải đấu golf.","Ngoài ra, sinh viên còn được rèn luyện các kỹ năng mềm cần thiết phục vụ công việc, hỗ trợ thích ứng tốt trong môi trường làm việc ở doanh nghiệp. Với chuyên ngành Golf tại Trường Đại học Tôn Đức Thắng, sinh viên được học tập và rèn luyện trong môi trường chuyên nghiệp hệ thống sân - bãi tập ngoài trời quy mô lớn, hệ thống phòng tập thể lực cùng phòng mô phỏng - phân tích kỹ thuật 3D hiện đại.",-1,3096a058-8eb1-4ce1-83b2-dad93ce549ca
-1,Ngành Golf tại Trường Đại học Tôn Đức Thắng có thời gian đào tạo toàn thời gian là bao lâu?,4 năm,Thời gian đào tạo Toàn thời gian: 4 năm,-1,3096a058-8eb1-4ce1-83b2-dad93ce549ca
+,Unnamed: 0,question,answer,context,faith,doc_id,wrong
+0,0,Chuyên ngành Golf tại Trường Đại học Tôn Đức Thắng đào tạo sinh viên những kỹ năng gì?,"Kỹ năng tổ chức và điều hành hoạt động kinh doanh, quản trị cơ sở vật chất, trang thiết bị trong các sân tập golf; kỹ năng tổ chức và vận hành cơ bản các giải đấu golf.","Ngoài ra, sinh viên còn được rèn luyện các kỹ năng mềm cần thiết phục vụ công việc, hỗ trợ thích ứng tốt trong môi trường làm việc ở doanh nghiệp. Với chuyên ngành Golf tại Trường Đại học Tôn Đức Thắng, sinh viên được học tập và rèn luyện trong môi trường chuyên nghiệp hệ thống sân - bãi tập ngoài trời quy mô lớn, hệ thống phòng tập thể lực cùng phòng mô phỏng - phân tích kỹ thuật 3D hiện đại.",-1,3096a058-8eb1-4ce1-83b2-dad93ce549ca,"- Kỹ năng thiết kế và xây dựng sân golf
+- Kỹ năng huấn luyện và đào tạo vận động viên golf
+- Kỹ năng sản xuất và chế tạo dụng cụ golf
+- Kỹ năng nghiên cứu và phát triển công nghệ golf"
+1,1,Ngành Golf tại Trường Đại học Tôn Đức Thắng có thời gian đào tạo toàn thời gian là bao lâu?,4 năm,Thời gian đào tạo Toàn thời gian: 4 năm,-1,3096a058-8eb1-4ce1-83b2-dad93ce549ca,"- 2 năm
+- 3 năm
+- 5 năm
+- 6 năm"
