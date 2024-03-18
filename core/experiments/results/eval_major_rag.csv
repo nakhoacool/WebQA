@@ -1,0 +1,597 @@
+,question,answer,wrong,doc_id,category,pred_doc_id,RAG_answer,correct_label,multi_prompt
+0,Ngành Xã hội học tại TDTU có những hướng chuyên sâu nào?,Quản lý xã hội và xã hội truyền thông đại chúng,"- Tâm lý học xã hội
+- Nhân học xã hội
+- Xã hội học kinh tế
+- Xã hội học chính trị",e4ce2db8-0c1c-4634-a7b4-3bc03310521c,major,dd0573ae-29a2-4afa-b5c1-303be63b8bfa,None,D,"D. Quản lý xã hội và xã hội truyền thông đại chúng
+B. Xã hội học chính trị
+A. Xã hội học kinh tế
+C. Nhân học xã hội
+"
+1,Ngành Xã hội học tại TDTU có thời gian đào tạo toàn thời gian là bao lâu?,4 năm,"- 3 năm
+- 5 năm
+- 6 năm
+- 7 năm",e4ce2db8-0c1c-4634-a7b4-3bc03310521c,major,dd0573ae-29a2-4afa-b5c1-303be63b8bfa,None,D,"D. 4 năm
+C. 7 năm
+B. 6 năm
+A. 5 năm
+"
+2,Ngành Quy hoạch vùng và đô thị đào tạo về những lĩnh vực nào?,Quy hoạch đô thị và nông thôn,"- Kiến trúc
+- Xây dựng
+- Kỹ thuật môi trường
+- Quản lý đất đai",680b5b13-33b0-40b9-9e74-f3f4dd11a04d,major,ded27576-2a47-46d2-a351-cd88df27a109,"Quy hoạch sử dụng đất, quy hoạch đô thị, quy hoạch vùng",D,"D. Quy hoạch đô thị và nông thôn
+B. Quản lý đất đai
+C. Kỹ thuật môi trường
+A. Xây dựng
+"
+3,Ngành Quy hoạch vùng và đô thị đào tạo trong bao nhiêu năm?,4 năm hoặc 5 năm,"- 2 năm
+- 3 năm
+- 6 năm
+- 7 năm",680b5b13-33b0-40b9-9e74-f3f4dd11a04d,major,index,4 năm,A,"A. 4 năm hoặc 5 năm
+D. 7 năm
+C. 6 năm
+B. 3 năm
+"
+4,Ngành Ngôn ngữ Anh tại Trường Đại học Tôn Đức Thắng đào tạo chuyên sâu vào những môn học nào?,"Ngữ âm – âm vị, hình thái học, cú pháp học, ngữ nghĩa học, văn học, văn hóa xã hội","- Toán cao cấp
+- Vật lý hạt nhân
+- Hóa học hữu cơ
+- Sinh học phân tử",fd6ea7bc-ad3e-4268-8994-dd6b512a30b9,major,dd0573ae-29a2-4afa-b5c1-303be63b8bfa,None,C,"C. Ngữ âm – âm vị, hình thái học, cú pháp học, ngữ nghĩa học, văn học, văn hóa xã hội
+D. Sinh học phân tử
+B. Hóa học hữu cơ
+A. Vật lý hạt nhân
+"
+5,Ngành Ngôn ngữ Anh chất lượng cao tại Trường Đại học Tôn Đức Thắng có học phí khoảng bao nhiêu một năm?,Khoảng 62 đến 64 triệu đồng/năm,"- Khoảng 40 đến 45 triệu đồng/năm
+- Khoảng 70 đến 75 triệu đồng/năm
+- Khoảng 50 đến 55 triệu đồng/năm
+- Khoảng 80 đến 85 triệu đồng/năm",fd6ea7bc-ad3e-4268-8994-dd6b512a30b9,major,6d6250f6-7d74-4c5d-9bdf-73ff6b203808,None,B,"B. Khoảng 62 đến 64 triệu đồng/năm
+A. Khoảng 80 đến 85 triệu đồng/năm
+D. Khoảng 50 đến 55 triệu đồng/năm
+C. Khoảng 70 đến 75 triệu đồng/năm
+"
+6,Ngành Ngôn ngữ Anh tại Trường Đại học Tôn Đức Thắng có thời gian đào tạo là bao lâu?,4 năm,"- 3 năm
+- 5 năm
+- 6 năm
+- 7 năm",fd6ea7bc-ad3e-4268-8994-dd6b512a30b9,major,dd0573ae-29a2-4afa-b5c1-303be63b8bfa,None,C,"C. 4 năm
+D. 7 năm
+B. 6 năm
+A. 5 năm
+"
+7,Chương trình Việt Nam học – Chuyên ngành Du lịch và Quản lý du lịch được tổ chức giảng dạy với những hình thức nào?,"thảo luận nhóm nhỏ, làm việc cá nhân, trao đổi với chuyên gia, thực hành tại doanh nghiệp","- Bài giảng một chiều
+- Học trực tuyến hoàn toàn
+- Thực hành tại phòng thí nghiệm
+- Đọc sách giáo khoa",628adb30-ea4b-4c0e-aa21-dd5bc68092f0,major,ded27576-2a47-46d2-a351-cd88df27a109,None,B,"B. thảo luận nhóm nhỏ, làm việc cá nhân, trao đổi với chuyên gia, thực hành tại doanh nghiệp
+C. Đọc sách giáo khoa
+D. Thực hành tại phòng thí nghiệm
+A. Học trực tuyến hoàn toàn
+"
+8,Chương trình đào tạo của ngành Du lịch và Quản lý du lịch có những đặc điểm gì nổi bật?,"Có nhiều môn học mới, có tính chuyên sâu và khả năng ứng dụng thực tế cao.","- Chương trình đào tạo thiên về lý thuyết, ít thực hành.
+- Môn học chủ yếu là các môn cơ bản, không có nhiều môn chuyên sâu.
+- Chương trình đào tạo không cập nhật với xu hướng phát triển của ngành du lịch.
+- Chương trình đào tạo không chú trọng đến kỹ năng mềm và khả năng giao tiếp.",628adb30-ea4b-4c0e-aa21-dd5bc68092f0,major,index,None,A,"A. Có nhiều môn học mới, có tính chuyên sâu và khả năng ứng dụng thực tế cao.
+C. Chương trình đào tạo không chú trọng đến kỹ năng mềm và khả năng giao tiếp.
+B. Chương trình đào tạo không cập nhật với xu hướng phát triển của ngành du lịch.
+D. Môn học chủ yếu là các môn cơ bản, không có nhiều môn chuyên sâu.
+"
+9,Ngành Du lịch và Quản lý du lịch có thời gian đào tạo là bao lâu?,4 năm,"- 2 năm
+- 3 năm
+- 5 năm
+- 6 năm",628adb30-ea4b-4c0e-aa21-dd5bc68092f0,major,index,4 năm,D,"D. 4 năm
+C. 6 năm
+B. 5 năm
+A. 3 năm
+"
+10,Ngành Dược tại Trường Đại học Tôn Đức Thắng đào tạo theo hình thức nào?,Toàn thời gian,"- Bán thời gian
+- Từ xa
+- Liên kết đào tạo
+- Cấp tốc",246435c7-1ad3-496c-8e2c-844fb093786b,major,75956006-00ad-4b8b-8a18-17eecce4422b,None,A,"A. Toàn thời gian
+D. Cấp tốc
+B. Liên kết đào tạo
+C. Từ xa
+"
+11,Chương trình đào tạo ngành Thiết kế đồ họa được xây dựng dựa trên tham khảo cấu trúc khung chương trình đào tạo ngành tương đương từ những trường đại học nào?,"Đại học New South Wales, Art Center College of Design, Đại học Boston và Rochester Institute of technology.","- Đại học Harvard
+- Học viện Công nghệ Massachusetts
+- Đại học Stanford
+- Đại học California, Berkeley",ed1d5196-2ad4-4bf3-82b8-f4f82ec116e9,major,index,None,C,"C. Đại học New South Wales, Art Center College of Design, Đại học Boston và Rochester Institute of technology.
+A. Đại học California, Berkeley
+B. Đại học Stanford
+D. Học viện Công nghệ Massachusetts
+"
+12,Ngành Thiết kế đồ họa đào tạo sinh viên những kiến thức và kỹ năng gì?,"Sinh viên được trang bị những kiến thức cơ bản về vẽ mỹ thuật, về thẩm mỹ, về bố cục thị giác và xử lí hình ảnh; hiểu về phương pháp nghiên cứu, phương pháp thiết kế, phương pháp lập kế hoạch để phát triển ý tưởng cho sản phẩm; các kĩ năng sử dụng phần mềm thiết kế làm công cụ thể hiện và trình bày ý tưởng.","- ...
+- ...
+- ...
+- ...",ed1d5196-2ad4-4bf3-82b8-f4f82ec116e9,major,ded27576-2a47-46d2-a351-cd88df27a109,"Kiến thức và kỹ năng về thiết kế đồ họa, phần mềm thiết kế, nguyên tắc thiết kế, lý thuyết màu sắc, bố cục và typography.",D,"D. Sinh viên được trang bị những kiến thức cơ bản về vẽ mỹ thuật, về thẩm mỹ, về bố cục thị giác và xử lí hình ảnh; hiểu về phương pháp nghiên cứu, phương pháp thiết kế, phương pháp lập kế hoạch để phát triển ý tưởng cho sản phẩm; các kĩ năng sử dụng phần mềm thiết kế làm công cụ thể hiện và trình bày ý tưởng.
+C. ...
+A. ...
+B. ...
+"
+13,"Chương trình đào tạo ngành Việt Nam học, chuyên ngành Việt ngữ học và Văn hóa xã hội Việt Nam tại Trường Đại học Tôn Đức Thắng dành cho đối tượng nào?",Người nước ngoài,"- Người Việt Nam
+- Học sinh phổ thông
+- Người đã tốt nghiệp đại học
+- Người khuyết tật",5c5b4248-78d3-4020-9c64-56c8c978cd63,major,ded27576-2a47-46d2-a351-cd88df27a109,None,D,"D. Người nước ngoài
+B. Người khuyết tật
+C. Người đã tốt nghiệp đại học
+A. Học sinh phổ thông
+"
+14,Ngành Việt ngữ học và văn hóa xã hội Việt Nam tại Trường Đại học Tôn Đức Thắng đào tạo trong bao lâu?,4 năm,"- 2 năm
+- 3 năm
+- 5 năm
+- 6 năm",5c5b4248-78d3-4020-9c64-56c8c978cd63,major,ded27576-2a47-46d2-a351-cd88df27a109,None,C,"C. 4 năm
+A. 6 năm
+B. 5 năm
+D. 3 năm
+"
+15,Ngành Khoa học máy tính tại Trường Đại học Tôn Đức Thắng có những chương trình đào tạo nào?,"Tiêu chuẩn, Chất lượng cao, Đại học bằng tiếng Anh, Liên kết quốc tế - K7480101T, Liên kết quốc tế - K7480101L","- Khoa học dữ liệu
+- Trí tuệ nhân tạo
+- An ninh mạng
+- Kỹ thuật phần mềm",94ee4dc5-31b3-407a-9553-8ecf72b83c6f,major,index,"1. Chương trình tiêu chuẩn (dạy-học bằng tiếng Việt)
+2. Chương trình chất lượng cao
+3. Chương trình đại học bằng tiếng Anh",A,"A. Tiêu chuẩn, Chất lượng cao, Đại học bằng tiếng Anh, Liên kết quốc tế - K7480101T, Liên kết quốc tế - K7480101L
+D. Kỹ thuật phần mềm
+B. An ninh mạng
+C. Trí tuệ nhân tạo
+"
+16,Chương trình đào tạo Khoa học máy tính tại Trường Đại học Tôn Đức Thắng có thời gian đào tạo là bao lâu?,Toàn thời gian: 4 năm,"- 3 năm
+- 5 năm
+- 6 năm
+- 7 năm",94ee4dc5-31b3-407a-9553-8ecf72b83c6f,major,index,4 năm,D,"D. Toàn thời gian: 4 năm
+C. 7 năm
+A. 6 năm
+B. 5 năm
+"
+17,Ngành Khoa học máy tính tại Trường Đại học Tôn Đức Thắng có những chương trình đào tạo nào?,Chương trình đào tạo đại học bằng tiếng Anh và chương trình đào tạo đại học bằng tiếng Việt,"- Chương trình đào tạo thạc sĩ
+- Chương trình đào tạo tiến sĩ
+- Chương trình đào tạo liên kết quốc tế
+- Chương trình đào tạo từ xa",94ee4dc5-31b3-407a-9553-8ecf72b83c6f,major,index,"1. Chương trình tiêu chuẩn (dạy-học bằng tiếng Việt)
+2. Chương trình chất lượng cao
+3. Chương trình đại học bằng tiếng Anh",A,"A. Chương trình đào tạo đại học bằng tiếng Anh và chương trình đào tạo đại học bằng tiếng Việt
+D. Chương trình đào tạo từ xa
+C. Chương trình đào tạo liên kết quốc tế
+B. Chương trình đào tạo tiến sĩ
+"
+18,"Ngành Công nghệ thông tin tại Trường Đại học La Trobe, Úc có thời gian đào tạo là bao lâu?",4 năm,"- 2 năm
+- 3 năm
+- 5 năm
+- 6 năm",94ee4dc5-31b3-407a-9553-8ecf72b83c6f,major,75956006-00ad-4b8b-8a18-17eecce4422b,None,C,"C. 4 năm
+A. 6 năm
+D. 5 năm
+B. 3 năm
+"
+19,Ngành Khoa học máy tính tại Trường Đại học Tôn Đức Thắng có những ngành học liên quan nào?,"Mạng máy tính và truyền thông dữ liệu, Kỹ thuật phần mềm, Toán ứng dụng","- Khoa học dữ liệu
+- Trí tuệ nhân tạo
+- An toàn thông tin
+- Kỹ thuật điện tử",94ee4dc5-31b3-407a-9553-8ecf72b83c6f,major,index,None,C,"C. Mạng máy tính và truyền thông dữ liệu, Kỹ thuật phần mềm, Toán ứng dụng
+A. Kỹ thuật điện tử
+B. An toàn thông tin
+D. Trí tuệ nhân tạo
+"
+20,Ngành Thiết kế nội thất tại Trường Đại học Tôn Đức Thắng có mã ngành là gì?,7580108,"- 7580101
+- 7580102
+- 7580103
+- 7580104",9eee47f2-f02e-47b6-a56f-9ec1908ed81b,major,ded27576-2a47-46d2-a351-cd88df27a109,None,C,"C. 7580108
+B. 7580104
+A. 7580103
+D. 7580102
+"
+21,Ngành Thiết kế nội thất tại Trường Đại học Tôn Đức Thắng đào tạo trong bao nhiêu năm?,4 năm,"- 3 năm
+- 5 năm
+- 6 năm
+- 7 năm",9eee47f2-f02e-47b6-a56f-9ec1908ed81b,major,ded27576-2a47-46d2-a351-cd88df27a109,None,D,"D. 4 năm
+C. 7 năm
+A. 6 năm
+B. 5 năm
+"
+22,Trường Đại học Tôn Đức Thắng có cơ sở vật chất như thế nào?,Có thể xem thông tin về cơ sở vật chất của TDTU tại đây: [Cơ sở vật chất TDTU](../../../../gioi-thieu/co-so-vat-chat),"- Cơ sở vật chất của TDTU được đánh giá là tốt nhất trong cả nước.
+- TDTU có cơ sở vật chất hiện đại và đầy đủ, đáp ứng mọi nhu cầu học tập và nghiên cứu của sinh viên.
+- Cơ sở vật chất của TDTU được đầu tư hàng nghìn tỷ đồng, tạo nên một môi trường học tập lý tưởng.
+- TDTU có hệ thống cơ sở vật chất khép kín, bao gồm đầy đủ các tiện ích như ký túc xá, nhà ăn, thư viện, phòng tập thể dục, sân vận động...",9eee47f2-f02e-47b6-a56f-9ec1908ed81b,major,dd0573ae-29a2-4afa-b5c1-303be63b8bfa,"Cơ sở vật chất hiện đại, bao gồm phòng học, phòng thí nghiệm và phòng mô phỏng được đầu tư máy móc hiện đại.",A,"A. Có thể xem thông tin về cơ sở vật chất của TDTU tại đây: [Cơ sở vật chất TDTU](../../../../gioi-thieu/co-so-vat-chat)
+C. TDTU có hệ thống cơ sở vật chất khép kín, bao gồm đầy đủ các tiện ích như ký túc xá, nhà ăn, thư viện, phòng tập thể dục, sân vận động...
+B. Cơ sở vật chất của TDTU được đầu tư hàng nghìn tỷ đồng, tạo nên một môi trường học tập lý tưởng.
+D. TDTU có cơ sở vật chất hiện đại và đầy đủ, đáp ứng mọi nhu cầu học tập và nghiên cứu của sinh viên.
+"
+23,Ngành Kỹ thuật cơ điện tử là sự kết hợp giữa những ngành nào?,"Khoa học máy tính, kỹ thuật điện-điện tử và kỹ thuật cơ khí","- Khoa học vật liệu, kỹ thuật hóa học và kỹ thuật hàng không vũ trụ
+- Khoa học dữ liệu, kỹ thuật phần mềm và kỹ thuật y sinh
+- Kỹ thuật xây dựng, kỹ thuật dân dụng và kỹ thuật môi trường
+- Kỹ thuật hóa học, kỹ thuật công nghiệp và kỹ thuật quản lý",6dc8b4f3-b542-4495-a357-cb84e887c1a5,major,ded27576-2a47-46d2-a351-cd88df27a109,Kỹ thuật cơ khí và kỹ thuật điện,D,"D. Khoa học máy tính, kỹ thuật điện-điện tử và kỹ thuật cơ khí
+A. Kỹ thuật hóa học, kỹ thuật công nghiệp và kỹ thuật quản lý
+B. Kỹ thuật xây dựng, kỹ thuật dân dụng và kỹ thuật môi trường
+C. Khoa học dữ liệu, kỹ thuật phần mềm và kỹ thuật y sinh
+"
+24,Sinh viên ngành Kỹ thuật cơ điện tử sẽ được học những gì?,Sinh viên được tiếp cận với trang thiết bị thí nghiệm hiện đại được hỗ trợ bởi các tập đoàn lớn trong nước và quốc tế.,"- Sinh viên sẽ được đào tạo chuyên sâu về các kỹ năng mềm như giao tiếp và làm việc nhóm.
+- Sinh viên sẽ được học về lịch sử phát triển của ngành Kỹ thuật cơ điện tử.
+- Sinh viên sẽ được thực tập tại các công ty công nghệ hàng đầu thế giới.
+- Sinh viên sẽ được học về các ứng dụng của Kỹ thuật cơ điện tử trong lĩnh vực y tế.",6dc8b4f3-b542-4495-a357-cb84e887c1a5,major,ded27576-2a47-46d2-a351-cd88df27a109,Nội dung chương trình đào tạo ngành Kỹ thuật cơ điện tử không được cung cấp trong thông tin đã cho.,B,"B. Sinh viên được tiếp cận với trang thiết bị thí nghiệm hiện đại được hỗ trợ bởi các tập đoàn lớn trong nước và quốc tế.
+A. Sinh viên sẽ được học về các ứng dụng của Kỹ thuật cơ điện tử trong lĩnh vực y tế.
+D. Sinh viên sẽ được thực tập tại các công ty công nghệ hàng đầu thế giới.
+C. Sinh viên sẽ được học về lịch sử phát triển của ngành Kỹ thuật cơ điện tử.
+"
+25,Công nghệ sinh học là gì?,"Công nghệ sinh học là ngành ứng dụng các kiến thức trong lĩnh vực sinh học nhằm nghiên cứu và sản xuất ra các sản phẩm sinh học thiết yếu, sản phẩm có giá trị cao như vaccine, kháng sinh, xăng sinh học; cải tiến chất lượng giống cây trồng, ứng dụng vi sinh để xử lý nước thải công nghiệp, ứng dụng các hợp chất tự nhiên để điều trị bệnh và những ứng dụng khác phục vụ cho đời sống con người.","- Công nghệ sinh học là ngành nghiên cứu về các loài động vật quý hiếm.
+- Công nghệ sinh học là ngành sản xuất các loại vũ khí sinh học.
+- Công nghệ sinh học là ngành ứng dụng các kiến thức trong lĩnh vực vật lý để nghiên cứu các hiện tượng sinh học.
+- Công nghệ sinh học là ngành nghiên cứu về các loại thực vật có độc.",21456de7-cc54-4db5-86c3-001b38c6e16d,major,351b1c65-a53a-41a1-b4de-2e2cfa97d8d1,"Công nghệ sinh học là ứng dụng của khoa học sinh học, công nghệ, kỹ thuật và toán học vào các hệ thống sinh học và sinh vật sống để tạo ra hoặc sửa đổi sản phẩm hoặc quy trình hữu ích cho con người.",A,"A. Công nghệ sinh học là ngành ứng dụng các kiến thức trong lĩnh vực sinh học nhằm nghiên cứu và sản xuất ra các sản phẩm sinh học thiết yếu, sản phẩm có giá trị cao như vaccine, kháng sinh, xăng sinh học; cải tiến chất lượng giống cây trồng, ứng dụng vi sinh để xử lý nước thải công nghiệp, ứng dụng các hợp chất tự nhiên để điều trị bệnh và những ứng dụng khác phục vụ cho đời sống con người.
+D. Công nghệ sinh học là ngành nghiên cứu về các loại thực vật có độc.
+C. Công nghệ sinh học là ngành ứng dụng các kiến thức trong lĩnh vực vật lý để nghiên cứu các hiện tượng sinh học.
+B. Công nghệ sinh học là ngành sản xuất các loại vũ khí sinh học.
+"
+26,Ngành Công nghệ sinh học có thời gian đào tạo toàn thời gian là bao lâu?,4 năm,"- 2 năm
+- 3 năm
+- 5 năm
+- 6 năm",21456de7-cc54-4db5-86c3-001b38c6e16d,major,index,4 năm,C,"C. 4 năm
+A. 6 năm
+D. 5 năm
+B. 3 năm
+"
+27,Ngành Quản lý thể dục thể thao - Chuyên ngành Kinh doanh thể thao và tổ chức sự kiện tại TDTU có mã ngành là gì?,7810301,"- 7810302
+- 7810303
+- 7810304
+- 7810305",5ac02a45-cb0b-4b62-914d-3fa9530f0e00,major,ded27576-2a47-46d2-a351-cd88df27a109,None,A,"A. 7810301
+C. 7810305
+D. 7810304
+B. 7810303
+"
+28,Ngành Kinh doanh thể thao và tổ chức sự kiện tại TDTU có thời gian đào tạo là bao lâu?,4 năm,"- 2 năm
+- 3 năm
+- 5 năm
+- 6 năm",5ac02a45-cb0b-4b62-914d-3fa9530f0e00,major,index,4 năm,B,"B. 4 năm
+D. 6 năm
+A. 5 năm
+C. 3 năm
+"
+29,Ngành nào có chuyên ngành Du lịch và Quản lý du lịch?,Việt Nam học,"- Quản trị kinh doanh
+- Khoa học xã hội và nhân văn
+- Khoa học tự nhiên
+- Kỹ thuật",5ac02a45-cb0b-4b62-914d-3fa9530f0e00,major,ded27576-2a47-46d2-a351-cd88df27a109,Việt Nam học,B,"B. Việt Nam học
+C. Kỹ thuật
+D. Khoa học tự nhiên
+A. Khoa học xã hội và nhân văn
+"
+30,Ngành Kỹ thuật điện tử - viễn thông tại Trường Đại học Tôn Đức Thắng có mã ngành là gì?,7520207,"- 7520201
+- 7520203
+- 7520205
+- 7520209",0d0d6cc1-7d08-42c4-963a-e32191ab63e6,major,ded27576-2a47-46d2-a351-cd88df27a109,None,C,"C. 7520207
+B. 7520209
+D. 7520205
+A. 7520203
+"
+31,Ngành Kỹ thuật điều khiển và tự động hóa tại Trường Đại học Tôn Đức Thắng có thời gian đào tạo toàn thời gian là bao lâu?,4 năm,"- 3 năm
+- 5 năm
+- 6 năm
+- 7 năm",0d0d6cc1-7d08-42c4-963a-e32191ab63e6,major,index,4 năm,A,"A. 4 năm
+B. 7 năm
+D. 6 năm
+C. 5 năm
+"
+32,"Đối với chương trình chất lượng cao, sinh viên có cơ hội thực hiện đồ án tốt nghiệp theo các đề tài nào?",Đề tài do doanh nghiệp đặt hàng,"- Đề tài do nhà trường giao
+- Đề tài do sinh viên tự đề xuất
+- Đề tài do các tổ chức phi chính phủ đặt hàng
+- Đề tài do các cơ quan nghiên cứu đặt hàng",0d0d6cc1-7d08-42c4-963a-e32191ab63e6,major,6d6250f6-7d74-4c5d-9bdf-73ff6b203808,Đồ án tốt nghiệp bằng tiếng Anh,D,"D. Đề tài do doanh nghiệp đặt hàng
+C. Đề tài do các cơ quan nghiên cứu đặt hàng
+A. Đề tài do các tổ chức phi chính phủ đặt hàng
+B. Đề tài do sinh viên tự đề xuất
+"
+33,Điểm trúng tuyển năm 2023 của ngành Kỹ thuật điện tử - viễn thông là bao nhiêu?,24,"- 26
+- 28
+- 30
+- 32",0d0d6cc1-7d08-42c4-963a-e32191ab63e6,major,index,None,A,"A. 24
+D. 32
+B. 30
+C. 28
+"
+34,Chương trình đào tạo Cử nhân Quản trị kinh doanh chuyên ngành Quản trị Nhà hàng Khách sạn có thời gian đào tạo là bao lâu?,4 năm,"- 2 năm
+- 3 năm
+- 5 năm
+- 6 năm",68b5e5fb-441f-40f4-a167-8dcebd5511ed,major,ded27576-2a47-46d2-a351-cd88df27a109,None,B,"B. 4 năm
+D. 6 năm
+C. 5 năm
+A. 3 năm
+"
+35,Chương trình đào tạo Cử nhân Quản trị kinh doanh chuyên ngành Quản trị Nhà hàng Khách sạn có chuẩn đầu ra như thế nào?,Xem thông tin chi tiết về chuẩn đầu ra,"- Xem thông tin chi tiết về chương trình đào tạo
+- Liên hệ với khoa Quản trị Nhà hàng Khách sạn
+- Tra cứu trên website của trường
+- Hỏi trực tiếp giảng viên phụ trách chương trình",68b5e5fb-441f-40f4-a167-8dcebd5511ed,major,ded27576-2a47-46d2-a351-cd88df27a109,"Chuẩn đầu ra của chương trình Cử nhân Quản trị kinh doanh chuyên ngành Quản trị Nhà hàng Khách sạn là đạt trình độ B2 tiếng Anh quốc tế, chứng chỉ IELTS 5.5 hoặc chứng chỉ quốc tế khác tương đương.",C,"C. Xem thông tin chi tiết về chuẩn đầu ra
+D. Hỏi trực tiếp giảng viên phụ trách chương trình
+B. Tra cứu trên website của trường
+A. Liên hệ với khoa Quản trị Nhà hàng Khách sạn
+"
+36,Chương trình đào tạo Cử nhân Quản trị kinh doanh chuyên ngành Quản trị Nhà hàng Khách sạn có học phí là bao nhiêu?,Khoảng 83 đến 84 triệu đồng/năm,"- Khoảng 50 đến 60 triệu đồng/năm
+- Khoảng 100 đến 120 triệu đồng/năm
+- Khoảng 65 đến 70 triệu đồng/năm
+- Khoảng 90 đến 100 triệu đồng/năm",68b5e5fb-441f-40f4-a167-8dcebd5511ed,major,index,None,B,"B. Khoảng 83 đến 84 triệu đồng/năm
+D. Khoảng 90 đến 100 triệu đồng/năm
+A. Khoảng 65 đến 70 triệu đồng/năm
+C. Khoảng 100 đến 120 triệu đồng/năm
+"
+37,Chương trình đào tạo Cử nhân Quản trị kinh doanh chuyên ngành Quản trị Nhà hàng Khách sạn được xét tuyển theo những phương thức nào?,"Xét theo điểm trung bình HK KQ ĐGNL của ĐHQG TP. HCM Ưu tiên xét tuyển theo TDTU, Xét tuyển theo điểm thi THPT","- Xét tuyển theo điểm thi đại học
+- Xét tuyển theo học bạ THPT
+- Xét tuyển theo năng khiếu đặc biệt
+- Xét tuyển theo diện đối tượng ưu tiên",68b5e5fb-441f-40f4-a167-8dcebd5511ed,major,ded27576-2a47-46d2-a351-cd88df27a109,None,A,"A. Xét theo điểm trung bình HK KQ ĐGNL của ĐHQG TP. HCM Ưu tiên xét tuyển theo TDTU, Xét tuyển theo điểm thi THPT
+D. Xét tuyển theo diện đối tượng ưu tiên
+C. Xét tuyển theo năng khiếu đặc biệt
+B. Xét tuyển theo học bạ THPT
+"
+38,Ngành Thiết kế thời trang tại TDTU đào tạo sinh viên trở thành những người như thế nào?,"Những người tiên phong, đi đầu và dự đoán trước những xu hướng mới về ngành thiết kế lẫn xu hướng thời trang trong những năm tiếp theo.","- Những người chỉ tập trung vào việc may vá và cắt vải
+- Những người chỉ sao chép các thiết kế hiện có
+- Những người không có khả năng sáng tạo và đổi mới
+- Những người không có hiểu biết về lịch sử và văn hóa thời trang",3e9be34c-ad0a-456e-84d9-c9359f57dd4f,major,ded27576-2a47-46d2-a351-cd88df27a109,"Sinh viên tốt nghiệp ngành Thiết kế thời trang tại TDTU sẽ trở thành những nhà thiết kế thời trang chuyên nghiệp, có khả năng sáng tạo, kỹ thuật và hiểu biết về ngành thời trang.",A,"A. Những người tiên phong, đi đầu và dự đoán trước những xu hướng mới về ngành thiết kế lẫn xu hướng thời trang trong những năm tiếp theo.
+B. Những người không có hiểu biết về lịch sử và văn hóa thời trang
+D. Những người không có khả năng sáng tạo và đổi mới
+C. Những người chỉ sao chép các thiết kế hiện có
+"
+39,Ngành Thiết kế thời trang tại TDTU có thời gian đào tạo là bao lâu?,4 năm,"- 2 năm
+- 3 năm
+- 5 năm
+- 6 năm",3e9be34c-ad0a-456e-84d9-c9359f57dd4f,major,ded27576-2a47-46d2-a351-cd88df27a109,None,B,"B. 4 năm
+D. 6 năm
+C. 5 năm
+A. 3 năm
+"
+40,Ngành Kỹ thuật xây dựng tại Trường Đại học Tôn Đức Thắng được xếp hạng như thế nào trên thế giới?,Top 500,"- Top 100
+- Top 200
+- Top 300
+- Top 400",29a7f8e3-1bf5-4e28-9dd0-28332d6e804b,major,75956006-00ad-4b8b-8a18-17eecce4422b,None,A,"A. Top 500
+C. Top 400
+B. Top 300
+D. Top 200
+"
+41,Ngành Kỹ thuật xây dựng tại Trường Đại học Tôn Đức Thắng có thời gian đào tạo toàn thời gian là bao lâu?,4 năm,"- 3 năm
+- 5 năm
+- 6 năm
+- 7 năm",29a7f8e3-1bf5-4e28-9dd0-28332d6e804b,major,index,4 năm,A,"A. 4 năm
+C. 7 năm
+D. 6 năm
+B. 5 năm
+"
+42,"Ngành Kỹ thuật xây dựng tại Trường Đại học La Trobe, Úc có thời gian đào tạo là bao lâu?",4 năm,"- 3 năm
+- 5 năm
+- 6 năm
+- 7 năm",29a7f8e3-1bf5-4e28-9dd0-28332d6e804b,major,75956006-00ad-4b8b-8a18-17eecce4422b,None,D,"D. 4 năm
+B. 7 năm
+C. 6 năm
+A. 5 năm
+"
+43,Ngành Kỹ thuật xây dựng tại Trường Đại học Tôn Đức Thắng có những ngành học liên quan nào?,"Kỹ thuật xây dựng công trình giao thông, Khoa học môi trường, Quy hoạch vùng và đô thị, Công nghệ kỹ thuật môi trường","- Kỹ thuật cơ khí
+- Kỹ thuật điện
+- Kỹ thuật công nghệ thông tin
+- Kỹ thuật hóa học",29a7f8e3-1bf5-4e28-9dd0-28332d6e804b,major,index,None,B,"B. Kỹ thuật xây dựng công trình giao thông, Khoa học môi trường, Quy hoạch vùng và đô thị, Công nghệ kỹ thuật môi trường
+A. Kỹ thuật hóa học
+C. Kỹ thuật công nghệ thông tin
+D. Kỹ thuật điện
+"
+44,Ngành Kinh doanh quốc tế tại Trường Đại học Tôn Đức Thắng có những chương trình đào tạo nào?,"Tiêu chuẩn, Chất lượng cao, Đại học bằng tiếng Anh, Liên kết quốc tế - K7340120L","- Quản trị kinh doanh
+- Marketing
+- Tài chính
+- Kế toán",4cf41260-556a-4e10-b1bb-7d9a50f3754b,major,index,"- Chương trình tiêu chuẩn (dạy-học bằng tiếng Việt)
+- Chương trình chất lượng cao
+- Chương trình đại học bằng tiếng Anh",A,"A. Tiêu chuẩn, Chất lượng cao, Đại học bằng tiếng Anh, Liên kết quốc tế - K7340120L
+B. Kế toán
+C. Tài chính
+D. Marketing
+"
+45,Chương trình đào tạo Chất lượng cao của ngành Kinh doanh quốc tế tại Trường Đại học Tôn Đức Thắng có ưu điểm gì?,"Ưu điểm về thiết kế chương trình, quy mô lớp học, môi trường học tập, điều kiện về cơ sở vật chất và tăng cường sự trải nghiệm thực tế tại doanh nghiệp.","- Học phí thấp
+- Chương trình đào tạo ngắn hạn
+- Không có chương trình trao đổi quốc tế
+- Không có cơ hội thực tập tại các doanh nghiệp lớn",4cf41260-556a-4e10-b1bb-7d9a50f3754b,major,6d6250f6-7d74-4c5d-9bdf-73ff6b203808,"- Đào tạo nguồn nhân lực chất lượng cao đáp ứng yêu cầu hội nhập quốc tế với:
+    - Kỹ năng thực hành chuyên môn cao được bổ trợ bằng các chứng chỉ nghề nghiệp quốc gia/quốc tế
+    - Đạt tiếng anh trình độ B2 quốc tế (các Chứng chỉ tiếng Anh quốc tế tương đương IELTS 5.5 trở lên)
+    - Chứng chỉ tin học MOS đạt từ 750/1000 điểm với 3 ứng dụng Word, Excel, PowerPoint hoặc chứng chỉ ICDL đạt từ 75% với 3 ứng dụng Documents, Spreadsheets, Presentation
+- Chương trình đào tạo được xây dựng theo các tiêu chuẩn kiểm định quốc tế như AUN-QA, FIBBA, ASIIN…và đáp ứng nhu cầu đào tạo nguồn nhân lực của thị trường lao động Việt Nam và quốc tế
+- Hơn 50% môn chuyên ngành sẽ được giảng dạy bằng tiếng Anh, giúp sinh viên không những tăng cường vốn từ chuyên ngành mà còn phát triển kỹ năng ngoại ngữ trong lĩnh vực ngành nghề đào tạo, thuận lợi trong tuyển dụng tại những công ty đa quốc gia
+- Học kỳ nước ngoài giúp sinh viên có cơ hội giao lưu học tập sinh viên quốc tế cũng như rèn luyện khả năng ngoại ngữ
+- Thực tập/kiến tập tại các tập đoàn, công ty đa quốc gia, công ty lớn giúp SV vận dụng tốt lý thuyết và công việc thực tế",B,"B. Ưu điểm về thiết kế chương trình, quy mô lớp học, môi trường học tập, điều kiện về cơ sở vật chất và tăng cường sự trải nghiệm thực tế tại doanh nghiệp.
+C. Không có cơ hội thực tập tại các doanh nghiệp lớn
+D. Không có chương trình trao đổi quốc tế
+A. Chương trình đào tạo ngắn hạn
+"
+46,"Ngành Kinh doanh quốc tế tại Trường Đại học La Trobe, Úc có mã ngành là gì?",K7340120L,"- K7340120M
+- K7340120N
+- K7340120O
+- K7340120P",4cf41260-556a-4e10-b1bb-7d9a50f3754b,major,75956006-00ad-4b8b-8a18-17eecce4422b,None,C,"C. K7340120L
+B. K7340120P
+D. K7340120O
+A. K7340120N
+"
+47,Ngành Công tác xã hội tại Trường Đại học Tôn Đức Thắng có những ngành học liên quan nào?,"Tài chính - Ngân hàng, Kế toán, Thống kê","- Quản trị kinh doanh
+- Marketing
+- Luật
+- Công nghệ thông tin",4cf41260-556a-4e10-b1bb-7d9a50f3754b,major,index,None,B,"B. Tài chính - Ngân hàng, Kế toán, Thống kê
+C. Công nghệ thông tin
+A. Luật
+D. Marketing
+"
+48,Ngành Khoa học môi trường được đào tạo duy nhất ở khu vực nào?,Phía Nam,"- Miền Trung
+- Miền Bắc
+- Tây Nguyên
+- Đông Nam Bộ",945748db-b46e-4671-b1af-aef7400a48d1,major,ded27576-2a47-46d2-a351-cd88df27a109,Khu vực Nam Trung Bộ,B,"B. Phía Nam
+D. Đông Nam Bộ
+A. Tây Nguyên
+C. Miền Bắc
+"
+49,Ngành Khoa học môi trường có thời gian đào tạo toàn thời gian là bao lâu?,4 năm hoặc 5 năm,"- 2 năm
+- 3 năm
+- 6 năm
+- 7 năm",945748db-b46e-4671-b1af-aef7400a48d1,major,index,4 năm,A,"A. 4 năm hoặc 5 năm
+C. 7 năm
+B. 6 năm
+D. 3 năm
+"
+50,Ngành Kỹ thuật xây dựng công trình giao thông đào tạo những kiến thức chuyên sâu nào?,"Thiết kế đường, thiết kế cầu, đồ án kết cấu bê tông, đồ án kết cấu thép, đồ án nền móng, đồ án thiết kế cầu, đồ án thiết kế đường, kinh tế xây dựng và dự toán, thi công xây dựng cầu đường, thí nghiệm kiểm định vật liệu xây dựng, quản lý và khai thác cầu đường, các phần mềm và công cụ hỗ trợ thiết kế như Civil 3D, Midas, AndDesign, …","- Thiết kế máy bay
+- Thiết kế tàu thủy
+- Thiết kế nội thất
+- Thiết kế thời trang",bdebda50-cc98-422d-b5d8-3d77e662cf06,major,ded27576-2a47-46d2-a351-cd88df27a109,None,C,"C. Thiết kế đường, thiết kế cầu, đồ án kết cấu bê tông, đồ án kết cấu thép, đồ án nền móng, đồ án thiết kế cầu, đồ án thiết kế đường, kinh tế xây dựng và dự toán, thi công xây dựng cầu đường, thí nghiệm kiểm định vật liệu xây dựng, quản lý và khai thác cầu đường, các phần mềm và công cụ hỗ trợ thiết kế như Civil 3D, Midas, AndDesign, …
+B. Thiết kế thời trang
+D. Thiết kế nội thất
+A. Thiết kế tàu thủy
+"
+51,Ngành Kỹ thuật xây dựng công trình giao thông đào tạo trong bao lâu?,4 năm hoặc 5 năm,"- 2 năm
+- 3 năm
+- 6 năm
+- 7 năm",bdebda50-cc98-422d-b5d8-3d77e662cf06,major,ded27576-2a47-46d2-a351-cd88df27a109,None,C,"C. 4 năm hoặc 5 năm
+B. 7 năm
+D. 6 năm
+A. 3 năm
+"
+52,Ngành Kỹ thuật hóa học tại Trường Đại học Tôn Đức Thắng có điểm gì nổi bật?,Thuộc top 500 đại học tốt nhất thế giới (THE World University Rankings),"- Có chương trình đào tạo liên kết với các trường đại học hàng đầu thế giới
+- Tỷ lệ sinh viên được tuyển dụng sau khi tốt nghiệp cao nhất trong cả nước
+- Cơ sở vật chất hiện đại và tiên tiến nhất Đông Nam Á
+- Chương trình học được thiết kế theo chuẩn quốc tế và được công nhận bởi các tổ chức uy tín",ab7b285c-d93c-4ea6-aac7-32e002ee72f7,major,6d6250f6-7d74-4c5d-9bdf-73ff6b203808,"Chương trình Kỹ thuật hóa học tại Trường Đại học Tôn Đức Thắng nổi bật với:
+- Đào tạo nguồn nhân lực chất lượng cao đáp ứng yêu cầu hội nhập quốc tế với kỹ năng thực hành chuyên môn cao được bổ trợ bằng các chứng chỉ nghề nghiệp quốc gia/quốc tế.
+- Chương trình đào tạo được xây dựng theo các tiêu chuẩn kiểm định quốc tế như AUN-QA, FIBBA, ASIIN…và đáp ứng nhu cầu đào tạo nguồn nhân lực của thị trường lao động Việt Nam và quốc tế.
+- Quy mô lớp học nhỏ, phòng học, phòng thí nghiệm và phòng mô phỏng được đầu tư hiện đại.
+- Đội ngũ giảng viên có trình độ từ thạc sỹ trở lên, có kinh nghiệm giảng dạy, vững chuyên môn.
+- Sinh viên được học những môn học thuộc chứng chỉ có giá trị cho nghề nghiệp sau này, giúp sinh viên thêm tự tin trong quá trình phỏng vấn xin việc làm sau tốt nghiệp.
+- Hơn 50% môn chuyên ngành sẽ được giảng dạy bằng tiếng Anh, giúp sinh viên không những tăng cường vốn từ chuyên ngành mà còn phát triển kỹ năng ngoại ngữ trong lĩnh vực ngành nghề đào tạo, thuận lợi trong tuyển dụng tại những công ty đa quốc gia.
+- Sinh viên được làm khóa luận tốt nghiệp dưới sự hướng dẫn của các GS, TS, ThS, chuyên gia uy tín trong và ngoài nước; được tham gia kiến tập, thực tập tại các tập đoàn, công ty đa quốc gia, công ty lớn giúp SV vận dụng tốt lý thuyết và công việc thực tế.",B,"B. Thuộc top 500 đại học tốt nhất thế giới (THE World University Rankings)
+A. Chương trình học được thiết kế theo chuẩn quốc tế và được công nhận bởi các tổ chức uy tín
+C. Cơ sở vật chất hiện đại và tiên tiến nhất Đông Nam Á
+D. Tỷ lệ sinh viên được tuyển dụng sau khi tốt nghiệp cao nhất trong cả nước
+"
+53,Ngành Kỹ thuật hóa học tại Trường Đại học Tôn Đức Thắng có thời gian đào tạo là bao lâu?,4 năm hoặc 5 năm,"- 3 năm
+- 6 năm
+- 7 năm
+- 8 năm",ab7b285c-d93c-4ea6-aac7-32e002ee72f7,major,index,4 năm,B,"B. 4 năm hoặc 5 năm
+D. 8 năm
+C. 7 năm
+A. 6 năm
+"
+54,Ngành Kỹ thuật hóa học tại Trường Đại học Tôn Đức Thắng xét tuyển theo tổ hợp môn nào?,A00; B00; D07,"- A01; B01; D08
+- A02; B02; D09
+- A03; B03; D10
+- A04; B04; D11",ab7b285c-d93c-4ea6-aac7-32e002ee72f7,major,index,A00,B,"B. A00; B00; D07
+D. A04; B04; D11
+A. A03; B03; D10
+C. A02; B02; D09
+"
+55,Ngành Golf tại Trường Đại học Tôn Đức Thắng có thời gian đào tạo toàn thời gian là bao lâu?,4 năm,"- 2 năm
+- 3 năm
+- 5 năm
+- 6 năm",3096a058-8eb1-4ce1-83b2-dad93ce549ca,major,index,None,B,"B. 4 năm
+C. 6 năm
+D. 5 năm
+A. 3 năm
+"
+56,Ngành Quan hệ lao động được đào tạo nhằm mục đích gì?,Đón đầu xu thế phát triển và nhu cầu của xã hội về nguồn lao động.,"- Đào tạo chuyên gia về quản lý nhân sự
+- Cung cấp kiến thức về luật lao động
+- Phát triển kỹ năng đàm phán và giải quyết xung đột
+- Đào tạo chuyên gia về tuyển dụng và đào tạo",9f67616a-552f-4c97-a81a-eeb074569715,major,351b1c65-a53a-41a1-b4de-2e2cfa97d8d1,None,B,"B. Đón đầu xu thế phát triển và nhu cầu của xã hội về nguồn lao động.
+A. Đào tạo chuyên gia về tuyển dụng và đào tạo
+D. Phát triển kỹ năng đàm phán và giải quyết xung đột
+C. Cung cấp kiến thức về luật lao động
+"
+57,Ngành Quan hệ lao động đào tạo trong bao lâu?,4 năm,"- 2 năm
+- 3 năm
+- 5 năm
+- 6 năm",9f67616a-552f-4c97-a81a-eeb074569715,major,ded27576-2a47-46d2-a351-cd88df27a109,Thông tin không có trong ngữ cảnh đã cho.,B,"B. 4 năm
+A. 6 năm
+D. 5 năm
+C. 3 năm
+"
+58,Ngành Bảo hộ lao động tại Trường Đại học Tôn Đức Thắng được đào tạo lần đầu tiên tại đâu?,Việt Nam,"- Hoa Kỳ
+- Nhật Bản
+- Hàn Quốc
+- Trung Quốc",16ea6b9a-87c1-4b9c-aa51-8175fbe98306,major,75956006-00ad-4b8b-8a18-17eecce4422b,None,A,"A. Việt Nam
+D. Trung Quốc
+C. Hàn Quốc
+B. Nhật Bản
+"
+59,Ngành Bảo hộ lao động tại Trường Đại học Tôn Đức Thắng đào tạo theo hình thức nào?,Toàn thời gian,"- Bán thời gian
+- Từ xa
+- Liên thông
+- Cấp tốc",16ea6b9a-87c1-4b9c-aa51-8175fbe98306,major,index,Chương trình tiêu chuẩn (dạy-học bằng tiếng Việt),D,"D. Toàn thời gian
+A. Cấp tốc
+B. Liên thông
+C. Từ xa
+"
+60,Ngành Việt Nam học – Chuyên ngành Du lịch và lữ hành tại Trường Đại học Tôn Đức Thắng có mã ngành là gì?,7310630,"- 7310631
+- 7310632
+- 7310633
+- 7310634",2ccdeba1-8e72-4b90-978a-d9bb4f3d791d,major,ded27576-2a47-46d2-a351-cd88df27a109,None,B,"B. 7310630
+A. 7310634
+C. 7310633
+D. 7310632
+"
+61,Ngành Việt Nam học – Chuyên ngành Du lịch và Lữ hành tại Trường Đại học Tôn Đức Thắng đào tạo trong bao nhiêu năm?,4 năm,"- 2 năm
+- 3 năm
+- 5 năm
+- 6 năm",2ccdeba1-8e72-4b90-978a-d9bb4f3d791d,major,ded27576-2a47-46d2-a351-cd88df27a109,None,C,"C. 4 năm
+B. 6 năm
+A. 5 năm
+D. 3 năm
+"
+62,Ngành Ngôn ngữ Trung Quốc tại Đại học Tôn Đức Thắng có mã ngành là gì?,7220204,"- 7220201
+- 7220203
+- 7220205
+- 7220206",b4914269-39d9-4b82-ab2d-e86ff84605ff,major,351b1c65-a53a-41a1-b4de-2e2cfa97d8d1,None,A,"A. 7220204
+C. 7220206
+B. 7220205
+D. 7220203
+"
+63,Ngành Ngôn ngữ Trung Quốc tại Đại học Tôn Đức Thắng đào tạo trong bao nhiêu năm?,4 năm,"- 3 năm
+- 5 năm
+- 6 năm
+- 7 năm",b4914269-39d9-4b82-ab2d-e86ff84605ff,major,index,4 năm,D,"D. 4 năm
+C. 7 năm
+B. 6 năm
+A. 5 năm
+"
+64,Ngành Kỹ thuật điều khiển và tự động hóa có thể làm việc ở những vị trí nào?,"Kỹ sư thiết kế, vận hành, bảo trì kỹ thuật ở các dây chuyền sản xuất hiện đại trong công nghiệp.","- Giáo viên dạy toán
+- Bác sĩ phẫu thuật
+- Nhà thiết kế thời trang
+- Nhân viên bán hàng",7cd8d13f-9a12-41e8-8502-9e04e672a185,major,index,None,C,"C. Kỹ sư thiết kế, vận hành, bảo trì kỹ thuật ở các dây chuyền sản xuất hiện đại trong công nghiệp.
+D. Nhân viên bán hàng
+B. Nhà thiết kế thời trang
+A. Bác sĩ phẫu thuật
+"
+65,Ngành Kỹ thuật điều khiển và tự động hóa có thời gian đào tạo toàn thời gian là bao lâu?,4 năm,"- 2 năm
+- 3 năm
+- 5 năm
+- 6 năm",7cd8d13f-9a12-41e8-8502-9e04e672a185,major,index,4 năm,B,"B. 4 năm
+D. 6 năm
+A. 5 năm
+C. 3 năm
+"
+66,Ngành Kỹ thuật điều khiển và tự động hóa có mã ngành là gì?,F,"- A
+- B
+- C
+- D",7cd8d13f-9a12-41e8-8502-9e04e672a185,major,ded27576-2a47-46d2-a351-cd88df27a109,None,A,"A. F
+C. D
+D. C
+B. B
+"
+67,Ngành Kỹ thuật điều khiển và tự động hóa có thể làm việc ở những vị trí nào?,"vận hành, bảo trì, sửa chữa các hệ thống, dây chuyền sản xuất trong công nghiệp; thiết kế giao diện giám sát và lập trình điều khiển; xây dựng hệ thống thu thập và quản lý cơ sở dữ liệu cho các nhà máy, xí nghiệp; tham gia cải tiến nâng cấp các hệ thống tự động hóa; đề xuất dự toán kinh phí, kỹ thuật, thiết bị và nhân lực, thời gian thực hiện cho các dự án liên quan đến tự động hóa quá trình sản xuất; có khả năng tự học, tự nghiên cứu để cập nhật và thống kê thông tin về pháp luật, kỹ thuật và công nghệ mới.","- Giáo viên dạy toán
+- Bác sĩ phẫu thuật
+- Nhà thiết kế thời trang
+- Nhân viên bán hàng",7cd8d13f-9a12-41e8-8502-9e04e672a185,major,index,None,B,"B. vận hành, bảo trì, sửa chữa các hệ thống, dây chuyền sản xuất trong công nghiệp; thiết kế giao diện giám sát và lập trình điều khiển; xây dựng hệ thống thu thập và quản lý cơ sở dữ liệu cho các nhà máy, xí nghiệp; tham gia cải tiến nâng cấp các hệ thống tự động hóa; đề xuất dự toán kinh phí, kỹ thuật, thiết bị và nhân lực, thời gian thực hiện cho các dự án liên quan đến tự động hóa quá trình sản xuất; có khả năng tự học, tự nghiên cứu để cập nhật và thống kê thông tin về pháp luật, kỹ thuật và công nghệ mới.
+A. Nhân viên bán hàng
+C. Nhà thiết kế thời trang
+D. Bác sĩ phẫu thuật
+"
+68,Ngành Kỹ thuật điều khiển và tự động hóa có tổ hợp xét tuyển theo điểm thi THPT nào?,E06; A00; A01,"- B00
+- C00
+- D00
+- E00",7cd8d13f-9a12-41e8-8502-9e04e672a185,major,ded27576-2a47-46d2-a351-cd88df27a109,None,B,"B. E06; A00; A01
+C. E00
+A. D00
+D. C00
+"
+69,Ngành Mạng máy tính và truyền thông dữ liệu tại Trường Đại học Tôn Đức Thắng có mã ngành là gì?,7480102,"- 7480101
+- 7480103
+- 7480104
+- 7480105",c95e5cc7-25ab-40a9-851e-9f58789dc4df,major,ded27576-2a47-46d2-a351-cd88df27a109,None,A,"A. 7480102
+C. 7480105
+B. 7480104
+D. 7480103
+"
+70,Ngành Kỹ thuật điện tại Trường Đại học Tôn Đức Thắng có mã ngành là gì?,7520201,"- 7520202
+- 7520203
+- 7520204
+- 7520205",05db9be5-0817-4178-b2a1-1e35b5432fac,major,ded27576-2a47-46d2-a351-cd88df27a109,None,A,"A. 7520201
+D. 7520205
+B. 7520204
+C. 7520203
+"
+71,Ngành Công tác xã hội tại Trường Đại học Tôn Đức Thắng đào tạo trong bao lâu?,4 năm,"- 3 năm
+- 5 năm
+- 6 năm
+- 7 năm",19d6fe7b-5724-4e0a-8ea7-54adfa730cbd,major,index,4 năm,B,"B. 4 năm
+A. 7 năm
+C. 6 năm
+D. 5 năm
+"

@@ -2,6 +2,8 @@ from pandas import DataFrame
 import os
 import pandas as pd
 from datetime import datetime
+import glob
+from pathlib import Path
 
 def test_major(qa_df: DataFrame, ques_col: str, retriever, error_limit: int = 20):
     correct = 0
@@ -38,6 +40,27 @@ class RetrieverEvaluation:
         self.save_path = save_path
         self.root_path = root_path
         self.data_folder = os.path.join(self.root_path, test_folder)
+        return
+    
+    def eval_test_files(self, file_name: str, folder: str, retriever, metadata):
+        path = os.path.join(self.root_path,folder)
+        
+        # all_files = glob.glob(os.path.join(path, "*.csv"))
+        all_files = Path(path).glob('*.csv')
+        df = pd.concat((pd.read_csv(f) for f in all_files), ignore_index=True)
+        print(df.shape)
+        START = datetime.now()
+        correct, total = test_major(df, "question", retriever, error_limit=20)
+        END = datetime.now()
+        with open(os.path.join(self.save_path, file_name), "a") as f:
+            f.write("\n->\n")
+            f.write(f"Test on: {path}\n")
+            f.write(f"Start: {START}\n")
+            [f.write(f"Param {k}: {v}\n") for k, v in metadata.items()]
+            f.write(f"Correct: {str(correct)}\n")
+            f.write(f"Total: {str(total)}\n")
+            f.write(f"Score: {str(correct/total)}\n")
+            f.write(f"End: {END}\n")
         return
 
     def _eval_retriever(self, file_name: str, target_file: str, ques_col: str, retriever, metadata):

@@ -1,0 +1,145 @@
+question,answer,wrong,doc_id,category,pred_doc_id,RAG_answer,correct_label,multi_prompt,RAG_label
+Chương trình đào tạo nào có chuẩn tiếng Anh đầu vào là IELTS 5.0 trở lên?,Đại học bằng tiếng Anh,"- Chương trình đào tạo song ngữ
+- Chương trình đào tạo tiếng Anh chuyên sâu
+- Chương trình đào tạo quốc tế
+- Chương trình đào tạo liên kết",dd0573ae-29a2-4afa-b5c1-303be63b8bfa,training_program,dd0573ae-29a2-4afa-b5c1-303be63b8bfa,Đại học bằng tiếng Anh,C,"C. Đại học bằng tiếng Anh
+B. Chương trình đào tạo liên kết
+A. Chương trình đào tạo quốc tế
+D. Chương trình đào tạo tiếng Anh chuyên sâu
+",C
+Sinh viên được hưởng những tiện ích hỗ trợ học tập hiện đại từ đâu?,TDTU và các đối tác quốc tế,"- Bộ Giáo dục và Đào tạo
+- Các trường đại học trong nước
+- Các tổ chức phi chính phủ
+- Các công ty công nghệ",dd0573ae-29a2-4afa-b5c1-303be63b8bfa,training_program,dd0573ae-29a2-4afa-b5c1-303be63b8bfa,TDTU và các đối tác quốc tế,D,"D. TDTU và các đối tác quốc tế
+C. Các công ty công nghệ
+A. Các tổ chức phi chính phủ
+B. Các trường đại học trong nước
+",D
+Hồ sơ cần nộp để xin công nhận điểm học phần là gì?,Đơn xin công nhận điểm học phần; Bảng điểm sau đại học (nộp đơn xin cấp bảng điểm trong hệ thống thông tin học viên).,"- Giấy chứng nhận tốt nghiệp đại học
+- Thư giới thiệu từ giảng viên hướng dẫn
+- Bảng điểm bậc phổ thông
+- Hộ khẩu thường trú",4afbce7d-1642-4458-836f-73f465c6c80e,training_program,351b1c65-a53a-41a1-b4de-2e2cfa97d8d1,Thông tin này không có trong văn bản được cung cấp.,A,"A. Đơn xin công nhận điểm học phần; Bảng điểm sau đại học (nộp đơn xin cấp bảng điểm trong hệ thống thông tin học viên).
+D. Hộ khẩu thường trú
+C. Bảng điểm bậc phổ thông
+B. Thư giới thiệu từ giảng viên hướng dẫn
+",None
+Đối tượng nào được tham dự khóa học bổ sung kiến thức?,Người có bằng tốt nghiệp đại học ngành không phải ngành phù hợp với ngành dự tuyển phải học bổ sung kiến thức để đủ điều kiện dự tuyển chương trình đào tạo trình độ thạc sĩ; Người có bằng tốt nghiệp thạc sĩ ngành phải học bổ sung kiến thức để đủ điều kiện dự tuyển chương trình đào tạo trình độ tiến sĩ.,"- Người có bằng tốt nghiệp đại học ngành phù hợp với ngành dự tuyển
+- Người có bằng tốt nghiệp thạc sĩ ngành không phải ngành phù hợp với ngành dự tuyển
+- Người có bằng tốt nghiệp tiến sĩ
+- Người chưa có bằng tốt nghiệp đại học",15277b95-6686-48a8-bc4e-89ef50946af9,training_program,index,Đối tượng tham gia khóa học bổ sung kiến thức,B,"B. Người có bằng tốt nghiệp đại học ngành không phải ngành phù hợp với ngành dự tuyển phải học bổ sung kiến thức để đủ điều kiện dự tuyển chương trình đào tạo trình độ thạc sĩ; Người có bằng tốt nghiệp thạc sĩ ngành phải học bổ sung kiến thức để đủ điều kiện dự tuyển chương trình đào tạo trình độ tiến sĩ.
+D. Người chưa có bằng tốt nghiệp đại học
+A. Người có bằng tốt nghiệp tiến sĩ
+C. Người có bằng tốt nghiệp thạc sĩ ngành không phải ngành phù hợp với ngành dự tuyển
+",B
+Ngành nào có chỉ tiêu chương trình định hướng ứng dụng cao nhất?,Quản trị kinh doanh,"- Khoa học máy tính
+- Kỹ thuật điện
+- Khoa học dữ liệu
+- Toán học",351b1c65-a53a-41a1-b4de-2e2cfa97d8d1,training_program,index,None,C,"C. Quản trị kinh doanh
+A. Toán học
+D. Khoa học dữ liệu
+B. Kỹ thuật điện
+",None
+Trường có bao nhiêu ngành đào tạo đại học chất lượng cao?,19 ngành,"- 15 ngành
+- 22 ngành
+- 17 ngành
+- 20 ngành",6d6250f6-7d74-4c5d-9bdf-73ff6b203808,training_program,6d6250f6-7d74-4c5d-9bdf-73ff6b203808,19,B,"B. 19 ngành
+D. 20 ngành
+C. 17 ngành
+A. 22 ngành
+",B
+Phân hiệu Trường Đại học Tôn Đức Thắng tại tỉnh Khánh Hòa có địa chỉ ở đâu?,"Số 22 Nguyễn Đình Chiểu, Phường Vĩnh Phước, TP. Nha Trang, Tỉnh Khánh Hòa","- Số 100 Nguyễn Trãi, Phường Vĩnh Hòa, TP. Nha Trang, Tỉnh Khánh Hòa
+- Số 50 Lê Hồng Phong, Phường Phước Hải, TP. Nha Trang, Tỉnh Khánh Hòa
+- Số 200 Trần Phú, Phường Vĩnh Nguyên, TP. Nha Trang, Tỉnh Khánh Hòa
+- Số 150 Yersin, Phường Vĩnh Thọ, TP. Nha Trang, Tỉnh Khánh Hòa",15277b95-6686-48a8-bc4e-89ef50946af9,training_program,15277b95-6686-48a8-bc4e-89ef50946af9,"Số 22 Nguyễn Đình Chiểu, P. Vĩnh Phước, TP. Nha Trang, Tỉnh Khánh Hòa",A,"A. Số 22 Nguyễn Đình Chiểu, Phường Vĩnh Phước, TP. Nha Trang, Tỉnh Khánh Hòa
+B. Số 150 Yersin, Phường Vĩnh Thọ, TP. Nha Trang, Tỉnh Khánh Hòa
+C. Số 200 Trần Phú, Phường Vĩnh Nguyên, TP. Nha Trang, Tỉnh Khánh Hòa
+D. Số 50 Lê Hồng Phong, Phường Phước Hải, TP. Nha Trang, Tỉnh Khánh Hòa
+",A
+Chương trình đào tạo nào có chuẩn đầu ra tiếng Anh là B2 quốc tế?,"Đại học bằng tiếng Anh, Liên kết quốc tế","- Chương trình đào tạo tiếng Anh chuyên sâu
+- Chương trình đào tạo tiếng Anh thương mại
+- Chương trình đào tạo tiếng Anh du học
+- Chương trình đào tạo tiếng Anh giao tiếp",dd0573ae-29a2-4afa-b5c1-303be63b8bfa,training_program,6d6250f6-7d74-4c5d-9bdf-73ff6b203808,Chương trình chất lượng cao,C,"C. Đại học bằng tiếng Anh, Liên kết quốc tế
+D. Chương trình đào tạo tiếng Anh giao tiếp
+B. Chương trình đào tạo tiếng Anh du học
+A. Chương trình đào tạo tiếng Anh thương mại
+",A
+"Phòng Sau đại học, Trường Đại học Tôn Đức Thắng nằm ở đâu?","Số 19 Nguyễn Hữu Thọ, Phường Tân Phong, Quận 7, TP. HCM","- Số 10 Nguyễn Văn Linh, Phường Tân Phong, Quận 7, TP. HCM
+- Số 100 Nguyễn Hữu Thọ, Phường Tân Phong, Quận 7, TP. HCM
+- Số 19 Nguyễn Văn Linh, Phường Tân Phong, Quận 7, TP. HCM
+- Số 100 Nguyễn Văn Linh, Phường Tân Phong, Quận 7, TP. HCM",e27d1889-cea9-4358-b8b3-080f0566e6ef,training_program,index,None,C,"C. Số 19 Nguyễn Hữu Thọ, Phường Tân Phong, Quận 7, TP. HCM
+B. Số 100 Nguyễn Văn Linh, Phường Tân Phong, Quận 7, TP. HCM
+A. Số 19 Nguyễn Văn Linh, Phường Tân Phong, Quận 7, TP. HCM
+D. Số 100 Nguyễn Hữu Thọ, Phường Tân Phong, Quận 7, TP. HCM
+",None
+Đối tượng nào được tham gia chương trình 4+1?,Sinh viên trình độ đại học đang học tại Trường từ năm 3 trở đi (so với năm tuyển sinh).,"- Học sinh phổ thông
+- Sinh viên trình độ cao đẳng
+- Sinh viên trình độ sau đại học
+- Người đã tốt nghiệp đại học",4afbce7d-1642-4458-836f-73f465c6c80e,training_program,4afbce7d-1642-4458-836f-73f465c6c80e,Sinh viên trình độ đại học đang học tại Trường từ năm 3 trở đi,A,"A. Sinh viên trình độ đại học đang học tại Trường từ năm 3 trở đi (so với năm tuyển sinh).
+C. Người đã tốt nghiệp đại học
+D. Sinh viên trình độ sau đại học
+B. Sinh viên trình độ cao đẳng
+",A
+Đối tượng nào được hưởng chính sách học bổng dành cho sau đại học?,"Đối tượng tốt nghiệp đại học do Trường Đại học Tôn Đức Thắng cấp, tốt nghiệp đại học xếp loại giỏi các trường công lập trong cả nước, giáo viên đang công tác tại các trường phổ thông","- Học sinh đang theo học bậc phổ thông
+- Người đã tốt nghiệp đại học hơn 5 năm
+- Người không có bằng đại học
+- Người đang theo học chương trình đào tạo nghề",351b1c65-a53a-41a1-b4de-2e2cfa97d8d1,training_program,351b1c65-a53a-41a1-b4de-2e2cfa97d8d1,"Tốt nghiệp đại học do Trường Đại học Tôn Đức Thắng cấp, tốt nghiệp đại học xếp loại giỏi các trường công lập trong cả nước, giáo viên đang công tác tại các trường phổ thông",B,"B. Đối tượng tốt nghiệp đại học do Trường Đại học Tôn Đức Thắng cấp, tốt nghiệp đại học xếp loại giỏi các trường công lập trong cả nước, giáo viên đang công tác tại các trường phổ thông
+C. Người đang theo học chương trình đào tạo nghề
+A. Người không có bằng đại học
+D. Người đã tốt nghiệp đại học hơn 5 năm
+",B
+Trường hiện nay tổ chức đào tạo bao nhiêu ngành đại học bằng tiếng Anh?,12 ngành,"- 8 ngành
+- 10 ngành
+- 14 ngành
+- 16 ngành",a66661db-197b-45f8-b5b8-b906f0339323,training_program,a66661db-197b-45f8-b5b8-b906f0339323,12,D,"D. 12 ngành
+C. 16 ngành
+A. 14 ngành
+B. 10 ngành
+",D
+Trường Đại học Tôn Đức Thắng tuyển sinh tiến sĩ đợt 1 năm 2024 vào những ngành nào?,"Khoa học tính toán, Kỹ thuật xây dựng","- Khoa học máy tính
+- Kỹ thuật điện
+- Kỹ thuật cơ khí
+- Quản trị kinh doanh",e27d1889-cea9-4358-b8b3-080f0566e6ef,training_program,e27d1889-cea9-4358-b8b3-080f0566e6ef,"Khoa học tính toán, Kỹ thuật xây dựng",B,"B. Khoa học tính toán, Kỹ thuật xây dựng
+A. Quản trị kinh doanh
+C. Kỹ thuật cơ khí
+D. Kỹ thuật điện
+",B
+Người dự tuyển có bằng tốt nghiệp đại học thì thời gian đào tạo là bao lâu?,48 tháng,"- 24 tháng
+- 36 tháng
+- 60 tháng
+- 72 tháng",e27d1889-cea9-4358-b8b3-080f0566e6ef,training_program,351b1c65-a53a-41a1-b4de-2e2cfa97d8d1,2 năm (chính quy) hoặc 2 năm rưỡi (vừa làm vừa học),D,"D. 48 tháng
+C. 72 tháng
+B. 60 tháng
+A. 36 tháng
+",A
+Người dự tuyển chương trình đào tạo trình độ thạc sĩ có ngôn ngữ giảng dạy bằng tiếng Việt phải có năng lực ngoại ngữ từ bậc nào trở lên?,Bậc 3,"- Bậc 1
+- Bậc 2
+- Bậc 4
+- Bậc 5",351b1c65-a53a-41a1-b4de-2e2cfa97d8d1,training_program,351b1c65-a53a-41a1-b4de-2e2cfa97d8d1,Bậc 3,A,"A. Bậc 3
+D. Bậc 5
+C. Bậc 4
+B. Bậc 2
+",A
+Thời gian đào tạo chuẩn dự kiến của hình thức đào tạo vừa làm vừa học là bao lâu?,hai năm rưỡi (30 tháng),"- Một năm
+- Một năm rưỡi
+- Ba năm
+- Bốn năm",351b1c65-a53a-41a1-b4de-2e2cfa97d8d1,training_program,index,None,D,"D. hai năm rưỡi (30 tháng)
+B. Bốn năm
+C. Ba năm
+A. Một năm rưỡi
+",None
+Ngành học nào có mã số 30?,Thiết kế nội thất,"- Quản trị kinh doanh
+- Kỹ thuật xây dựng
+- Công nghệ thông tin
+- Luật",ded27576-2a47-46d2-a351-cd88df27a109,training_program,index,None,D,"D. Thiết kế nội thất
+B. Luật
+A. Công nghệ thông tin
+C. Kỹ thuật xây dựng
+",None
+Chương trình đào tạo chuẩn quốc tế có đặc điểm gì?,"Đội ngũ giảng viên là các GS, TS, ThS trong và ngoài nước có chuyên môn sâu và kinh nghiệm giảng dạy tốt.","- Chương trình học được thiết kế theo nhu cầu của thị trường lao động trong nước.
+- Học phí thấp, phù hợp với mọi đối tượng học viên.
+- Thời gian đào tạo ngắn, chỉ từ 6 tháng đến 1 năm.
+- Không yêu cầu trình độ ngoại ngữ đầu vào.",a66661db-197b-45f8-b5b8-b906f0339323,training_program,dd0573ae-29a2-4afa-b5c1-303be63b8bfa,"Giảng dạy hoàn toàn bằng tiếng Anh (trừ một số môn lý luận chính trị, giáo dục thể chất, giáo dục quốc phòng).",B,"B. Đội ngũ giảng viên là các GS, TS, ThS trong và ngoài nước có chuyên môn sâu và kinh nghiệm giảng dạy tốt.
+C. Không yêu cầu trình độ ngoại ngữ đầu vào.
+D. Thời gian đào tạo ngắn, chỉ từ 6 tháng đến 1 năm.
+A. Học phí thấp, phù hợp với mọi đối tượng học viên.
+",None
