@@ -1,4 +1,6 @@
-import { signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
+import { useContext } from 'react'
+import { ChatContext } from '@/contexts/ChatContext'
 import { AvatarFallback, Avatar } from '@/components/ui/avatar'
 import {
   Popover,
@@ -9,17 +11,17 @@ import PlusIcon from '@/components/icon/plus'
 import LogOutIcon from '@/components/icon/logout'
 import ShieldIcon from '@/components/icon/shield'
 import SidebarItem from '@/components/component/sidebar-item'
-import { SidebarProps } from '@/lib/types'
 import Link from 'next/link'
 
-export default function Sidebar({
-  session,
-  chatHistory,
-  handleClearChat,
-  handleSidebarItemClick,
-  handleRemoveChatHistory,
-  activeChatHistoryId,
-}: SidebarProps) {
+export default function Sidebar() {
+  const { data: session } = useSession()
+  const context = useContext(ChatContext)
+
+  if (!context) {
+    throw new Error('useContext must be used within a ChatProvider')
+  }
+
+  const { handleClearChat, chatHistory } = context
   return (
     <div className='flex flex-col w-64 border-r border-[#282828] bg-[#171717]'>
       <div className='border-b border-[#282828] p-2'>
@@ -33,26 +35,20 @@ export default function Sidebar({
       </div>
       <div className='overflow-y-auto p-2'>
         {chatHistory.map((item) => (
-          <SidebarItem
-            key={item.id}
-            item={item}
-            handleSidebarItemClick={handleSidebarItemClick}
-            handleRemoveChatHistory={handleRemoveChatHistory}
-            activeChatHistoryId={activeChatHistoryId}
-          />
+          <SidebarItem key={item.id} item={item} />
         ))}
       </div>
       <Popover>
         <PopoverTrigger className='px-4 py-2 flex items-center space-x-2 border-t border-[#282828] hover:bg-[#35255c] bg-[#1c1528] mt-auto'>
           <Avatar>
             <AvatarFallback>
-              <span>{session.user.email?.[0]?.toUpperCase()}</span>
+              <span>{session?.user.email?.[0]?.toUpperCase()}</span>
             </AvatarFallback>
           </Avatar>
-          <span className='text-sm'>{session.user.email}</span>
+          <span className='text-sm'>{session?.user.email}</span>
         </PopoverTrigger>
         <PopoverContent className='w-[15rem] px-2'>
-          {session.user.role === 'admin' && (
+          {session?.user.role === 'admin' && (
             <Link
               href='/admin'
               className='py-2 hover:bg-gray-700 w-full flex items-center rounded space-x-2 border-b border-[#424142]'
@@ -62,7 +58,7 @@ export default function Sidebar({
             </Link>
           )}
           <button
-            onClick={() => signOut()}
+            onClick={() => signOut({ callbackUrl: '/', redirect: true })}
             className='py-2 hover:bg-gray-700 w-full flex items-center rounded space-x-2'
           >
             <LogOutIcon className='text-white' />

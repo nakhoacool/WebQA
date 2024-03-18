@@ -1,13 +1,24 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { ChatContext } from '@/contexts/ChatContext'
 import TrashIcon from '@/components/icon/trash'
-import { SidebarItemProps } from '@/lib/types'
+import { ChatHistory } from '@/lib/types'
 
-export default function SidebarItem({
-  item,
-  handleSidebarItemClick,
-  handleRemoveChatHistory,
-  activeChatHistoryId,
-}: SidebarItemProps) {
+interface SidebarItemProps {
+  item: ChatHistory
+}
+
+export default function SidebarItem({ item }: SidebarItemProps) {
+  const context = useContext(ChatContext)
+
+  if (!context) {
+    throw new Error('useContext must be used within a ChatProvider')
+  }
+
+  const {
+    handleSidebarItemClick,
+    handleRemoveChatHistory,
+    activeChatHistoryId,
+  } = context
   const [isHovered, setIsHovered] = useState(false)
   const isActive = item.id === activeChatHistoryId
 
