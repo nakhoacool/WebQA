@@ -45,7 +45,9 @@ export default function Sidebar() {
               <span>{session?.user.email?.[0]?.toUpperCase()}</span>
             </AvatarFallback>
           </Avatar>
-          <span className='text-sm'>{session?.user.email}</span>
+          <span className='text-sm truncate text-clip'>
+            {session?.user.email}
+          </span>
         </PopoverTrigger>
         <PopoverContent className='w-[15rem] px-2'>
           {session?.user.role === 'admin' && (
