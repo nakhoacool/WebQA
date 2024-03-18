@@ -36,7 +36,7 @@ export default function SignInForm() {
     signIn('credentials', {
       email: values.email,
       password: values.password,
-      redirect: true,
+      redirect: false,
       callbackUrl: '/',
     })
       .then((response) => {
