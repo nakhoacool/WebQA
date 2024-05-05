@@ -1,2 +1,0 @@
-size=460
-overlap=20

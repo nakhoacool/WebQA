@@ -25,3 +25,7 @@ flaksr/
 .vscode/
 core/flaskr/
 .DS_Store
+
+client/
+logs/
+data/
