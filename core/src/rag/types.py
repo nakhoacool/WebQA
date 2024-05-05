@@ -4,6 +4,12 @@ class RAGCategories:
 
     def __init__(self) -> None:
         # Major
+        self.tdt_gemini = RAGConfig(
+            embed_model="gemini",
+            text_index="tdt-text-split-gemini",
+            vector_index="tdt-vec-gemini",
+            db_category="tdt"
+        )
         self.major = RAGConfig(
             embed_model = "sentence-transformers/LaBSE",
             text_index = "text-split-major",

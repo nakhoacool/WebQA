@@ -63,6 +63,7 @@ class DataETL:
                 data = "\n".join(f.readlines()).strip()
                 contents.append(data)
         db_df['content'] = contents
+        print(f"Total run: {db_df.shape}")
         # run
         results = []
         text_splitter = self.create_splitter(chunk_size=size, overlap=overlap)
@@ -71,6 +72,7 @@ class DataETL:
                 data=data.to_dict(), 
                 text_splitter=text_splitter, re_update=re_update)
             results.append(tmp_doc)
+            print(f"OK: {i}")
             # update index page
             self.index_page += f"{i+1}. {tmp_doc.title}\n"
         tmp_idx = self.upload_index_page(index_page=self.index_page)

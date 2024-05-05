@@ -1,7 +1,0 @@
-# 
-size=800
-overlap=40
-
-# 2
-size=460
-overlap=20

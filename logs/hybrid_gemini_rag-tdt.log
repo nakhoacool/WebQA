@@ -1,0 +1,114 @@
+2024-05-05 11:13:38,548 - hybrid_gemini_rag-tdt.log - ERROR - can't answer RAG
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/RAG/../../src/rag/hybrid_rag.py", line 137, in ask_rag
+    answer = self.chain.invoke({"question": question})
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2053, in invoke
+    input = step.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 166, in invoke
+    self.generate_prompt(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 544, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 408, in generate
+    raise e
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 398, in generate
+    self._generate_with_cache(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 577, in _generate_with_cache
+    return self._generate(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_google_genai/chat_models.py", line 550, in _generate
+    response: genai.types.GenerateContentResponse = _chat_with_retry(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_google_genai/chat_models.py", line 140, in _chat_with_retry
+    return _chat_with_retry(**kwargs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/tenacity/__init__.py", line 289, in wrapped_f
+    return self(f, *args, **kw)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/tenacity/__init__.py", line 379, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/tenacity/__init__.py", line 314, in iter
+    return fut.result()
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/tenacity/__init__.py", line 382, in __call__
+    result = fn(*args, **kwargs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_google_genai/chat_models.py", line 138, in _chat_with_retry
+    raise e
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_google_genai/chat_models.py", line 131, in _chat_with_retry
+    return generation_method(**kwargs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/google/generativeai/generative_models.py", line 384, in send_message
+    raise generation_types.StopCandidateException(response.candidates[0])
+google.generativeai.types.generation_types.StopCandidateException: index: 0
+finish_reason: SAFETY
+safety_ratings {
+  category: HARM_CATEGORY_SEXUALLY_EXPLICIT
+  probability: NEGLIGIBLE
+}
+safety_ratings {
+  category: HARM_CATEGORY_HATE_SPEECH
+  probability: NEGLIGIBLE
+}
+safety_ratings {
+  category: HARM_CATEGORY_HARASSMENT
+  probability: NEGLIGIBLE
+}
+safety_ratings {
+  category: HARM_CATEGORY_DANGEROUS_CONTENT
+  probability: MEDIUM
+}
+
+2024-05-05 11:21:13,926 - hybrid_gemini_rag-tdt.log - ERROR - can't answer RAG
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/RAG/../../src/rag/hybrid_rag.py", line 137, in ask_rag
+    answer = self.chain.invoke({"question": question})
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2053, in invoke
+    input = step.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 166, in invoke
+    self.generate_prompt(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 544, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 408, in generate
+    raise e
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 398, in generate
+    self._generate_with_cache(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/language_models/chat_models.py", line 577, in _generate_with_cache
+    return self._generate(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_google_genai/chat_models.py", line 550, in _generate
+    response: genai.types.GenerateContentResponse = _chat_with_retry(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_google_genai/chat_models.py", line 140, in _chat_with_retry
+    return _chat_with_retry(**kwargs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/tenacity/__init__.py", line 289, in wrapped_f
+    return self(f, *args, **kw)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/tenacity/__init__.py", line 379, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/tenacity/__init__.py", line 314, in iter
+    return fut.result()
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/tenacity/__init__.py", line 382, in __call__
+    result = fn(*args, **kwargs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_google_genai/chat_models.py", line 138, in _chat_with_retry
+    raise e
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_google_genai/chat_models.py", line 131, in _chat_with_retry
+    return generation_method(**kwargs)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/google/generativeai/generative_models.py", line 384, in send_message
+    raise generation_types.StopCandidateException(response.candidates[0])
+google.generativeai.types.generation_types.StopCandidateException: index: 0
+finish_reason: SAFETY
+safety_ratings {
+  category: HARM_CATEGORY_SEXUALLY_EXPLICIT
+  probability: NEGLIGIBLE
+}
+safety_ratings {
+  category: HARM_CATEGORY_HATE_SPEECH
+  probability: NEGLIGIBLE
+}
+safety_ratings {
+  category: HARM_CATEGORY_HARASSMENT
+  probability: NEGLIGIBLE
+}
+safety_ratings {
+  category: HARM_CATEGORY_DANGEROUS_CONTENT
+  probability: MEDIUM
+}
+
