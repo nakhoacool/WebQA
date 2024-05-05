@@ -38,10 +38,10 @@ class TDTSpider(CrawlSpider):
           r"https://lib.tdtu\.edu\.vn/.*",
           r"https://vfis.*.tdtu\.edu\.vn/.*"
           r"https://oer.tdtu\.edu\.vn/.*",
-          r"https://.*pinterest.com/.*",
-          r"https://.*facebook.com/.*",
-          r"https://.*linkedin.com/.*",
-          r"https://.*youtube.com/.*",
+          r"http.?://.*pinterest\.com/.*",
+          r"http.?://.*facebook\.com/.*",
+          r"http.?://.*linkedin\.com.*",
+          r"http.?://.*youtube\.com/.*",
           r"https://.*360.*", 
           r"https://.*tdtu\.edu\.vn/.*login.*",
           r"https://.*tdtu\.edu\.vn/.*signup.*"],\
