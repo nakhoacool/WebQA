@@ -29,11 +29,24 @@ class TDTConfig:
 
 class TDTSpider(CrawlSpider):
     name = "tdt"
-    allowed_domains = ["tdtu.edu.vn"]
-    start_urls = ["https://www.tdtu.edu.vn/"]
+    #dads allowed_domains = ["tdtu.edu.vn"]
+    start_urls = ["https://www.tdtu.edu.vn/", "https://tdtu.edu.vn/"]
     rules = [
-      Rule(LinkExtractor(allow=r"https://.*tdtu\.edu\.vn/.*"),\
-       callback='parse_item', follow=True),
+      Rule(LinkExtractor(
+        deny=[r"https://.*tdtu\.edu\.vn/.*tin-tuc.*",
+          r"https://.*tdtu\.edu\.vn/.*news.*"
+          r"https://lib.tdtu\.edu\.vn/.*",
+          r"https://vfis.*.tdtu\.edu\.vn/.*"
+          r"https://oer.tdtu\.edu\.vn/.*",
+          r"https://.*pinterest.com/.*",
+          r"https://.*facebook.com/.*",
+          r"https://.*linkedin.com/.*",
+          r"https://.*youtube.com/.*",
+          r"https://.*360.*", 
+          r"https://.*tdtu\.edu\.vn/.*login.*",
+          r"https://.*tdtu\.edu\.vn/.*signup.*"],\
+        allow=r"https://.*tdtu\.edu\.vn/.*"),\
+        callback='parse_item', follow=True),
     ]
 
     def __init__(self, *a, **kw):
@@ -70,11 +83,19 @@ class TDTSpider(CrawlSpider):
       filename = response.url.replace("https://","").replace("/","_")
       Path(f"{PATH}/data/{filename}.html").write_bytes(response.body)
       self.log(f"Saved file {filename}")
-      data = {\
-        "url": response.url,\
-        "title": title.text,\
-        "content": content.text,\
-        "html_name": filename,\
-        "strip": strips
-      }
-      yield data
+      try:
+        # data = {\
+        #   "url": response.url,\
+        #   "title": title.text,\
+        #   "content": content.text,\
+        #   "html_name": filename,\
+        #   "strip": strips
+        # }
+        data = {
+          "url": response.url,
+          "html_name": filename,
+        }
+        yield data
+      except:
+        print("[ERROR]")
+      
