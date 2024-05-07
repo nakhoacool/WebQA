@@ -7,6 +7,40 @@ from pathlib import Path
 from colorama import Fore, Style
 
 PATH = "../drive/MyDrive/uni/graduate/crawl/TDTdata/"
+
+DENY = [
+  "https://lib.tdtu.edu.vn",
+  "https://vfis.tdtu.edu.vn",
+  "https://oer.tdtu.edu.vn",
+  "https://clc.tdtu.edu.vn",
+  "https://sdtc.tdtu.edu.vn",
+  "https://grad.tdtu.edu.vn",
+  "https://icfe2022.tdtu.edu.vn",
+  "https://iclrll2024.tdtu.edu.vn",
+  "https://ecc.tdtu.edu.vn",
+  "https://ccvc.tdtu.edu.vn",
+  "https://www.pinterest.com",
+  "http://www.pinterest.com",
+  "https://www.facebook.com",
+  "http://www.facebook.com",
+  "https://www.youtube.com",
+  "http://www.youtube.com",
+  "https://www.linkedin.com",
+  "http://www.linkedin.com",
+  ]
+
+DENY_LINKS=[
+  "https://.*tdtu\.edu\.vn/.*tin-tuc.*",
+  "https://.*tdtu\.edu\.vn/.*ban-tin.*",
+  "https://.*tdtu\.edu\.vn/.*tu-khoa.*",
+  "https://.*tdtu\.edu\.vn/.*news.*",
+  "https://icfe.*tdtu.edu.vn",
+  "https://iclrll.*tdtu.edu.vn",
+  "https://.*360.*", 
+  "https://.*tdtu\.edu\.vn/.*login.*",
+  "https://.*tdtu\.edu\.vn/.*signup.*"
+  ]
+
 class TDTConfig:
 
   def __init__(self):
@@ -17,7 +51,7 @@ class TDTConfig:
     self.remove_css = [".block-ts-2-button", ".header-main",\
      "iframe", "img", ".sidebar", ".footer-center", ".copyright",\
      ".block-nganh-7", ".block-nganh-8"]
-
+  
   def get_config(self, index=0):
     try:
       title = self.title_css[index]
@@ -33,19 +67,8 @@ class TDTSpider(CrawlSpider):
     start_urls = ["https://www.tdtu.edu.vn/", "https://tdtu.edu.vn/"]
     rules = [
       Rule(LinkExtractor(
-        deny=[r"https://.*tdtu\.edu\.vn/.*tin-tuc.*",
-          r"https://.*tdtu\.edu\.vn/.*news.*"
-          r"https://lib.tdtu\.edu\.vn/.*",
-          r"https://vfis.*.tdtu\.edu\.vn/.*"
-          r"https://oer.tdtu\.edu\.vn/.*",
-          r"http.?://.*pinterest\.com/.*",
-          r"http.?://.*facebook\.com/.*",
-          r"http.?://.*linkedin\.com.*",
-          r"http.?://.*youtube\.com/.*",
-          r"https://.*360.*", 
-          r"https://.*tdtu\.edu\.vn/.*login.*",
-          r"https://.*tdtu\.edu\.vn/.*signup.*"],\
         allow=r"https://.*tdtu\.edu\.vn/.*"),\
+        deny_domains=[],
         callback='parse_item', follow=True),
     ]
 
