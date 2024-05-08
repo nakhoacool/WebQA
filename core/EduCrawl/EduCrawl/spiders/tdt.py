@@ -68,7 +68,7 @@ class TDTSpider(CrawlSpider):
     rules = [
       Rule(LinkExtractor(
         allow=r"https://.*tdtu\.edu\.vn/.*"),\
-        deny_domains=[],
+        deny_domains=DENY, deny=DENY_LINKS,
         callback='parse_item', follow=True),
     ]
 
