@@ -1,4 +1,5 @@
 from scrapy.linkextractors import LinkExtractor
+from scrapy.linkextractors.lxmlhtml import LxmlLinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 import sys
 from bs4 import BeautifulSoup
@@ -66,7 +67,7 @@ class TDTSpider(CrawlSpider):
     #dads allowed_domains = ["tdtu.edu.vn"]
     start_urls = ["https://www.tdtu.edu.vn/", "https://tdtu.edu.vn/"]
     rules = [
-      Rule(LinkExtractor(
+      Rule(LxmlLinkExtractor(
         allow=r"https://.*tdtu\.edu\.vn/.*"),\
         deny_domains=DENY, deny=DENY_LINKS,
         callback='parse_item', follow=True),
