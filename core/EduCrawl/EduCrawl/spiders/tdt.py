@@ -67,9 +67,8 @@ class TDTSpider(CrawlSpider):
     #dads allowed_domains = ["tdtu.edu.vn"]
     start_urls = ["https://www.tdtu.edu.vn/", "https://tdtu.edu.vn/"]
     rules = [
-      Rule(LxmlLinkExtractor(
-        allow=r"https://.*tdtu\.edu\.vn/.*", deny_domains=DENY, deny=DENY_LINKS),
-        callback='parse_item', follow=True),
+      Rule(LxmlLinkExtractor(allow="https://.*tdtu\.edu\.vn/.*"), callback='parse_item', follow=True),
+      Rule(LxmlLinkExtractor(deny_domains=DENY, deny=DENY_LINKS), callback='skip')
     ]
 
     def __init__(self, *a, **kw):
@@ -77,8 +76,19 @@ class TDTSpider(CrawlSpider):
       self.config = TDTConfig()
       print("Init")
 
+    def skip(self, response):
+      text = response.url
+      print(Fore.YELLOW + text + Style.RESET_ALL)
+      data = {
+        "url": response.url,
+        "html_name": '',
+        "skipped": 'yes'
+      }
+      yield data
+
     def log(self, text):
       print(Fore.GREEN + text + Style.RESET_ALL)
+      return
 
     @property
     def header(self):
@@ -117,6 +127,7 @@ class TDTSpider(CrawlSpider):
         data = {
           "url": response.url,
           "html_name": filename,
+          "skipped": 'no'
         }
         yield data
       except:
