@@ -74,19 +74,11 @@ class TDTSpider(CrawlSpider):
       self.config = TDTConfig()
       print("Init")
 
-    def skip(self, response):
-      text = response.url
+    def warn(self, text):
       print(Fore.YELLOW + text + Style.RESET_ALL)
-      data = {
-        "url": response.url,
-        "html_name": '',
-        "skipped": 'yes'
-      }
-      yield data
 
     def log(self, text):
       print(Fore.GREEN + text + Style.RESET_ALL)
-      return
 
     @property
     def header(self):
@@ -94,64 +86,36 @@ class TDTSpider(CrawlSpider):
         'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36'
       }
 
-
     def parse_item(self, response):
       weburl = response.url
       allow_run = True
+      data = None
       # domain
       for domains in DENY:
         if domains in weburl:
           allow_run = False
-          self.skip(response=response)
+          break
       # regex
       for link in DENY_LINKS:
-        expr = rf"{link}"
-        match = re.search(expr, weburl)
+        match = re.search(rf"{link}", weburl)
         if match:
           allow_run = False
-          self.skip(response=response)
+          break
       # store
       if allow_run:
-        self.store_item(response=response)
-    
-    def store_item(self, response):    
-      # soup = BeautifulSoup(response.body, 'html.parser')
-      # soup.attrs.clear()
-
-      # title = None
-      # content = None
-      # strips = self.config.remove_css
-      # config
-      # index = -1
-      # while(title == None or content == None):
-      #   index += 1
-      #   title_css, content_css = self.config.get_config(index)
-      #   if title_css == None:
-      #     break
-      #   # get soup
-      #   title = soup.select_one(title_css)
-      #   content = soup.select_one(content_css)
-      filename = response.url.replace("https://","").replace("/","_")
-      Path(f"{PATH}/data/{filename}.html").write_bytes(response.body)
-      self.log(f"Saved file {filename}")
-      try:      # soup = BeautifulSoup(response.body, 'html.parser')
-      # soup.attrs.clear()
-
-      # title = None
-      # content = None
-      # strips = self.config.remove_css
-        # data = {\
-        #   "url": response.url,\
-        #   "title": title.text,\
-        #   "content": content.text,\
-        #   "html_name": filename,\
-        #   "strip": strips
-        # }
+        filename = weburl.replace("https://","").replace("/","_")
+        Path(f"{PATH}/data/{filename}.html").write_bytes(response.body)
+        self.log(f"Saved file {filename}")
         data = {
-          "url": response.url,
+          "url": weburl,
           "html_name": filename,
           "skipped": 'no'
         }
-        yield data
-      except:
-        print("[ERROR]")
+      else:
+        self.warn(text=f"Skip {weburl}")
+        data = {
+          "url": weburl,
+          "html_name": "",
+          "skipped": 'yes'
+        }
+      yield data
