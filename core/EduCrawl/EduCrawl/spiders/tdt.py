@@ -1,11 +1,10 @@
 from scrapy.linkextractors import LinkExtractor
 from scrapy.linkextractors.lxmlhtml import LxmlLinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
-import sys
 from bs4 import BeautifulSoup
-from scrapy.loader import ItemLoader
 from pathlib import Path
 from colorama import Fore, Style
+import re
 
 PATH = "../drive/MyDrive/uni/graduate/crawl/TDTdata/"
 
@@ -68,7 +67,6 @@ class TDTSpider(CrawlSpider):
     start_urls = ["https://www.tdtu.edu.vn/", "https://tdtu.edu.vn/"]
     rules = [
       Rule(LxmlLinkExtractor(allow="https://.*tdtu\.edu\.vn/.*"), callback='parse_item', follow=True),
-      Rule(LxmlLinkExtractor(deny_domains=DENY, deny=DENY_LINKS), callback='skip')
     ]
 
     def __init__(self, *a, **kw):
@@ -96,27 +94,52 @@ class TDTSpider(CrawlSpider):
         'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36'
       }
 
-    def parse_item(self, response):
-      soup = BeautifulSoup(response.body, 'html.parser')
-      soup.attrs.clear()
 
-      title = None
-      content = None
-      strips = self.config.remove_css
+    def parse_item(self, response):
+      weburl = response.url
+      allow_run = True
+      # domain
+      for domains in DENY:
+        if domains in weburl:
+          allow_run = False
+          self.skip(response=response)
+      # regex
+      for link in DENY_LINKS:
+        expr = rf"{link}"
+        match = re.search(expr, weburl)
+        if match:
+          allow_run = False
+          self.skip(response=response)
+      # store
+      if allow_run:
+        self.store_item(response=response)
+    
+    def store_item(self, response):    
+      # soup = BeautifulSoup(response.body, 'html.parser')
+      # soup.attrs.clear()
+
+      # title = None
+      # content = None
+      # strips = self.config.remove_css
       # config
-      index = -1
-      while(title == None or content == None):
-        index += 1
-        title_css, content_css = self.config.get_config(index)
-        if title_css == None:
-          break
-        # get soup
-        title = soup.select_one(title_css)
-        content = soup.select_one(content_css)
+      # index = -1
+      # while(title == None or content == None):
+      #   index += 1
+      #   title_css, content_css = self.config.get_config(index)
+      #   if title_css == None:
+      #     break
+      #   # get soup
+      #   title = soup.select_one(title_css)
+      #   content = soup.select_one(content_css)
       filename = response.url.replace("https://","").replace("/","_")
       Path(f"{PATH}/data/{filename}.html").write_bytes(response.body)
       self.log(f"Saved file {filename}")
-      try:
+      try:      # soup = BeautifulSoup(response.body, 'html.parser')
+      # soup.attrs.clear()
+
+      # title = None
+      # content = None
+      # strips = self.config.remove_css
         # data = {\
         #   "url": response.url,\
         #   "title": title.text,\
@@ -132,4 +155,3 @@ class TDTSpider(CrawlSpider):
         yield data
       except:
         print("[ERROR]")
-      
