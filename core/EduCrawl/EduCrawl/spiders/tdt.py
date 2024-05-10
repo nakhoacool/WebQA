@@ -6,7 +6,7 @@ from pathlib import Path
 from colorama import Fore, Style
 import re
 
-PATH = "../drive/MyDrive/uni/graduate/crawl/TDTdata/"
+PATH = "../drive/MyDrive/uni/graduate/crawl/TDTdata2/"
 
 DENY = [
   "lib.tdtu.edu.vn",
@@ -97,19 +97,6 @@ class TDTSpider(CrawlSpider):
     def parse_item(self, response):
       weburl = response.url
       allow_run = True
-      data = None
-      # domain
-      for domains in DENY:
-        if domains in weburl:
-          allow_run = False
-          break
-      # regex
-      for link in DENY_LINKS:
-        match = re.search(rf"{link}", weburl)
-        if match:
-          allow_run = False
-          break
-      # store
       if allow_run:
         filename = weburl.replace("https://","").replace("/","_")
         Path(f"{PATH}/data/{filename}.html").write_bytes(response.body)
