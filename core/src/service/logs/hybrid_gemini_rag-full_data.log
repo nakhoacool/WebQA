@@ -1,0 +1,126 @@
+2024-05-18 09:14:45,366 - hybrid_gemini_rag-full_data.log - ERROR - can't answer RAG
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/rag/../../src/rag/hybrid_rank_rag.py", line 143, in ask_rag
+    answer = self.chain.invoke({"question": question})
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2053, in invoke
+    input = step.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3507, in invoke
+    return self._call_with_config(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 1246, in _call_with_config
+    context.run(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3383, in _invoke
+    output = call_func_with_variable_args(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/rag/../../src/rag/hybrid_rank_rag.py", line 90, in __filter_format_doc
+    id = d.meatdata['id']
+AttributeError: 'Document' object has no attribute 'meatdata'
+2024-05-18 09:16:02,671 - hybrid_gemini_rag-full_data.log - ERROR - can't answer RAG
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/rag/../../src/rag/hybrid_rank_rag.py", line 143, in ask_rag
+    answer = self.chain.invoke({"question": question})
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2053, in invoke
+    input = step.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3507, in invoke
+    return self._call_with_config(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 1246, in _call_with_config
+    context.run(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3383, in _invoke
+    output = call_func_with_variable_args(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/rag/../../src/rag/hybrid_rank_rag.py", line 128, in __update_format_answer
+    self.update_notification_func()
+TypeError: <lambda>() missing 1 required positional argument: 'e'
+2024-05-18 09:42:36,129 - hybrid_gemini_rag-full_data.log - ERROR - Can't answer
+2024-05-18 09:44:22,905 - hybrid_gemini_rag-full_data.log - ERROR - Can't answer
+2024-05-18 09:54:34,687 - hybrid_gemini_rag-full_data.log - ERROR - can't answer RAG
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/rag/../../src/rag/hybrid_rank_rag.py", line 152, in ask_rag
+    answer = self.chain.invoke({"question": question})
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2053, in invoke
+    input = step.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3507, in invoke
+    return self._call_with_config(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 1246, in _call_with_config
+    context.run(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3383, in _invoke
+    output = call_func_with_variable_args(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/rag/../../src/rag/hybrid_rank_rag.py", line 100, in __filter_format_doc
+    answer_list_str = self.__answer_documents_parallel(question=question, docs=parent_docs)
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/rag/../../src/rag/hybrid_rank_rag.py", line 128, in __answer_documents_parallel
+    answers = pool.map(lambda content: chain.invoke({'question': question, "context": content}), doc_contents)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/multiprocessing/pool.py", line 364, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/multiprocessing/pool.py", line 771, in get
+    raise self._value
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/multiprocessing/pool.py", line 537, in _handle_tasks
+    put(task)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/multiprocessing/connection.py", line 206, in send
+    self._send_bytes(_ForkingPickler.dumps(obj))
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+AttributeError: Can't pickle local object 'HybridRFFGeminiRAG.__answer_documents_parallel.<locals>.<lambda>'
+2024-05-18 09:58:13,273 - hybrid_gemini_rag-full_data.log - ERROR - can't answer RAG
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/rag/../../src/rag/hybrid_rank_rag.py", line 154, in ask_rag
+    answer = self.chain.invoke({"question": question})
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2053, in invoke
+    input = step.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3507, in invoke
+    return self._call_with_config(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 1246, in _call_with_config
+    context.run(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3383, in _invoke
+    output = call_func_with_variable_args(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/rag/../../src/rag/hybrid_rank_rag.py", line 100, in __filter_format_doc
+    answer_list_str = self.__answer_documents_parallel(question=question, docs=parent_docs)
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/rag/../../src/rag/hybrid_rank_rag.py", line 130, in __answer_documents_parallel
+    answers = pool.map(self.__answer_document, payload)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/multiprocessing/pool.py", line 364, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/multiprocessing/pool.py", line 771, in get
+    raise self._value
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/multiprocessing/pool.py", line 537, in _handle_tasks
+    put(task)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/multiprocessing/connection.py", line 206, in send
+    self._send_bytes(_ForkingPickler.dumps(obj))
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/google/cloud/client/__init__.py", line 194, in __getstate__
+    raise PicklingError(
+_pickle.PicklingError: Pickling client objects is explicitly not supported.
+Clients have non-trivial state that is local and unpickleable.
+2024-05-18 10:09:56,583 - hybrid_gemini_rag-full_data.log - ERROR - can't answer RAG
+Traceback (most recent call last):
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/rag/../../src/rag/hybrid_rank_rag.py", line 160, in ask_rag
+    answer = self.chain.invoke({"question": question})
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 2053, in invoke
+    input = step.invoke(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3507, in invoke
+    return self._call_with_config(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 1246, in _call_with_config
+    context.run(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/base.py", line 3383, in _invoke
+    output = call_func_with_variable_args(
+  File "/home/h4438/miniconda3/envs/uni/lib/python3.9/site-packages/langchain_core/runnables/config.py", line 326, in call_func_with_variable_args
+    return func(input, **kwargs)  # type: ignore[call-arg]
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/rag/../../src/rag/hybrid_rank_rag.py", line 100, in __filter_format_doc
+    answer_list_str = self.__answer_documents_parallel(question=question, docs=parent_docs)
+  File "/home/h4438/Desktop/graduate/WebQA/core/experiments/rag/../../src/rag/hybrid_rank_rag.py", line 135, in __answer_documents_parallel
+    map_chain = RunnableParallel(**chains)
+TypeError: langchain_core.runnables.base.RunnableParallel() argument after ** must be a mapping, not list

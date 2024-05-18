@@ -3,6 +3,15 @@ from src.prepare.types import TDTDoc
 class RAGCategories:
 
     def __init__(self) -> None:
+        # Full
+        self.full_data = RAGConfig(
+            embed_model="gemini",
+            text_index="full-data-text-split",
+            vector_index='full-data-vector',
+            db_category='full_data',
+            size=460,
+            overlap=20
+        )
         # Major
         self.major = RAGConfig(
             embed_model = "sentence-transformers/LaBSE",

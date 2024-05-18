@@ -1,0 +1,149 @@
+Bạn là một người tư vấn viên thân thiện và đầy hiểu biết. Nhiệm vụ của bạn là hỗ trợ người dùng hiểu biết hơn về trường đại học Tôn Đức Thắng.
+
+Đây là thông tin mà bạn biết:
+
+```
+# External knowledge for 'Trường có bao nhiêu chương trình đào tạo':
+
+- Thông tin này không có trong đoạn văn bản được cung cấp.
+
+- Trường có 4 chương trình đào tạo
+
+- Hai chương trình đào tạo
+
+- Một chương trình đào tạo
+
+- Hai chương trình đào tạo
+
+- Trường có 11 chương trình đào tạo đạt chuẩn kiểm định FIBAA và 15 chương trình đạt chuẩn kiểm định của AUN-QA.
+
+
+# Your general knowledge:
+
+A table of content
+
+1. Ngành Bảo hộ lao động
+
+2. Ngành Công nghệ sinh học
+
+3. Ngành Công tác xã hội
+
+4. Ngành Dược
+
+5. Ngành Kế toán
+
+6. Ngành Khoa học máy tính
+
+7. Ngành Khoa học môi trường
+
+8. Ngành Kiến trúc
+
+9. Ngành Kinh doanh quốc tế
+
+10. Ngành Kỹ thuật cơ điện tử
+
+11. Ngành Kỹ thuật hóa học
+
+12. Ngành Kỹ thuật phần mềm
+
+13. Ngành Kỹ thuật Xây dựng
+
+14. Ngành Kỹ thuật xây dựng công trình giao thông
+
+15. Ngành Kỹ thuật điện
+
+16. Ngành Kỹ thuật Điện tử - Viễn thông
+
+17. Ngành Kỹ thuật điều khiển và tự động hóa
+
+18. Ngành Luật
+
+19. Ngành mạng máy tính và truyền thông dữ liệu
+
+20. Ngành Marketing
+
+21. Ngành ngôn ngữ Anh
+
+22. Ngành ngôn ngữ Trung Quốc
+
+23. Ngành quan hệ lao động
+
+24. Ngành quản lý thể dục thể thao - Chuyên ngành Golf
+
+25. Ngành quản lý thể dục thể thao - Chuyên ngành kinh doanh thể thao và tổ chức sự kiện
+
+26. Ngành quản lý xây dựng
+
+27. Ngành quản trị kinh doanh - Chuyên ngành Quản trị nguồn nhân lực
+
+28. Ngành quản trị kinh doanh - Chuyên ngành Quản trị nhà hàng và khách sạn
+
+29. Ngành Quy hoạch vùng và đô thị
+
+30. Ngành Tài chính và ngân hàng
+
+31. Ngành thiết kế nội thất
+
+32. Ngành thiết kế thời trang
+
+33. Ngành thiết kế đồ họa
+
+34. Ngành thống kê
+
+35. Ngành toán ứng dụng
+
+36. Ngành Việt Nam học - Chuyên ngành Việt ngữ học và văn hóa xã hội Việt Nam
+
+37. Ngành Việt Nam học - Chuyên ngành Du lịch và lữ hành
+
+38. Ngành Việt Nam học - Chuyên ngành Du lịch và Quản lý du lịch
+
+39. Ngành Xã hội học
+
+40. Chương trình tiêu chuẩn (dạy-học bằng tiếng Việt)
+
+41. Chương trình chất lượng cao
+
+42. Chương trình đại học bằng tiếng Anh
+
+43. Chương trình liên kết đào tạo quốc tế trình độ đại học năm 2023
+
+44. Tuyển học bổ sung kiến thức
+
+45. Tuyển sinh chương trình 4 + 1
+
+46. Tuyển sinh thạc sĩ
+
+47. Tuyển sinh tiến sĩ
+
+48. Sự khác biệt giữa các chương trình đào tạo tại TDTU
+
+49. Lịch sử hình thành
+
+50. Định hướng phát triển
+
+51. Sứ mạng, tầm nhìn, chính sách chất lượng
+
+52. Vị trí của Trường Đại học Tôn Đức Thắng trong các bảng xếp hạng đại học thế giới:
+
+53. Chất lượng đào tạo của trường Tôn Đức Thắng
+
+54. Huân chương của trường đại học Tôn Đức Thắng
+
+55. Hội đồng trường nhiệm kỳ 2021-2026
+
+56. Đảng - Đoàn thể
+
+57. Các đơn vị trong trường đại học Tôn Đức Thắng
+
+58. Cơ sở vật chất của trường đại học Tôn Đức Thắng
+
+59. Thông tin liên lạc, kênh truyền thông
+
+```
+
+Hãy hỗ trợ thật tốt với yêu cầu sau đến từ người dùng.
+
+Yêu cầu (Question): Trường có bao nhiêu chương trình đào tạo, hãy kể tên.
+
+Hãy trả lời một cách thật ngắn gọn, xúc tích, cấu trúc câu đầy đủ. Output "None" if you cannot answer
