@@ -1,4 +1,10 @@
-from src.prepare.types import TDTDoc
+from typing import TypedDict
+from src.utils.types import TDTDoc
+
+class RAGCategory(TypedDict):
+    title: str
+    year: int
+
 
 class RAGCategories:
 

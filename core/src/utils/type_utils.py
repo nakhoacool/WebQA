@@ -1,5 +1,4 @@
 from typing import Dict, List
-from langchain_core.documents.base import Document
 
 class TDTDoc:
 

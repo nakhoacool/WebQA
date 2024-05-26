@@ -4,7 +4,7 @@ import os
 from typing import List, Dict
 from langchain_core.documents.base import Document
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from src.prepare.types import TDTDoc
+from src.utils.type_utils import TDTDoc
 from src.service.provider import ProviderService
 from src.rag.types import RAGConfig
 

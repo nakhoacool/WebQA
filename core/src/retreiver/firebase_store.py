@@ -1,4 +1,4 @@
-from src.prepare.types import TDTDoc
+from src.utils.type_utils import TDTDoc
 from src.service.applog import AppLogService
 from firebase_admin import firestore
 from src.service.config import ConfigurationService

@@ -5,11 +5,9 @@ from langchain_community.vectorstores.elasticsearch import ElasticsearchStore
 from langchain_community.llms.openai import OpenAI
 from langchain_google_genai import GoogleGenerativeAI, ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from src.service.config import ConfigurationService
-from src.service.docstore import DocStore
 from src.retreiver.firebase_store import FirebaseStore
 from src.rag.types import RAGCategories
 from src.retreiver.es_bm25_retriever import MyElasticSearchBM25Retriever
-from src.prepare.website_load import WebPageMDLoader
 from langchain_openai import OpenAIEmbeddings
 
 class ProviderService:
@@ -18,7 +16,7 @@ class ProviderService:
         self.config = ConfigurationService()
         self.docstore = FirebaseStore(config=self.config)
         self.categories = RAGCategories()
-        self.webloader = WebPageMDLoader()
+        # self.webloader = WebPageMDLoader()
         return
 
 

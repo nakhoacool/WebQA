@@ -1,13 +1,5 @@
-from src.prepare.data_load import DocDataLoader
-from src.prepare.types import TDTDoc
-
-class DocCategories:
-
-    major = "major"
-    def __init__(self) -> None:
-        
-        pass
-
+from src.utils.data_load import DocDataLoader
+from src.utils.types import TDTDoc
 
 class DocStore:
 

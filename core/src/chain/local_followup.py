@@ -6,7 +6,7 @@ from operator import itemgetter
 from src.service.provider import ProviderService
 from src.service.applog import AppLogService
 from src.rag.types import RAGResponse
-from src.prepare.types import TDTDoc
+from src.utils.type_utils import TDTDoc
 
 TEMPLATE = """"You are a helpful and friendly assitant for Ton Duc Thang university.
 Answer the question using the following context and your knowledge to best support the user. Output "None" if you cannot answer:

@@ -3,8 +3,7 @@ from langsmith.run_helpers import traceable
 from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
 from langchain_core.runnables import RunnableLambda, RunnableParallel
 from operator import itemgetter
-from src.prepare.types import TDTDoc
-import multiprocessing
+from src.utils.type_utils import TDTDoc
 from typing import List
 from src.rag.types import RAGResponse, RAGConfig
 from src.service.provider import ProviderService

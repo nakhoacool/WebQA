@@ -4,11 +4,10 @@ from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from src.service.provider import ProviderService
 from src.rag.hybrid_rag import HybridGeminiRAG
-from src.prepare.data_load import DocDataLoader
 from src.chain.local_followup import LocalFollowUpChain
 from langsmith.run_helpers import traceable
 from src.rag.types import RAGResponse
-from src.prepare.types import TDTDoc
+from src.utils.type_utils import TDTDoc
 
 TEMPLATE = """Given the user question below, classify it as either being about `Major`, `Local` or `Other`. Known that:
 ```
