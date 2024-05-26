@@ -1,4 +1,13 @@
 from typing import Dict, List
+from langchain_core.documents import Document
+
+def create_langchain_doc(content: str, metadata: Dict) -> Document:
+    '''
+        Quickly create langchain Document
+    '''
+    doc = Document(page_content=content)
+    doc.metadata = metadata
+    return doc
 
 class TDTDoc:
 

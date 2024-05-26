@@ -1,5 +1,5 @@
 from typing import TypedDict
-from src.utils.types import TDTDoc
+from src.utils.type_utils import TDTDoc
 
 class RAGCategory(TypedDict):
     title: str
