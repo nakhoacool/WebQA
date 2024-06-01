@@ -2,6 +2,7 @@ from typing import List, TypedDict
 import json
 
 class EvaluateIR(TypedDict):
+    relevant: int
     precision: float
     recall: float
     map_score: float
@@ -33,6 +34,7 @@ def evaluate_IR(eval_dataset) -> EvaluateIR:
 
         @param eval_dataset (follow: "BroDeadlines/EVAL.IR_evaluation")
     '''
+    null_rows = 0 # handle empty evaluation row
     fin_result: EvaluateIR = {}
     num_relevant_retrieved = 0
     num_retrieved = 0
@@ -40,6 +42,11 @@ def evaluate_IR(eval_dataset) -> EvaluateIR:
     re_docs = {}
     precision_list = []
     for row in eval_dataset:
+        if len(row['evaluation']) == 0:
+            # handle empty evaluation row
+            print("nothing to evaluate")
+            null_rows += 1
+            continue
         target_id = row['doc_id']
         shards = json.loads(row['metadata'])['shards']
         num_relevant += shards
@@ -57,7 +64,8 @@ def evaluate_IR(eval_dataset) -> EvaluateIR:
             precision_list.append(sum(tmp) / len(tmp))
     num_retrieved = len(re_docs)
     # calculate
+    fin_result['relevant'] = num_relevant_retrieved / (eval_dataset.num_rows - null_rows)
     fin_result['precision'] = num_relevant_retrieved / num_retrieved
     fin_result['recall'] = num_relevant_retrieved / num_relevant
-    fin_result['map_score'] = sum(precision_list) / eval_dataset.num_rows
+    fin_result['map_score'] = sum(precision_list) / (eval_dataset.num_rows - null_rows)
     return fin_result
