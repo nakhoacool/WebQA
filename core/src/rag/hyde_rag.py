@@ -79,5 +79,5 @@ class HydeHybridSearchRAG:
         self.bm25 = bm25_retriever
         self.ensemble_retriever = EnsembleRetriever(
             retrievers=[bm25_retriever, es_retriever],
-            weights=[0.4, 0.6])
+            weights=[0.5, 0.5])
         return 

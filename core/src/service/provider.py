@@ -69,7 +69,7 @@ class ProviderService:
             @return gemini model
         """
         model = GoogleGenerativeAI(
-            model="gemini-pro", 
+            model="gemini-1.5-flash", 
             temperature=0, google_api_key=self.config.load_gemini_token())
         return model
     
