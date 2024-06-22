@@ -2,7 +2,7 @@
 .hg_key
 .keys/
 __pycache__/
-
+logs/
 .venv/
 rag.log
 
