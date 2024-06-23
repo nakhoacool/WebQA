@@ -14,7 +14,7 @@ class ProviderService:
 
     def __init__(self) -> None:
         self.config = ConfigurationService()
-        self.docstore = FirebaseStore(config=self.config)
+        # self.docstore = FirebaseStore(config=self.config)
         self.categories = RAGCategories()
         # self.webloader = WebPageMDLoader()
         return
@@ -48,28 +48,28 @@ class ProviderService:
             ca_certs=ca_certs)
         return es
     
-    def get_gemini_pro(self, convert_system_message:bool = False) -> ChatGoogleGenerativeAI:
+    def get_gemini_pro(self, model="gemini-pro", convert_system_message:bool = False) -> ChatGoogleGenerativeAI:
         """
             get an instance of gemini pro chat model
 
             @return gemini chat model
         """
         chat_model = ChatGoogleGenerativeAI(
-            model="gemini-pro", 
+            model=model, 
             temperature=0, 
             google_api_key=self.config.load_gemini_token(),
             convert_system_message_to_human=convert_system_message
         )
         return chat_model
     
-    def get_simple_gemini_pro(self) -> GoogleGenerativeAI:
+    def get_simple_gemini_pro(self, model="gemini-pro") -> GoogleGenerativeAI:
         """
             get an instance of gemini model
 
             @return gemini model
         """
         model = GoogleGenerativeAI(
-            model="gemini-1.5-flash", 
+            model=model, 
             temperature=0, google_api_key=self.config.load_gemini_token())
         return model
     
@@ -94,14 +94,14 @@ class ProviderService:
         model = OpenAI(temperature=0, max_tokens=1800, openai_api_key=self.config.load_openai_token())
         return model
 
-    def get_gemini_embeddings(self) -> GoogleGenerativeAIEmbeddings:
+    def get_gemini_embeddings(self, model="models/embedding-001") -> GoogleGenerativeAIEmbeddings:
         """
             get an instance of gemini embedding model
 
             @return embedding model
         """
         model = GoogleGenerativeAIEmbeddings(
-            model="models/embedding-001", 
+            model=model, 
             google_api_key=self.config.load_gemini_token())
         return model
     

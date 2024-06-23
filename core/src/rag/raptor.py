@@ -1,5 +1,4 @@
 from typing import Dict, List, Optional, Tuple
-from langchain_core.documents import Document
 import numpy as np
 import pandas as pd
 import umap
@@ -7,20 +6,30 @@ from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from sklearn.mixture import GaussianMixture
 from src.service.provider import ProviderService
-
+from src.service.applog import AppLogService
+from src.utils.text_utils import window_slide_chunks, window_slide_split
 # Summarization
 
-SUMMARIZATION_TEMPLATE = """Give a detailed summary of the documentation provided.
-Documentation:
+# SUMMARIZATION_TEMPLATE = """Give a detailed summary of the documentation provided.
+# Documentation:
+# {context}
+# """
+
+SUMMARIZATION_TEMPLATE = """Hãy tóm tắt văn bản sau một cách ngắn gọn và xúc tích.
+Văn bản:
 {context}
 """
 
+SUMMARY_SEPARATOR = "------"
+
 class RAPTOR:
 
-    def __init__(self, provider: ProviderService) -> None:
+    def __init__(self, provider: ProviderService, context_len: int = 2000) -> None:
         self.RANDOM_SEED = 224  # Fixed seed for reproducibility
+        self.CONTEXT_LIMIT = context_len # a number of words a text can contains
         self.embd = provider.get_gemini_embeddings()
-        self.model = provider.get_simple_gemini_pro() 
+        self.model = provider.get_simple_gemini_pro()
+        self.logger = AppLogService(name="raptor.log")
         return
 
     ### --- Code from citations referenced above (added comments and docstrings) --- ###
@@ -206,7 +215,21 @@ class RAPTOR:
         Returns:
         - numpy.ndarray: An array of embeddings for the given text documents.
         """
-        text_embeddings = self.embd.embed_documents(texts)
+        text_embeddings = []
+        for text in texts:
+            try:
+                # text_embeddings = self.embd.embed_documents(texts, batch_size=2)
+                embeddings = self.embd.embed_query(text=text)
+                text_embeddings.append(embeddings)
+            except:
+                print("Error at generate embeddings")
+                self.logger.logger.exception(f"[ERROR] {text}")
+                if len(text.split(" ")) <= self.CONTEXT_LIMIT:
+                    continue
+                split_texts = window_slide_split(text=text, step=100, chunk_size=1000)
+                for split in split_texts:
+                    embeddings = self.embd.embed_query(text=split)
+                    text_embeddings.append(embeddings)
         text_embeddings_np = np.array(text_embeddings)
         return text_embeddings_np
 
@@ -248,7 +271,7 @@ class RAPTOR:
         - A single string where all text documents are joined by a specific delimiter.
         """
         unique_txt = df["text"].tolist()
-        return "--- --- \n --- --- ".join(unique_txt)
+        return f"{SUMMARY_SEPARATOR} \n {SUMMARY_SEPARATOR}".join(unique_txt)
 
 
     def embed_cluster_summarize_texts(
@@ -344,8 +367,9 @@ class RAPTOR:
         unique_clusters = df_summary["cluster"].nunique()
         if level < n_levels and unique_clusters > 1:
             # Use summaries as the input texts for the next level of recursion
-            new_texts = df_summary["summaries"].tolist()
-            new_list_ids = df_summary["doc_ids"].tolist()
+            th_texts = df_summary["summaries"].tolist()
+            th_list_ids = df_summary["doc_ids"].tolist()
+            new_texts, new_list_ids = self.reduce_text_length(texts=th_texts, ids=th_list_ids)
             next_level_results = self.recursive_embed_cluster_summarize(
                 new_texts, new_list_ids, level + 1, n_levels
             )
@@ -354,3 +378,32 @@ class RAPTOR:
             results.update(next_level_results)
 
         return results
+    
+    def reduce_text_length(self, texts: List[str], ids: List[str]):
+        """
+            Split the long text length for the AI models
+        """
+        text_list = []
+        id_list = []
+        for text, id in zip(texts, ids):
+            words = len(text.split(" "))
+            if words <= self.CONTEXT_LIMIT:
+                text_list.append(text)
+                id_list.append(id)
+                continue
+            print(f"[LONG] a text with {words} words: id {id}")
+            split_chunks = words % self.CONTEXT_LIMIT
+            if split_chunks == 1:
+                split_chunks = 2
+            split_txts = window_slide_chunks(text=text, step_ratio=0.25, chunks=split_chunks)
+            for a in split_txts:
+                text_list.append(a)
+                id_list.append(id)
+        return text_list, id_list
+
+    def test_log(self, msg: str):
+        """
+            Test logging
+        """
+        self.logger.logger.exception(msg=msg)
+        return

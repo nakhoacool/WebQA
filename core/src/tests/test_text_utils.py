@@ -7,6 +7,11 @@ def test_window_slide_basic():
     assert slides[0] == "hello world Spring yolo whatzup"
     assert slides[-1] == "you trust to power"
 
+def test_window_slide_equal_chunks():
+    text = "hello world Spring yolo whatzup I'm a coder that you"
+    slides = text_utils.window_slide_chunks(text=text, step_ratio=0.3, chunks=2)
+    assert len(slides) == 2
+
 def test_window_slide_equal():
     text = "hello world Spring yolo whatzup I'm a coder that you"
     slides = text_utils.window_slide_split(text=text, step=5, chunk_size=5)

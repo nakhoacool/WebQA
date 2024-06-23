@@ -10,7 +10,7 @@ class AppLogService:
     """
     def __init__(self, name):
         self.env_path = os.path.dirname(__file__)
-        self.path = os.path.join(self.env_path, 'logs')
+        self.path = os.path.join(f"{self.env_path}/../../..", 'logs')
         self.name = name
         os.makedirs(self.path, exist_ok=True)
         self.logger = self.__build_logger()
