@@ -6,6 +6,9 @@ class EvaluateIR(TypedDict):
     precision: float
     recall: float
     map_score: float
+    relevant_retrieved: int
+    num_retrieved: int
+    nulls: int
 
 
 def precision_ith_doc(ith: int, target_id: str, ids: List[str]) -> float:
@@ -133,10 +136,10 @@ def evaluate_IR_RAPTOR(eval_dataset, limit_k: int = -1, shard_column: str = 'har
             precision_list.append(sum(tmp) / len(tmp))
     num_retrieved = len(re_docs)
     # calculate
-    fin_result['relevant'] = num_relevant_retrieved / (eval_dataset.num_rows - null_rows)
-    fin_result['precision'] = num_relevant_retrieved / num_retrieved
-    fin_result['recall'] = num_relevant_retrieved / num_relevant
-    fin_result['map_score'] = sum(precision_list) / (eval_dataset.num_rows - null_rows)
+    fin_result['precision'] = round(num_relevant_retrieved / num_retrieved, 3)
+    fin_result['recall'] = round(num_relevant_retrieved / num_relevant, 3)
+    fin_result['map_score'] = round(sum(precision_list) / (eval_dataset.num_rows - null_rows), 3)
     fin_result['relevant_retrieved'] = num_relevant_retrieved
     fin_result['num_retrieved'] = num_retrieved
+    fin_result['nulls'] = null_rows
     return fin_result

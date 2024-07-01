@@ -41,6 +41,9 @@ Input:
 ```
 Output (must be Vietnamese):'''
 
-def create_proposition_chain(provider: ProviderService):
-    prompt = PromptTemplate.from_template(template=TEMPLATE)
-    return prompt | provider.get_simple_gemini_pro()
+def create_proposition_chain(
+        provider: ProviderService, 
+        model: str = "gemini-1.5-flash-latest", context_holder: str = "context"):
+    temp = TEMPLATE.replace("{para}", context_holder)
+    prompt = PromptTemplate.from_template(template=temp)
+    return prompt | provider.get_simple_gemini_pro(model=model)

@@ -2,8 +2,8 @@ from typing import Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 import umap
-from langchain.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
+from src.chain.proposition import create_proposition_chain
+from langchain.prompts import PromptTemplate
 from sklearn.mixture import GaussianMixture
 from src.service.provider import ProviderService
 from src.service.applog import AppLogService
@@ -22,14 +22,20 @@ Văn bản:
 
 SUMMARY_SEPARATOR = "------"
 
+REDUCE_METHODS = {
+    "SUMMARY": "summary",
+    "PROPOSITION": "proposition"
+}
+
 class RAPTOR:
 
-    def __init__(self, provider: ProviderService, context_len: int = 2000) -> None:
+    def __init__(self, provider: ProviderService, context_len: int = 2000, reduce_method: str = "summary") -> None:
         self.RANDOM_SEED = 224  # Fixed seed for reproducibility
         self.CONTEXT_LIMIT = context_len # a number of words a text can contains
         self.embd = provider.get_gemini_embeddings()
         self.model = provider.get_simple_gemini_pro()
         self.logger = AppLogService(name="raptor.log")
+        self.reduce_chain = self.__build_reduce_chain(provider, reduce_method)
         return
 
     ### --- Code from citations referenced above (added comments and docstrings) --- ###
@@ -224,12 +230,13 @@ class RAPTOR:
             except:
                 print("Error at generate embeddings")
                 self.logger.logger.exception(f"[ERROR] {text}")
-                if len(text.split(" ")) <= self.CONTEXT_LIMIT:
-                    continue
-                split_texts = window_slide_split(text=text, step=100, chunk_size=1000)
-                for split in split_texts:
-                    embeddings = self.embd.embed_query(text=split)
-                    text_embeddings.append(embeddings)
+                continue
+                # if len(text.split(" ")) <= self.CONTEXT_LIMIT:
+                    # continue
+                # split_texts = window_slide_split(text=text, step=100, chunk_size=1000)
+                # for split in split_texts:
+                    # embeddings = self.embd.embed_query(text=split)
+                    # text_embeddings.append(embeddings)
         text_embeddings_np = np.array(text_embeddings)
         return text_embeddings_np
 
@@ -309,14 +316,14 @@ class RAPTOR:
 
         # Create a new DataFrame from the expanded list
         expanded_df = pd.DataFrame(expanded_list)
-
+        chain.invoke({"context": formatted_txt})
         # Retrieve unique cluster identifiers for processing
         all_clusters = expanded_df["cluster"].unique()
 
         print(f"--Generated {len(all_clusters)} clusters--")
 
-        prompt = ChatPromptTemplate.from_template(SUMMARIZATION_TEMPLATE)
-        chain = prompt | self.model | StrOutputParser()
+        # Build reduce chain (summary, proposition)
+        chain = self.reduce_chain
 
         # Format text within each cluster for summarization
         summaries = []
@@ -407,3 +414,13 @@ class RAPTOR:
         """
         self.logger.logger.exception(msg=msg)
         return
+    
+    def __build_reduce_chain(self, provider: ProviderService, reduce_method: str):
+        chain = None
+        if reduce_method == REDUCE_METHODS["SUMMARY"]:
+            prompt = PromptTemplate.from_template(SUMMARIZATION_TEMPLATE)
+            chain = prompt | self.model
+        else:
+            print("Create proposition chain")
+            chain = create_proposition_chain(provider=provider)
+        return chain
