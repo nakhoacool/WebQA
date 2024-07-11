@@ -9,6 +9,7 @@ from src.retreiver.firebase_store import FirebaseStore
 from src.rag.types import RAGCategories
 from src.retreiver.es_bm25_retriever import MyElasticSearchBM25Retriever
 from langchain_openai import OpenAIEmbeddings
+from langchain.retrievers import EnsembleRetriever
 
 class ProviderService:
 
@@ -156,3 +157,23 @@ class ProviderService:
             client=self.load_elasticsearch_connection(), 
             index_name=index)
         return bm25_retriever
+    
+    def get_hybrid_retriever(
+            self, vec_index: str, txt_index: str, total_k: int, 
+            vec_wgh: float = 0.5, txt_wgh: float = 0.5, model: str = "gemini") -> EnsembleRetriever:
+        """
+            Initialize Elastic, BM25 instances and combine them into hybrid search
+        """
+        K = total_k
+        # elastic
+        es_connect = self.load_elasticsearch_connection()
+        es = self.get_elasticsearch_store(index=vec_index, embed_type=model)
+        es_retriever = es.as_retriever(search_kwargs={"k": K, "fetch_k": 10})
+        # es_retriever = es.as_retriever()
+        # BM-25
+        bm25_retriever = MyElasticSearchBM25Retriever(client=es_connect, index_name=txt_index)
+        bm25_retriever.k = K
+        ensemble_retriever = EnsembleRetriever(
+            retrievers=[bm25_retriever, es_retriever],
+            weights=[txt_wgh, vec_wgh])
+        return ensemble_retriever 

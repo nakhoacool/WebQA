@@ -1,5 +1,5 @@
 import os
-from typing import List
+from elasticsearch import Elasticsearch
 import firebase_admin
 from firebase_admin import credentials
 
@@ -81,6 +81,23 @@ class ConfigurationService:
         os.environ["LANGCHAIN_API_KEY"]=self.load_langsmith_token()
         os.environ["LANGCHAIN_PROJECT"]=project.strip()
         return
+
+    def load_elasticsearch_connection(self) -> Elasticsearch:
+        """
+            load elastic search connection from hosted cloud
+
+            @return a es connection
+        """
+        with open(f"{self.env_path}/../.keys/elastic.nodes") as f:
+            nodes = f.readlines()
+        with open(f"{self.env_path}/../.keys/elastic.auth") as f:
+            auth = f.read().strip().split(":")
+        es = Elasticsearch(
+            nodes, 
+            basic_auth=auth, 
+            ca_certs=f'{self.env_path}/../.keys/ca.crt')
+        return es
+
 
     def load_elasticsearch_config(self):
         """
