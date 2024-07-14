@@ -16,3 +16,5 @@ firebase_admin==6.4.0
 scikit-learn
 nltk
 rouge-score
+datasets
+umap-learn
