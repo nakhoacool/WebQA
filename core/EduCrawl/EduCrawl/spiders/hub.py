@@ -46,6 +46,8 @@ DENY_LINKS=[
   "https://.*tdtu\.edu\.vn/.*signup.*"
   ]
 
+CONTENT_XPATH = "/html/body/div[1]/div[4]/div[2]/div/div[2]/div/div"
+
 class TDTConfig:
 
   def __init__(self):
@@ -64,11 +66,11 @@ class TDTConfig:
 
 class TDTSpider(CrawlSpider):
     name = "hub"
-    start_urls = ["http://hub.edu.vn/"]
+    start_urls = ["http://tuyensinh.hub.edu.vn/"]
     rules = [
       Rule(
         LxmlLinkExtractor(
-          allow="http://.*hub\.edu\.vn/.*", deny_domains=DENY, deny=DENY_LINKS), 
+          allow="http://tuyensinh.hub\.edu\.vn/.*", deny_domains=DENY, deny=DENY_LINKS), 
           callback='parse_item', follow=True)
     ]
 
@@ -102,12 +104,13 @@ class TDTSpider(CrawlSpider):
           "skipped": 'no'
         }
       else:
-        # self.warn(text=f"Skip {weburl}")
+        contents = response.xpath(CONTENT_XPATH).css("::text").getall()
+        titles = response.css(".thongbao_tieude::text").getall()
         data = {
           "url": weburl,
-          "html_name": "",
           "skipped": 'yes',
-          "title": response.css(".thongbao_tieude::text").get(),
-          "content": response.css(".thongbao_text::text").get() 
+          "title": "\n".join(titles),
+          "content": "\n".join(contents) 
         }
+        self.log(text=f"Collected: {len(data['title'])} - {len(data['content'])}")
       yield data
