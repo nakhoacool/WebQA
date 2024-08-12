@@ -316,7 +316,6 @@ class RAPTOR:
 
         # Create a new DataFrame from the expanded list
         expanded_df = pd.DataFrame(expanded_list)
-        chain.invoke({"context": formatted_txt})
         # Retrieve unique cluster identifiers for processing
         all_clusters = expanded_df["cluster"].unique()
 

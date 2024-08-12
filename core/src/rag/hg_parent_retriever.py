@@ -3,9 +3,10 @@ import time
 from typing import TypedDict, List
 from operator import itemgetter
 from langchain_core.prompts import PromptTemplate
-from langchain_core.runnables import RunnableLambda
+from langchain_core.runnables import RunnableLambda, RunnableParallel
 from langchain_core.documents import Document
 from datasets.dataset_dict import DatasetDict 
+from src.service.applog import AppLogService
 
 class ConfigParentRAG(TypedDict):
     vec_index: str
@@ -51,17 +52,18 @@ class HugFaceParentRAG:
             vec_wgh=config['vec_weight'],
             txt_wgh=config['txt_weight'])
         
-        gemini = provider.get_simple_gemini_pro(model=config['llm'])
+        self.log = AppLogService(f"{config['vec_index']}.log")
+        self.gemini = provider.get_simple_gemini_pro(model=config['llm'])
         self.corpora = text_corpora
         self.retrieved_docs = None
-        teml = TEMPLATE.replace("{university}", uni)
-        prompt = PromptTemplate.from_template(template=teml)
-        self.answer_chain = prompt | gemini
+        self.batch = 3
+        self.template = TEMPLATE.replace("{university}", uni)
         self.chain = (
             {"context": itemgetter("question") | RunnableLambda(self.ensemble_retriever.invoke), 
              "question": itemgetter("question")
             }
             | RunnableLambda(self.__find_parent_docs)
+            | RunnableLambda(self.__parallel_answer)
             | RunnableLambda(self.__refine_answer)
         ) 
         return
@@ -78,16 +80,37 @@ class HugFaceParentRAG:
         self.retrieved_docs = None
         return result
 
-    def __refine_answer(self, inputs):
-        answer_doc = ""
+    def __parallel_answer(self, inputs):
+        answers = []
         docs = inputs['parent_docs']
         ques = inputs['question']
-        for d in docs:
-            answer = self.answer_chain.invoke({"context": d, "question": ques})
-            answer_doc += (answer + "\n")
-        fin_answer = self.answer_chain.invoke({"context": answer_doc, "question": ques})
-        return fin_answer
+        chains = [{}]
+        batch = 0
+        # split documents to batches of chains
+        for idx, d in enumerate(docs):
+            prompt = PromptTemplate.from_template(
+                template=self.template.replace("{context}",d))
+            answer_chain = prompt | self.gemini
+            chains[batch][str(idx)] = answer_chain
+            if idx % self.batch == 0 and idx > 0:
+                batch += 1
+                chains.append({})
+        # run each batch one by one
+        for chain_batch in chains:
+            parallel_chain = RunnableParallel(**chain_batch)
+            try:
+                ans_list = parallel_chain.invoke({"question": ques})
+            except Exception:
+                ans_list = {'1': ''}
+                self.log.logger.exception(Exception)
+            answers.extend(list(ans_list.values()))
+        return {"answers": answers, "question": ques}
 
+    def __refine_answer(self, inputs):
+        chain = PromptTemplate.from_template(template=self.template) | self.gemini
+        context = "\n".join(inputs['answers'])
+        answer = chain.invoke({"context": context, "question": inputs['question']})
+        return answer
 
     def __find_parent_docs(self, inputs):
         # store retrieved docs
@@ -96,7 +119,6 @@ class HugFaceParentRAG:
         map_ids = {}
         parent_docs:List[str] = []
         for doc in docs:
-            print(doc)
             d_id = doc.metadata['doc_id']
             if d_id in map_ids:
                 continue
