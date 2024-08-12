@@ -12,7 +12,7 @@ At the top directory, run
 
 ```bash
 cd core
-pip install -r requirements.txt
+pip install -r deploy_req.txt
 cd ../
 flask --app core/app.py run
 ```
