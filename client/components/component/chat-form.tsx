@@ -68,18 +68,32 @@ export default function ChatForm() {
         signal: controller.signal,
       })
       .then(({ data }) => {
+      if (data.status === 200) {
         handleFormSubmit({
           role: 'bot',
           content: data.answer,
         })
-        setIsBotTyping(false)
+      } else {
+        handleFormSubmit({
+          role: 'bot',
+          content: 'Sorry, something went wrong. Please start again.',
+        })
+      }
+      setIsBotTyping(false)
       })
       .catch(function (thrown) {
         if (axios.isCancel(thrown)) {
-          console.log('Request canceled', thrown.message)
+          handleFormSubmit({
+            role: 'bot',
+            content: 'Your request has been cancelled. Please start again.',
+          })
         } else {
-          console.log(thrown)
+          handleFormSubmit({
+            role: 'bot',
+            content: 'Sorry, something went wrong. Please start again.',
+          })
         }
+        setIsBotTyping(false)
       })
     window.addEventListener('beforeunload', (e) => {
       controller.abort()
