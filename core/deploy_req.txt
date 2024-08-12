@@ -1,0 +1,13 @@
+langchain
+gunicorn
+elasticsearch
+rank_bm25
+langchain-google-genai
+Flask
+flask-cors
+langchain-community
+langchain-openai
+google-cloud-aiplatform
+oauth2client==4.1.3
+google-api-python-client==2.64.0
+datasets

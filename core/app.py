@@ -1,17 +1,30 @@
 from flask import Flask, request
-from markupsafe import escape
 from src.config import Configuration
 from src.service.applog import AppLogService
-from langsmith.run_helpers import traceable
 import os
 from flask_cors import CORS
+from src.rag.hg_parent_retriever import HugFaceParentRAG, get_default_config
 from src.service.provider import ProviderService
 from src.robot import RAGRobot
-from src.service.googledrive import GoogleDriveService
+from datasets import load_dataset
 from typing import Dict
 
 # When call API, please check the "status" field first
 # 200 is success, else is error
+
+DATA_REPO = "BroDeadlines/TEST.TDT.mini.tdt_copora_data"
+SUBSET = "compact"
+UNI = "Tôn Đức Thắng"
+VEC_IDX = "vec-sentence-compact-tdt-sentence"
+TXT_IDX = "text-sentence-compact-tdt-sentence"
+
+def create_proposition_config():
+    config = get_default_config()
+    config['vec_index'] = VEC_IDX
+    config['txt_index'] = TXT_IDX
+    config['total_k'] = 8
+    config['llm'] = "gemini-1.0-pro"
+    return config
 
 class RobotManager:
     """
@@ -21,12 +34,17 @@ class RobotManager:
     def __init__(self) -> None:
         self.robots: Dict[str, RAGRobot] = {}
         self.provider = ProviderService()
+        self.dataset = load_dataset(DATA_REPO, SUBSET)
+        self.config = create_proposition_config()
+        print(f"===> Load copora data complete: \n{self.dataset}")
         return
  
-    def get_robot(self, id: str) -> RAGRobot:
+    def get_robot(self, id: str) -> HugFaceParentRAG:
         if id in self.robots:
             return self.robots[id]
-        self.robots[id] = RAGRobot(provider=self.provider)
+        self.robots[id] = HugFaceParentRAG(
+            provider=self.provider, config=self.config,
+            text_corpora=self.dataset, uni=UNI)
         return self.robots[id]
 
 def create_app(test_config=None):
@@ -37,18 +55,12 @@ def create_app(test_config=None):
     config = Configuration()
     config.enable_tracing("DEMO")
     MANAGER = RobotManager()
-
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
     else:
         # load the test config if passed in
         app.config.from_mapping(test_config)
-    # ensure the instance folder exists
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        log_service.logger.error(msg='ERROR: cannot make dir '+app.instance_path)
     
     ### End Points ###
     @app.route('/')
@@ -56,27 +68,15 @@ def create_app(test_config=None):
         data = {"message": "Hello world", "status": 200}
         return data
 
-    @app.route("/test_qa/")
-    def test_answer_major():
-        answer = ""
-        with open("./core/sample.txt") as f:
-            answer = "".join(f.readlines()) 
-        data = {"question": "What is life", "answer": answer, "status": 200}
-        return data
-
-    @app.route("/list_gdrive/")
-    def getFileListFromGDrive():
-        selected_fields="files(id,name,webViewLink)"
-        g_drive_service=GoogleDriveService().service
-        list_file=g_drive_service.files().list(fields=selected_fields).execute()
-        return {"files":list_file.get("files")}
 
 
-    @app.route("/qa", methods=["POST"])
-    def answer_major():
+    @app.route("/tdt_qa", methods=["POST"])
+    def answer_tdt():
         """
             Ask RAG major blog post Service.
-            This service can be called to answer any question related to "major"
+            @param question
+            @param user personal id
+            
             @return {
                 question: the input question,
                 answer: the answer from RAG,
@@ -88,21 +88,13 @@ def create_app(test_config=None):
             return {"status": 404}
         try:
             question = request.form.get("question")
-            # userid = request.form.get("userid")
-            userid = "hada121sa"
+            userid = request.form.get("userid")
             bot = MANAGER.get_robot(id=userid)
             rag_resp = bot.answer(question.strip())
-            doc = rag_resp.document
             data = {
                 "question": question, 
-                "answer": rag_resp.answer,
-                "doc": {
-                    "id": doc.id,
-                    "title": doc.title,
-                    "content": doc.content,
-                    "source": doc.source,
-                },
-                "category": rag_resp.category, 
+                "answer": rag_resp["answer"],
+                "exec_time": rag_resp['exc_second'],
                 "status": 200, 
                 "notfound": rag_resp.is_notfound()}
         except Exception as Argument:

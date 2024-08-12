@@ -53,7 +53,7 @@ def create_splitter(
     if word_len_func == None:
         word_len_func = lambda e: len(e.split(" "))
     if separators == None:
-        separators = ["\n\n\n","\n\n", "\n"]
+        separators = ["\n\n\n","\n\n", "\n", "."]
     text_splitter = RecursiveCharacterTextSplitter(
         separators=separators,
         chunk_size=chunk_size, chunk_overlap=overlap, 

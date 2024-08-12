@@ -1,5 +1,7 @@
 from langchain_core.prompts import PromptTemplate
 from src.service.provider import ProviderService
+from langchain_core.runnables import RunnableLambda
+from langchain_core.prompts import ChatPromptTemplate
 
 TEMPLATE = '''Decompose the "Content" into clear and simple propositions, ensuring they are interpretable out of
 context.
@@ -44,6 +46,13 @@ Output (must be Vietnamese):'''
 def create_proposition_chain(
         provider: ProviderService, 
         model: str = "gemini-1.5-flash-latest", context_holder: str = "context"):
-    temp = TEMPLATE.replace("{para}", context_holder)
+    temp = TEMPLATE.replace("para", context_holder)
     prompt = PromptTemplate.from_template(template=temp)
     return prompt | provider.get_simple_gemini_pro(model=model)
+
+
+def create_proposition_chain_openai(provider: ProviderService, model: str="gpt-3.5-turbo-0125", context_holder:str = "context"):
+    temp = TEMPLATE.replace("para", context_holder)
+    # prompt = PromptTemplate.from_template(template=temp)
+    prompt = ChatPromptTemplate.from_template(template=temp)
+    return prompt | provider.get_chat_openai(model=model) | RunnableLambda(lambda e: e.content)

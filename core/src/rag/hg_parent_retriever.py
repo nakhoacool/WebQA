@@ -30,7 +30,7 @@ class ResultRAG(TypedDict):
     answer: str
     exc_second: float
 
-TEMPLATE = """Bạn là một người tư vấn viên thân thiện và đầy hiểu biết. Nhiệm vụ của bạn là hỗ trợ người dùng hiểu biết hơn về trường đại học Tôn Đức Thắng.
+TEMPLATE = """Bạn là một người tư vấn viên thân thiện và đầy hiểu biết. Nhiệm vụ của bạn là hỗ trợ người dùng hiểu biết hơn về trường đại học {university}.
 
 Đây là thông tin mà bạn biết:
 ```
@@ -43,7 +43,7 @@ Hãy trả lời một cách thật ngắn gọn, xúc tích, cấu trúc câu �
 
 class HugFaceParentRAG:
 
-    def __init__(self, provider: ProviderService, config: ConfigParentRAG, text_corpora: DatasetDict) -> None:
+    def __init__(self, provider: ProviderService, config: ConfigParentRAG, text_corpora: DatasetDict, uni="Tôn Đức Thắng") -> None:
         self.ensemble_retriever = provider.get_hybrid_retriever(
             vec_index=config['vec_index'], 
             txt_index=config['txt_index'], 
@@ -54,15 +54,15 @@ class HugFaceParentRAG:
         gemini = provider.get_simple_gemini_pro(model=config['llm'])
         self.corpora = text_corpora
         self.retrieved_docs = None
-        prompt = PromptTemplate.from_template(template=TEMPLATE)
+        teml = TEMPLATE.replace("{university}", uni)
+        prompt = PromptTemplate.from_template(template=teml)
+        self.answer_chain = prompt | gemini
         self.chain = (
             {"context": itemgetter("question") | RunnableLambda(self.ensemble_retriever.invoke), 
              "question": itemgetter("question")
             }
             | RunnableLambda(self.__find_parent_docs)
-            | RunnableLambda(self.__format_parent_docs)
-            | prompt
-            | gemini
+            | RunnableLambda(self.__refine_answer)
         ) 
         return
     
@@ -78,17 +78,23 @@ class HugFaceParentRAG:
         self.retrieved_docs = None
         return result
 
-    def __format_parent_docs(self, inputs):
+    def __refine_answer(self, inputs):
+        answer_doc = ""
         docs = inputs['parent_docs']
-        doc_content = "\n###\n".join(docs)
-        return {"context": doc_content, "question": inputs['question']}
+        ques = inputs['question']
+        for d in docs:
+            answer = self.answer_chain.invoke({"context": d, "question": ques})
+            answer_doc += (answer + "\n")
+        fin_answer = self.answer_chain.invoke({"context": answer_doc, "question": ques})
+        return fin_answer
+
 
     def __find_parent_docs(self, inputs):
         # store retrieved docs
         docs: List[Document] = inputs['context']
         self.retrieved_docs = docs
         map_ids = {}
-        parent_docs = []
+        parent_docs:List[str] = []
         for doc in docs:
             print(doc)
             d_id = doc.metadata['doc_id']

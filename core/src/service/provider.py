@@ -1,6 +1,6 @@
 from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 from elasticsearch import Elasticsearch
-from langchain_community.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langchain_community.vectorstores.elasticsearch import ElasticsearchStore
 from langchain_community.llms.openai import OpenAI
 from langchain_google_genai import GoogleGenerativeAI, ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
@@ -59,6 +59,7 @@ class ProviderService:
             model=model, 
             temperature=0, 
             google_api_key=self.config.load_gemini_token(),
+            max_output_tokens=1200,
             convert_system_message_to_human=convert_system_message
         )
         return chat_model
@@ -70,11 +71,11 @@ class ProviderService:
             @return gemini model
         """
         model = GoogleGenerativeAI(
-            model=model, 
+            model=model, max_output_tokens=1200,
             temperature=0, google_api_key=self.config.load_gemini_token())
         return model
     
-    def get_chat_openai(self):
+    def get_chat_openai(self, model="gpt-3.5-turbo-0125", max_tokens=2000):
         """
             get an instance of OpenAI chat model
 
@@ -82,17 +83,21 @@ class ProviderService:
         """
         model = ChatOpenAI(
             temperature=0,
-            max_tokens=1800,
+            model=model,
+            max_tokens=max_tokens,
             openai_api_key=self.config.load_openai_token())
         return model
     
-    def get_openai(self):
+    def get_openai(self, model="gpt-3.5-turbo-instruct", max_tokens=1800):
         """
             get an instance of OpenAI model
 
             @return model
         """
-        model = OpenAI(temperature=0, max_tokens=1800, openai_api_key=self.config.load_openai_token())
+        model = OpenAI(
+            temperature=0, 
+            max_tokens=max_tokens, 
+            model=model, openai_api_key=self.config.load_openai_token())
         return model
 
     def get_gemini_embeddings(self, model="models/embedding-001") -> GoogleGenerativeAIEmbeddings:
@@ -164,7 +169,7 @@ class ProviderService:
         """
             Initialize Elastic, BM25 instances and combine them into hybrid search
         """
-        K = total_k
+        K = total_k / 2
         # elastic
         es_connect = self.load_elasticsearch_connection()
         es = self.get_elasticsearch_store(index=vec_index, embed_type=model)
