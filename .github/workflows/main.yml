@@ -23,7 +23,7 @@ jobs:
         VPS_USERNAME: ${{ secrets.VPS_USERNAME }}
         VPS_IP: ${{ secrets.VPS_IP }}
       run: |
-        ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_IP << 'EOF'
+        ssh -o StrictHostKeyChecking=no $VPS_USER@$VPS_IP <<EOF
           cd /home/ubuntu/WebQAFinalKL
           git pull origin main
           docker-compose down
