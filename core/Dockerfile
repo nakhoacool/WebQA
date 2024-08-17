@@ -15,8 +15,8 @@ RUN pip install --no-cache-dir -r deploy_req.txt
 # Copy project
 COPY . .
 
-# Use Gunicorn as WSGI server
-CMD [ "gunicorn", "--bind", "0.0.0.0:5000", "app:create_app()" ]
+# Use Gunicorn as WSGI server with increased timeout and worker settings
+CMD [ "gunicorn", "--bind", "0.0.0.0:5000", "--timeout", "120", "--workers", "3", "app:create_app()" ]
 
 # Expose port
 EXPOSE 5000
