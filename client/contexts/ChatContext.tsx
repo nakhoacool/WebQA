@@ -29,6 +29,8 @@ type ChatContextType = {
   handleClearChat: () => void
   handleRemoveChatHistory: (id: string) => void
   handleSidebarItemClick: (id: string) => void
+  selectedOption: string
+  setSelectedOption: Dispatch<SetStateAction<string>>
 }
 
 export const ChatContext = createContext<ChatContextType | undefined>(undefined)
@@ -43,6 +45,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   )
   const [abortController, setAbortController] =
     useState<AbortController | null>(null)
+  const [selectedOption, setSelectedOption] = useState('tdt')
   const messagesEndRef = useRef<HTMLDivElement>(null!)
 
   useEffect(() => {
@@ -78,6 +81,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
           {
             id: newChatHistoryId,
             title: `Chat ${dateString}`,
+            uniOption: selectedOption,
             messages: newData,
           },
         ])
@@ -112,6 +116,9 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     setIsNewChat(false)
     setActiveChatHistoryId(id)
     setIsBotTyping(false)
+    setSelectedOption(
+      chatHistory.find((history) => history.id === id)?.uniOption || 'tdt'
+    )
     const history = chatHistory.find((history) => history.id === id)
     if (history) {
       setData(history.messages)
@@ -138,6 +145,8 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
         handleClearChat,
         handleRemoveChatHistory,
         handleSidebarItemClick,
+        selectedOption,
+        setSelectedOption,
       }}
     >
       {children}

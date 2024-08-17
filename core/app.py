@@ -122,8 +122,8 @@ def create_app(test_config=None):
                 "question": question, 
                 "answer": rag_resp["answer"],
                 "exec_time": rag_resp['exc_second'],
-                "status": 200, 
-                "notfound": rag_resp.is_notfound()}
+                "status": 200
+                }
         except Exception as Argument:
             log_service.logger.exception(msg="[APP] answer_major went wrong!")
             return {"status": 404}

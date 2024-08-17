@@ -22,8 +22,13 @@ export default function ChatForm() {
     throw new Error('useContext must be used within a ChatProvider')
   }
 
-  const { isBotTyping, setIsBotTyping, handleFormSubmit, setAbortController } =
-    context
+  const {
+    isBotTyping,
+    setIsBotTyping,
+    handleFormSubmit,
+    setAbortController,
+    selectedOption,
+  } = context
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -47,7 +52,7 @@ export default function ChatForm() {
   }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const url = 'http://158.178.243.160:5000/qa'
+    const url = `http://158.178.243.160:5000/${selectedOption}_qa`
     const data = {
       question: values.chatMessage,
       userid: session?.user.id,
@@ -68,18 +73,32 @@ export default function ChatForm() {
         signal: controller.signal,
       })
       .then(({ data }) => {
-        handleFormSubmit({
-          role: 'bot',
-          content: data.answer,
-        })
+        if (data.status === 200) {
+          handleFormSubmit({
+            role: 'bot',
+            content: data.answer,
+          })
+        } else {
+          handleFormSubmit({
+            role: 'bot',
+            content: 'Sorry, something went wrong. Please start again.',
+          })
+        }
         setIsBotTyping(false)
       })
       .catch(function (thrown) {
         if (axios.isCancel(thrown)) {
-          console.log('Request canceled', thrown.message)
+          handleFormSubmit({
+            role: 'bot',
+            content: 'Your request has been cancelled. Please start again.',
+          })
         } else {
-          console.log(thrown)
+          handleFormSubmit({
+            role: 'bot',
+            content: 'Sorry, something went wrong. Please start again.',
+          })
         }
+        setIsBotTyping(false)
       })
     window.addEventListener('beforeunload', (e) => {
       controller.abort()

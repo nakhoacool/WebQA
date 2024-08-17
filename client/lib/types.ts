@@ -6,6 +6,7 @@ export interface Message {
 export interface ChatHistory {
   id: string
   title: string
+  uniOption: string
   messages: Message[]
 }
 
