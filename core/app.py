@@ -16,8 +16,8 @@ def get_ueh_config():
     data = {
         "DATA_REPO":"BroDeadlines/TEST.UEH.ueh_copora_data", 
         "SUBSET": "default", 
-        "VEC_IDX": "vec-sentence-ueh-sentence", 
-        'TXT_IDX': 'text-sentence-ueh-sentence', 
+        "VEC_IDX": "vec-sentence-ueh-unique", 
+        'TXT_IDX': 'text-sentence-ueh-unique', 
         "UNI": "Kinh tế TP. Hồ Chí Minh"}
     return data
 
@@ -57,8 +57,8 @@ class RobotManager:
         config['vec_index'] = self.VEC_IDX
         config['txt_index'] = self.TXT_IDX
         config['total_k'] = 8
-        #config['llm'] = "gemini-1.0-pro"
-        config['llm'] = "gemini-1.5-flash"
+        config['llm'] = "gemini-1.0-pro"
+        # config['llm'] = "gemini-1.5-flash"
         return config
  
     def get_robot(self, id: str) -> HugFaceParentParallelRAG:

@@ -29,21 +29,24 @@ Hãy kết hợp kiến thức của bạn và đọc thật kỹ các dữ li�
 ```
 Câu hỏi: {question}?
 
-Hãy trả lời một cách thật hữu ích và đầy đủ nội dung, cấu trúc câu đầy đủ.
-Output "None" if you cannot answer
+Hãy trả lời một cách thật hữu ích, cấu trúc câu đầy đủ nếu bạn có thể trả lời. Output only "None" if you cannot answer.
 """
 
 REFINE_TEMPLATE = """Bạn là một người tư vấn viên thân thiện và đầy hiểu biết. Nhiệm vụ của bạn là hỗ trợ người dùng hiểu biết hơn về trường đại học {university}.
 
-Hãy kết hợp kiến thức của bạn và đọc thật kỹ các dữ liệu dưới đây để trả lời câu hỏi:
+Hãy kết hợp kiến thức của bạn và dữ liệu dưới đây để trả lời câu hỏi:
 ```
 {context}
 ```
 Câu hỏi: {question}?
 
-Hãy trả lời một cách thật hữu ích và đầy đủ nội dung, và chi tiết, lịch sự.
+Hãy trả lời một cách thật hữu ích và đầy đủ nội dung, và chi tiết, hợp lý.
 Hãy đưa ra lời khuyên hữu ích từ kiến thức của bạn nếu như không thể trả lời câu hỏi.
 """
+
+def is_can_answer(answer:str):
+    text = answer.lower()
+    return "none" not in text.split(" ") and "không đề cập" not in text
 
 class HugFaceParentRAG:
 
@@ -91,7 +94,7 @@ class HugFaceParentRAG:
             answer = self.answer_chain.invoke({"context": d, "question": ques})
             if len(docs) == 1:
                 return answer
-            if "none" not in answer.lower().split(" ") or "không đề cập" not in answer:
+            if is_can_answer(answer=answer):
                 answer_doc += (answer + "\n")
         fin_answer = self.refine_answer_chain.invoke({"context": answer_doc, "question": ques})
         return fin_answer
@@ -134,9 +137,10 @@ class HugFaceParentParallelRAG:
         self.log = AppLogService(f"{config['vec_index']}.log")
         self.gemini = provider.get_simple_gemini_pro(model=config['llm'])
         self.corpora = text_corpora
+        self.template = TEMPLATE.replace("{university}", uni)
         self.retrieved_docs = None
         self.batch = 2
-        self.template = TEMPLATE.replace("{university}", uni)
+        self.refine_answer_chain = PromptTemplate.from_template(REFINE_TEMPLATE.replace("{university}", uni)) | self.gemini
         self.chain = (
             {"context": itemgetter("question") | RunnableLambda(self.ensemble_retriever.invoke), 
              "question": itemgetter("question")
@@ -187,9 +191,8 @@ class HugFaceParentParallelRAG:
         return {"answers": answers, "question": ques}
 
     def __refine_answer(self, inputs):
-        chain = PromptTemplate.from_template(template=self.template) | self.gemini
-        context = "\n- ".join(inputs['answers'])
-        answer = chain.invoke({"context": context, "question": inputs['question']})
+        context = "\n- ".join([a for a in inputs['answers'] if is_can_answer(answer=a)])
+        answer = self.refine_answer_chain.invoke({"context": context, "question": inputs['question']})
         return answer
 
     def __find_parent_docs(self, inputs):
