@@ -3,8 +3,9 @@ from src.config import Configuration
 from src.service.applog import AppLogService
 import os
 from flask_cors import CORS
-from src.rag.hg_parent_retriever import HugFaceParentRAG, get_default_config
+from src.rag.hg_parent_retriever import HugFaceParentParallelRAG
 from src.service.provider import ProviderService
+from src.utils.type_utils import get_default_config
 from src.robot import RAGRobot
 from datasets import load_dataset
 from typing import Dict
@@ -13,8 +14,8 @@ from typing import Dict
 # 200 is success, else is error
 def get_ueh_config():
     data = {
-        "DATA_REPO":"BroDeadlines/EVAL.RAG.UEH.evaluation", 
-        "SUBSET": "", 
+        "DATA_REPO":"BroDeadlines/TEST.UEH.ueh_copora_data", 
+        "SUBSET": "default", 
         "VEC_IDX": "vec-sentence-ueh-sentence", 
         'TXT_IDX': 'text-sentence-ueh-sentence', 
         "UNI": "Kinh tế TP. Hồ Chí Minh"}
@@ -22,7 +23,7 @@ def get_ueh_config():
 
 def get_tdt_config():
     data = {
-        "DATA_REPO":"BroDeadlines/TEST.TDT.mini.tdt_copora_data", 
+        "DATA_REPO":"BroDeadlines/TEST.TDT.mini.tdt_copora_data",
         "SUBSET": "compact", 
         "VEC_IDX": "vec-sentence-compact-tdt-sentence", 
         'TXT_IDX': 'text-sentence-compact-tdt-sentence', 
@@ -59,10 +60,10 @@ class RobotManager:
         config['llm'] = "gemini-1.0-pro"
         return config
  
-    def get_robot(self, id: str) -> HugFaceParentRAG:
+    def get_robot(self, id: str) -> HugFaceParentParallelRAG:
         if id in self.robots:
             return self.robots[id]
-        self.robots[id] = HugFaceParentRAG(
+        self.robots[id] = HugFaceParentParallelRAG(
             provider=self.provider, config=self.config,
             text_corpora=self.dataset['train'], uni=self.UNI)
         return self.robots[id]
@@ -132,4 +133,4 @@ def create_app(test_config=None):
     return app
 
 if __name__ == '__main__':
-    create_app().run(host="0.0.0.0", port=int("5000"), debug=True)
+    create_app().run(host="0.0.0.0", port=int("5000"))

@@ -21,6 +21,18 @@ Câu hỏi: {question}?
 Hãy trả lời một cách thật hữu ích, ngắn gọn, xúc tích, cấu trúc câu đầy đủ. Output "None" if you cannot answer
 """
 
+TEMPLATE = """Bạn là một người tư vấn viên thân thiện và đầy hiểu biết. Nhiệm vụ của bạn là hỗ trợ người dùng hiểu biết hơn về trường đại học {uni}.
+
+Hãy kết hợp kiến thức của bạn và đọc thật kỹ các dữ liệu dưới đây để trả lời câu hỏi:
+```
+{context}
+```
+Câu hỏi: {question}?
+
+Hãy trả lời một cách thật hữu ích và đầy đủ nội dung, cấu trúc câu đầy đủ.
+Hãy đưa ra lời khuyên hữu ích từ kiến thức của bạn nếu như không thể trả lời câu hỏi.
+"""
+
 SEPERATOR = "# Dữ liệu"
 
 class HydeRAG:

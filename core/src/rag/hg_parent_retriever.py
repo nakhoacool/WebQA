@@ -10,7 +10,7 @@ from src.service.applog import AppLogService
 
 from src.utils.type_utils import ConfigParentRAG, ResultRAG
 
-TEMPLATE = """Bạn là một người tư vấn viên thân thiện và đầy hiểu biết. Nhiệm vụ của bạn là hỗ trợ người dùng hiểu biết hơn về trường đại học {university}.
+OLD_TEMPLATE1 = """Bạn là một người tư vấn viên thân thiện và đầy hiểu biết. Nhiệm vụ của bạn là hỗ trợ người dùng hiểu biết hơn về trường đại học {university}.
 
 Đây là thông tin mà bạn biết:
 ```
@@ -19,6 +19,30 @@ TEMPLATE = """Bạn là một người tư vấn viên thân thiện và đầy 
 Hãy hỗ trợ thật tốt với yêu cầu sau đến từ người dùng.
 Yêu cầu (Question): {question}
 Hãy trả lời một cách thật ngắn gọn, xúc tích, cấu trúc câu đầy đủ. Output "None" if you cannot answer
+"""
+
+TEMPLATE = """Bạn là một người tư vấn viên thân thiện và đầy hiểu biết. Nhiệm vụ của bạn là hỗ trợ người dùng hiểu biết hơn về trường đại học {university}.
+
+Hãy kết hợp kiến thức của bạn và đọc thật kỹ các dữ liệu dưới đây để trả lời câu hỏi:
+```
+{context}
+```
+Câu hỏi: {question}?
+
+Hãy trả lời một cách thật hữu ích và đầy đủ nội dung, cấu trúc câu đầy đủ.
+Output "None" if you cannot answer
+"""
+
+REFINE_TEMPLATE = """Bạn là một người tư vấn viên thân thiện và đầy hiểu biết. Nhiệm vụ của bạn là hỗ trợ người dùng hiểu biết hơn về trường đại học {university}.
+
+Hãy kết hợp kiến thức của bạn và đọc thật kỹ các dữ liệu dưới đây để trả lời câu hỏi:
+```
+{context}
+```
+Câu hỏi: {question}?
+
+Hãy trả lời một cách thật hữu ích và đầy đủ nội dung, và chi tiết, lịch sự.
+Hãy đưa ra lời khuyên hữu ích từ kiến thức của bạn nếu như không thể trả lời câu hỏi.
 """
 
 class HugFaceParentRAG:
@@ -37,6 +61,7 @@ class HugFaceParentRAG:
         teml = TEMPLATE.replace("{university}", uni)
         prompt = PromptTemplate.from_template(template=teml)
         self.answer_chain = prompt | gemini
+        self.refine_answer_chain = PromptTemplate.from_template(REFINE_TEMPLATE.replace("{university}", uni)) | gemini
         self.chain = (
             {"context": itemgetter("question") | RunnableLambda(self.ensemble_retriever.invoke), 
              "question": itemgetter("question")
@@ -66,8 +91,9 @@ class HugFaceParentRAG:
             answer = self.answer_chain.invoke({"context": d, "question": ques})
             if len(docs) == 1:
                 return answer
-            answer_doc += (answer + "\n")
-        fin_answer = self.answer_chain.invoke({"context": answer_doc, "question": ques})
+            if "none" not in answer.lower().split(" ") or "không đề cập" not in answer:
+                answer_doc += (answer + "\n")
+        fin_answer = self.refine_answer_chain.invoke({"context": answer_doc, "question": ques})
         return fin_answer
 
 
@@ -109,7 +135,7 @@ class HugFaceParentParallelRAG:
         self.gemini = provider.get_simple_gemini_pro(model=config['llm'])
         self.corpora = text_corpora
         self.retrieved_docs = None
-        self.batch = 1
+        self.batch = 2
         self.template = TEMPLATE.replace("{university}", uni)
         self.chain = (
             {"context": itemgetter("question") | RunnableLambda(self.ensemble_retriever.invoke), 
@@ -139,6 +165,7 @@ class HugFaceParentParallelRAG:
         ques = inputs['question']
         chains = [{}]
         batch = 0
+        print("2. start answer")
         # split documents to batches of chains
         for idx, d in enumerate(docs):
             prompt = PromptTemplate.from_template(
@@ -161,7 +188,7 @@ class HugFaceParentParallelRAG:
 
     def __refine_answer(self, inputs):
         chain = PromptTemplate.from_template(template=self.template) | self.gemini
-        context = "\n".join(inputs['answers'])
+        context = "\n- ".join(inputs['answers'])
         answer = chain.invoke({"context": context, "question": inputs['question']})
         return answer
 
@@ -179,8 +206,8 @@ class HugFaceParentParallelRAG:
             corp_row = self.corpora.filter(lambda e: e['doc_id'] == d_id)
             if len(corp_row) != 1:
                 print("ERROR, get id but 2 returned")
-            # doc_content = '\n- '.join(corp_row[0]['proposition_list'])
             doc_content = corp_row[0]['content']
             parent_docs.append(doc_content)
         inputs['parent_docs'] = parent_docs
-        return inputs
+        print('1. Find parent')
+        return {'question': inputs['question'], "parent_docs": parent_docs}
