@@ -1,5 +1,26 @@
 from typing import Dict, List
 from langchain_core.documents import Document
+from typing import TypedDict, List
+
+class ConfigParentRAG(TypedDict):
+    vec_index: str
+    txt_index: str
+    vec_weight: float = 0.5
+    txt_weight: float = 0.5
+    total_k: int = 4
+    llm: str = 'gemini-1.5-flash'
+
+def get_default_config() -> ConfigParentRAG:
+    config: ConfigParentRAG = {}
+    config['llm'] = "gemini-1.5-flash"
+    config['total_k'] = 4
+    config['txt_weight'] = .5
+    config['vec_weight'] = .5
+    return config
+class ResultRAG(TypedDict):
+    retrieved_docs: List[Document]
+    answer: str
+    exc_second: float
 
 def create_langchain_doc(content: str, metadata: Dict) -> Document:
     '''

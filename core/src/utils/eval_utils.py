@@ -119,7 +119,7 @@ def retrieved_precisions_RAPTOR(target_id: str, ids: List[str]) -> List[float]:
         i += 1
     return results
 
-def evaluate_IR(eval_dataset, limit_k: int = -1) -> EvaluateIR:
+def evaluate_IR(eval_dataset, limit_k: int = -1, shard_key='shards') -> EvaluateIR:
     '''
         Auto evaluate IR results
 
@@ -140,7 +140,7 @@ def evaluate_IR(eval_dataset, limit_k: int = -1) -> EvaluateIR:
             null_rows += 1
             continue
         target_id = row['doc_id']
-        shards = json.loads(row['metadata'])['shards']
+        shards = json.loads(row['metadata'])[shard_key]
         num_relevant += shards
         re_doc_ids = []
         iter_num = 0
@@ -168,7 +168,7 @@ def evaluate_IR(eval_dataset, limit_k: int = -1) -> EvaluateIR:
     fin_result['num_retrieved'] = num_retrieved
     return fin_result
 
-def evaluate_IR_RAPTOR(eval_dataset, limit_k: int = -1, shard_column: str = 'hard_shards') -> EvaluateIR:
+def evaluate_IR_RAPTOR(eval_dataset, limit_k: int = -1, shard_key: str = 'hard_shards') -> EvaluateIR:
     '''
         Auto evaluate IR results of RAPTOR tree
 
@@ -189,7 +189,10 @@ def evaluate_IR_RAPTOR(eval_dataset, limit_k: int = -1, shard_column: str = 'har
             null_rows += 1
             continue
         target_id = row['doc_id']
-        shards = row[shard_column]
+        if shard_key in row:
+            shards = row[shard_key]
+        else:
+            shards = json.loads(row['metadata'])[shard_key]
         num_relevant += shards
         re_doc_ids = []
         iter_num = 0
@@ -209,10 +212,10 @@ def evaluate_IR_RAPTOR(eval_dataset, limit_k: int = -1, shard_column: str = 'har
             precision_list.append(sum(tmp) / len(tmp))
     num_retrieved = len(re_docs)
     # calculate
+    fin_result['relevant'] = num_relevant_retrieved / (eval_dataset.num_rows - null_rows)
     fin_result['precision'] = round(num_relevant_retrieved / num_retrieved, 3)
     fin_result['recall'] = round(num_relevant_retrieved / num_relevant, 3)
     fin_result['map_score'] = round(sum(precision_list) / (eval_dataset.num_rows - null_rows), 3)
     fin_result['relevant_retrieved'] = num_relevant_retrieved
     fin_result['num_retrieved'] = num_retrieved
-    fin_result['nulls'] = null_rows
     return fin_result
