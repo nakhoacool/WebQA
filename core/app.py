@@ -57,7 +57,8 @@ class RobotManager:
         config['vec_index'] = self.VEC_IDX
         config['txt_index'] = self.TXT_IDX
         config['total_k'] = 8
-        config['llm'] = "gemini-1.0-pro"
+        #config['llm'] = "gemini-1.0-pro"
+        config['llm'] = "gemini-1.5-flash"
         return config
  
     def get_robot(self, id: str) -> HugFaceParentParallelRAG:
