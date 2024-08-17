@@ -9,9 +9,7 @@ import {
 } from '@/components/ui/popover'
 import PlusIcon from '@/components/icon/plus'
 import LogOutIcon from '@/components/icon/logout'
-import ShieldIcon from '@/components/icon/shield'
 import SidebarItem from '@/components/component/sidebar-item'
-import Link from 'next/link'
 
 export default function Sidebar() {
   const { data: session } = useSession()
@@ -50,15 +48,6 @@ export default function Sidebar() {
           </span>
         </PopoverTrigger>
         <PopoverContent className='w-[15rem] px-2'>
-          {session?.user.role === 'admin' && (
-            <Link
-              href='/admin'
-              className='py-2 hover:bg-gray-700 w-full flex items-center rounded space-x-2 border-b border-[#424142]'
-            >
-              <ShieldIcon className='text-white' />
-              <span>Admin Dashboard</span>
-            </Link>
-          )}
           <button
             onClick={() => signOut({ callbackUrl: '/', redirect: true })}
             className='py-2 hover:bg-gray-700 w-full flex items-center rounded space-x-2'
