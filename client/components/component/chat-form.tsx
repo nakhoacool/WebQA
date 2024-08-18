@@ -52,7 +52,7 @@ export default function ChatForm() {
   }
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const url = `http://158.178.243.160:5000/${selectedOption}_qa`
+    const url = `${process.env.NEXT_PUBLIC_BACKEND}/${selectedOption}_qa`
     const data = {
       question: values.chatMessage,
       userid: session?.user.id,
@@ -69,6 +69,7 @@ export default function ChatForm() {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+          Authorization: `Bearer ${session?.user.jwtToken}`,
         },
         signal: controller.signal,
       })

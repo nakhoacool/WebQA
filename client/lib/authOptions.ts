@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { doc, getDoc } from 'firebase/firestore'
 import { auth, db } from '@/lib/firebase/config'
 import { JWT } from 'next-auth/jwt'
+import jwt from 'jsonwebtoken'
 export const authOptions: AuthOptions = {
   pages: {
     signIn: '/auth/signin',
@@ -13,12 +14,14 @@ export const authOptions: AuthOptions = {
       if (user) {
         token.id = user.id
         token.role = user.role
+        token.jwtToken = user.jwtToken
       }
       return token
     },
     async session({ session, token }: { session: Session; token: JWT }) {
       session.user.id = token.id
       session.user.role = token.role
+      session.user.jwtToken = token.jwtToken
       return session
     },
   },
@@ -39,10 +42,22 @@ export const authOptions: AuthOptions = {
             const userDoc = await getDoc(userRef)
             if (userDoc.exists()) {
               const role = userDoc.data().user_profile.role
+              const token = jwt.sign(
+                {
+                  id: uid,
+                  email: email,
+                  role: role,
+                },
+                process.env.NEXTAUTH_SECRET as string,
+                {
+                  expiresIn: '1h',
+                }
+              )
               return {
                 id: uid,
                 email: email,
                 role: role,
+                jwtToken: token,
               }
             }
             return null

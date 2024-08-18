@@ -1,4 +1,6 @@
-from flask import Flask, request
+import jwt
+from flask import Flask, request, jsonify
+from functools import wraps
 from src.config import Configuration
 from src.service.applog import AppLogService
 import os
@@ -10,8 +12,6 @@ from src.robot import RAGRobot
 from datasets import load_dataset
 from typing import Dict
 
-# When call API, please check the "status" field first
-# 200 is success, else is error
 def get_ueh_config():
     data = {
         "DATA_REPO":"BroDeadlines/TEST.UEH.ueh_copora_data", 
@@ -29,6 +29,25 @@ def get_tdt_config():
         'TXT_IDX': 'text-sentence-compact-tdt-sentence', 
         "UNI": "Tôn Đức Thắng"}
     return data
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        config = Configuration()
+        SECRET_KEY = config.load_jwt_secret()
+        token = None
+        if 'Authorization' in request.headers:
+            token = request.headers['Authorization'].split(" ")[1]
+        if not token:
+            return jsonify({'message': 'Token is missing!'}), 403
+        try:
+            jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        except jwt.ExpiredSignatureError:
+            return jsonify({'message': 'Token is expired!'}), 403
+        except jwt.InvalidTokenError:
+            return jsonify({'message': 'Invalid token!'}), 403
+        return f(*args, **kwargs)
+    return decorated
 
 class RobotManager:
     """
@@ -86,17 +105,13 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
     
     ### End Points ###
-    @app.route('/')
-    def hello_world():
-        data = {"message": "Hello world", "status": 200}
-        return data
-
-
     @app.route("/tdt_qa", methods=["POST"])
+    @token_required
     def tdt_answer():
         return bot_answer(request=request, manager=tdt_manager)
     
     @app.route("/ueh_qa", methods=['POST'])
+    @token_required
     def ueh_answer():
         return bot_answer(request=request, manager=ueh_manager)
 
@@ -118,6 +133,17 @@ def create_app(test_config=None):
         try:
             question = request.form.get("question")
             userid = request.form.get("userid")
+
+            token = request.headers['Authorization'].split(" ")[1]
+            config = Configuration()
+            SECRET_KEY = config.load_jwt_secret()
+
+            access_token = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+            token_id = access_token.get('id')
+
+            if token_id != userid:
+                return jsonify({'message': 'User ID does not match token ID!'}), 403
+
             bot = manager.get_robot(id=userid)
             rag_resp = bot.answer(question.strip())
             data = {

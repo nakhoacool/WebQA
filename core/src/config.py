@@ -4,7 +4,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmb
 
 class Configuration:
     """
-        This class responsible for loading API key, ES connection, LLM
+        This class responsible for loading API key, ES connection, LLM, JWT
     """
     def __init__(self):
         self.env_path = os.path.dirname(__file__)
@@ -107,3 +107,13 @@ class Configuration:
             model="models/embedding-001", 
             google_api_key=self.load_gemini_token())
         return model
+
+    def load_jwt_secret(self) -> str:
+        """
+            load JWT secret key
+
+            @return the secret key
+        """
+        with open(f"{self.path}/jwt") as f:
+            secret = f.read().strip()
+        return secret
