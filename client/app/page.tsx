@@ -23,9 +23,10 @@ export default function Home() {
     selectedOption,
     setSelectedOption,
     isNewChat,
+    setUserID,
   } = context
 
-  const { status } = useSession({
+  const { status, data: Session } = useSession({
     required: true,
     onUnauthenticated() {
       redirect('/auth/signin')
@@ -35,6 +36,8 @@ export default function Home() {
   if (status === 'loading') {
     return <Loading />
   }
+
+  setUserID(Session?.user.id)
 
   return (
     <div className='flex h-screen text-white'>

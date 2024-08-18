@@ -31,6 +31,7 @@ type ChatContextType = {
   handleSidebarItemClick: (id: string) => void
   selectedOption: string
   setSelectedOption: Dispatch<SetStateAction<string>>
+  setUserID: Dispatch<SetStateAction<string | null>>
 }
 
 export const ChatContext = createContext<ChatContextType | undefined>(undefined)
@@ -47,6 +48,18 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
     useState<AbortController | null>(null)
   const [selectedOption, setSelectedOption] = useState('tdt')
   const messagesEndRef = useRef<HTMLDivElement>(null!)
+  const [userID, setUserID] = useState<string | null>(null)
+
+  useEffect(() => {
+    const savedChatHistory = localStorage.getItem(`chatHistory_${userID}`)
+    if (savedChatHistory) {
+      setChatHistory(JSON.parse(savedChatHistory))
+    }
+  }, [userID])
+
+  useEffect(() => {
+    localStorage.setItem(`chatHistory_${userID}`, JSON.stringify(chatHistory))
+  }, [chatHistory, userID])
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -147,6 +160,7 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
         handleSidebarItemClick,
         selectedOption,
         setSelectedOption,
+        setUserID,
       }}
     >
       {children}
