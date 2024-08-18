@@ -10,48 +10,48 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Deploy to VPS
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.VPS_IP }}
-        username: ${{ secrets.VPS_USERNAME }}
-        key: ${{ secrets.VPS_SSH_KEY }}
-        script: |
-          # Ensure the project directory exists
-          mkdir -p /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_IP }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            # Ensure the project directory exists
+            mkdir -p /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy
 
-          # Change ownership of the project directory
-          sudo chown -R ${{ secrets.VPS_USERNAME }}:$${{ secrets.VPS_USERNAME }} /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy
+            # Change ownership of the project directory
+            sudo chown -R ${{ secrets.VPS_USERNAME }}:$${{ secrets.VPS_USERNAME }} /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy
 
-          # Navigate to the project directory
-          cd /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy
+            # Navigate to the project directory
+            cd /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy
 
-          # Check if the directory is a git repository
-          if [ ! -d ".git" ]; then
-            # Clone the repository if it's not already a git repository
-            git clone https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@${{ github.repository }}.git .
-          else
-            # Pull the latest changes from the repository
-            git pull https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@${{ github.repository }}.git
-          fi
+            # Check if the directory is a git repository
+            if [ ! -d ".git" ]; then
+              # Clone the repository if it's not already a git repository
+              git clone https://${{ vars.USERNAME }}:${{ secrets.GITHUB_TOKEN }}@${{ vars.REPO }} .
+            else
+              # Pull the latest changes from the repository
+              git pull https://${{ vars.USERNAME }}:${{ secrets.GITHUB_TOKEN }}@${{ vars.REPO }}
+            fi
 
-          # Save the .env file
-          echo "${{ secrets.ENV_CONTENTS }}" > /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/client/.env
+            # Save the .env file
+            echo "${{ secrets.ENV_CONTENTS }}" > /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/client/.env
 
-          # Decode and save the keys archive
-          echo "${{ secrets.KEYS_ARCHIVE }}" | base64 -d > /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/core/keys.tar.gz
+            # Decode and save the keys archive
+            echo "${{ secrets.KEYS_ARCHIVE }}" | base64 -d > /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/core/keys.tar.gz
 
-          # Extract the keys archive
-          tar -xzf /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/core/keys.tar.gz -C /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/core
+            # Extract the keys archive
+            tar -xzf /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/core/keys.tar.gz -C /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/core
 
-          # Remove the keys archive
-          rm /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/core/keys.tar.gz
+            # Remove the keys archive
+            rm /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/core/keys.tar.gz
 
-          # Stop and remove existing containers
-          docker compose down
+            # Stop and remove existing containers
+            docker compose down
 
-          # Build and start the containers
-          docker compose up --build -d
+            # Build and start the containers
+            docker compose up --build -d
