@@ -32,10 +32,10 @@ jobs:
             # Check if the directory is a git repository
             if [ ! -d ".git" ]; then
               # Clone the repository if it's not already a git repository
-              git clone https://${{ vars.USERNAME }}:${{ secrets.GITHUB_TOKEN }}@${{ vars.REPO }} .
+              git clone https://${{ secrets.GITHUB_TOKEN}}@github.com/${{ vars.REPO }} .
             else
               # Pull the latest changes from the repository
-              git pull https://${{ vars.USERNAME }}:${{ secrets.GITHUB_TOKEN }}@${{ vars.REPO }}
+              git pull origin main
             fi
 
             # Save the .env file
