@@ -23,6 +23,9 @@ jobs:
           # Ensure the project directory exists
           mkdir -p /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy
 
+          # Change ownership of the project directory
+          sudo chown -R ${{ secrets.VPS_USERNAME }}:$${{ secrets.VPS_USERNAME }} /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy
+
           # Save the .env file
           echo "${{ secrets.ENV_CONTENTS }}" > /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/client/.env
 
