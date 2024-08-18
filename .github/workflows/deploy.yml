@@ -55,3 +55,6 @@ jobs:
 
             # Build and start the containers
             docker compose up --build -d
+
+            # Remove unused Docker images (those without any tags)
+            docker image prune --filter "dangling=true" -f
