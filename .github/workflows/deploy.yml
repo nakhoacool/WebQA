@@ -21,13 +21,13 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             # Ensure the project directory exists
-            mkdir -p /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy
+            mkdir -p /home/${{ secrets.VPS_USERNAME }}/${{ vars.DIR_NAME }}
 
             # Change ownership of the project directory
-            sudo chown -R ${{ secrets.VPS_USERNAME }}:$${{ secrets.VPS_USERNAME }} /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy
+            sudo chown -R ${{ secrets.VPS_USERNAME }}:$${{ secrets.VPS_USERNAME }} /home/${{ secrets.VPS_USERNAME }}/${{ vars.DIR_NAME }}
 
             # Navigate to the project directory
-            cd /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy
+            cd /home/${{ secrets.VPS_USERNAME }}/${{ vars.DIR_NAME }}
 
             # Check if the directory is a git repository
             if [ ! -d ".git" ]; then
@@ -39,16 +39,16 @@ jobs:
             fi
 
             # Save the .env file
-            echo "${{ secrets.ENV_CONTENTS }}" > /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/client/.env
+            echo "${{ secrets.ENV_CONTENTS }}" > /home/${{ secrets.VPS_USERNAME }}/${{ vars.DIR_NAME }}/client/.env
 
             # Decode and save the keys archive
-            echo "${{ secrets.KEYS_ARCHIVE }}" | base64 -d > /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/core/keys.tar.gz
+            echo "${{ secrets.KEYS_ARCHIVE }}" | base64 -d > /home/${{ secrets.VPS_USERNAME }}/${{ vars.DIR_NAME }}/core/keys.tar.gz
 
             # Extract the keys archive
-            tar -xzf /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/core/keys.tar.gz -C /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/core
+            tar -xzf /home/${{ secrets.VPS_USERNAME }}/${{ vars.DIR_NAME }}/core/keys.tar.gz -C /home/${{ secrets.VPS_USERNAME }}/${{ vars.DIR_NAME }}/core
 
             # Remove the keys archive
-            rm /home/${{ secrets.VPS_USERNAME }}/WebQAFinalKLTestDeploy/core/keys.tar.gz
+            rm /home/${{ secrets.VPS_USERNAME }}/${{ vars.DIR_NAME }}/core/keys.tar.gz
 
             # Stop and remove existing containers
             docker compose down
