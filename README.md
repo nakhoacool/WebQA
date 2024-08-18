@@ -26,7 +26,7 @@ flask --app core/app.py run
 3. Build and run the Docker containers using Docker Compose. Navigate to the root directory of the project where the `docker-compose.yml` file is located and run the following command:
 
 ```sh
-docker-compose up --build
+docker compose up --build -d
 ```
 
 This command will build the Docker images for the server and client services defined in the docker-compose.yml file, and then start the containers.
