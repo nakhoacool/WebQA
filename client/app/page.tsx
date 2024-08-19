@@ -1,7 +1,7 @@
 'use client'
 import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { ChatContext } from '@/contexts/ChatContext'
 import ChatBubble from '@/components/component/chat-bubble'
 import ChatForm from '@/components/component/chat-form'
@@ -33,11 +33,15 @@ export default function Home() {
     },
   })
 
+  useEffect(() => {
+    if (Session?.user.id) {
+      setUserID(Session.user.id)
+    }
+  }, [Session, setUserID])
+
   if (status === 'loading') {
     return <Loading />
   }
-
-  setUserID(Session?.user.id)
 
   return (
     <div className='flex h-screen text-white'>
