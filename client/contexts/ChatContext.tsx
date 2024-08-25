@@ -10,6 +10,8 @@ import React, {
 } from 'react'
 import { Message, ChatHistory } from '@/lib/types'
 import { v4 as uuidv4 } from 'uuid'
+import { db } from '@/lib/firebase/config'
+import { doc, setDoc, getDoc } from 'firebase/firestore'
 
 type ChatContextType = {
   isBotTyping: boolean
@@ -49,6 +51,38 @@ export const ChatProvider = ({ children }: { children: React.ReactNode }) => {
   const [selectedOption, setSelectedOption] = useState('tdt')
   const messagesEndRef = useRef<HTMLDivElement>(null!)
   const [userID, setUserID] = useState<string | null>(null)
+  const [fetchedChatHistory, setFetchedChatHistory] = useState<ChatHistory[]>(
+    []
+  )
+
+  useEffect(() => {
+    const fetchChatHistory = async () => {
+      if (userID) {
+        const docRef = doc(db, 'chatHistories', userID)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+          const chatHistoryFromFirestore = docSnap.data().chatHistory
+          setChatHistory(chatHistoryFromFirestore)
+          setFetchedChatHistory(chatHistoryFromFirestore)
+        }
+      }
+    }
+    fetchChatHistory()
+  }, [userID])
+
+  useEffect(() => {
+    const saveChatHistory = async () => {
+      if (
+        userID &&
+        JSON.stringify(chatHistory) !== JSON.stringify(fetchedChatHistory)
+      ) {
+        const docRef = doc(db, 'chatHistories', userID)
+        await setDoc(docRef, { chatHistory })
+        setFetchedChatHistory(chatHistory)
+      }
+    }
+    saveChatHistory()
+  }, [chatHistory, userID, fetchedChatHistory])
 
   useEffect(() => {
     const savedChatHistory = localStorage.getItem(`chatHistory_${userID}`)
