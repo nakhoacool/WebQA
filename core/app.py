@@ -3,12 +3,11 @@ from flask import Flask, request, jsonify
 from functools import wraps
 from src.config import Configuration
 from src.service.applog import AppLogService
-import os
 from flask_cors import CORS
 from src.rag.hg_parent_retriever import HugFaceParentParallelRAG
+from src.rag.hyde_rag import HydeHybridSearchRAG
 from src.service.provider import ProviderService
 from src.utils.type_utils import get_default_config
-from src.robot import RAGRobot
 from datasets import load_dataset
 from typing import Dict
 
@@ -21,12 +20,30 @@ def get_ueh_config():
         "UNI": "Kinh tế TP. Hồ Chí Minh"}
     return data
 
+def get_RAPTOR_ueh_config():
+    data = {
+        "DATA_REPO": '',
+        "SUBSET": "", 
+        "VEC_IDX": "vec-raptor-ueh-data-tree-unique", 
+        'TXT_IDX': 'text-raptor-ueh-data-tree-unique', 
+        "UNI": "Kinh tế TP. Hồ Chí Minh"}
+    return data
+
 def get_tdt_config():
     data = {
         "DATA_REPO":"BroDeadlines/TEST.TDT.mini.tdt_copora_data",
         "SUBSET": "compact", 
         "VEC_IDX": "vec-sentence-compact-tdt-sentence", 
         'TXT_IDX': 'text-sentence-compact-tdt-sentence', 
+        "UNI": "Tôn Đức Thắng"}
+    return data
+
+def get_RAPTOR_tdt_config():
+    data = {
+        "DATA_REPO":"",
+        "SUBSET": "", 
+        "VEC_IDX": "vec-raptor-medium_index_tdt_vi", 
+        'TXT_IDX': 'text-raptor-medium_index_tdt_vi', 
         "UNI": "Tôn Đức Thắng"}
     return data
 
@@ -61,7 +78,7 @@ class RobotManager:
         self.TXT_IDX = robotconfig['TXT_IDX']
         self.UNI = robotconfig['UNI']
         # end config
-        self.robots: Dict[str, RAGRobot] = {}
+        self.robots: Dict[str, HugFaceParentParallelRAG] = {}
         self.provider = ProviderService()
         if len(SUBSET) > 0:
             self.dataset = load_dataset(DATA_REPO, SUBSET)
@@ -87,6 +104,26 @@ class RobotManager:
             provider=self.provider, config=self.config,
             text_corpora=self.dataset['train'], uni=self.UNI)
         return self.robots[id]
+    
+class RobotManagerRAPTOR(RobotManager):
+
+    def __init__(self, robotconfig) -> None:
+        self.VEC_IDX = robotconfig['VEC_IDX']
+        self.TXT_IDX = robotconfig['TXT_IDX']
+        self.UNI = robotconfig['UNI']
+        # end config
+        self.robots: Dict[str, HydeHybridSearchRAG] = {}
+        self.provider = ProviderService()
+        self.config = self.create_proposition_config()
+        return
+    
+    def get_robot(self, id: str) -> HydeHybridSearchRAG:
+        if id in self.robots:
+            return self.robots[id]
+        self.robots[id] = HydeHybridSearchRAG(
+            provider=self.provider, config=self.config, uni=self.UNI)
+        return self.robots[id]
+
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -97,6 +134,8 @@ def create_app(test_config=None):
     config.enable_tracing("DEMO")
     tdt_manager = RobotManager(robotconfig=get_tdt_config())
     ueh_manager = RobotManager(robotconfig=get_ueh_config())
+    tdt_raptor_manager = RobotManagerRAPTOR(robotconfig=get_RAPTOR_tdt_config())
+    ueh_raptor_manager = RobotManagerRAPTOR(robotconfig=get_RAPTOR_ueh_config())
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
@@ -114,6 +153,17 @@ def create_app(test_config=None):
     @token_required
     def ueh_answer():
         return bot_answer(request=request, manager=ueh_manager)
+    
+    @app.route("/raptor_ueh_qa", methods=['POST'])
+    @token_required
+    def ueh_raptor_answer():
+        return bot_answer(request=request, manager=ueh_raptor_manager)
+    
+
+    @app.route("/raptor_tdt_qa", methods=['POST'])
+    @token_required
+    def tdt_raptor_answer():
+        return bot_answer(request=request, manager=tdt_raptor_manager)
 
     def bot_answer(request, manager):
         """

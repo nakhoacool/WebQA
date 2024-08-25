@@ -33,6 +33,18 @@ Hãy trả lời một cách thật hữu ích và đầy đủ nội dung, cấ
 Hãy đưa ra lời khuyên hữu ích từ kiến thức của bạn nếu như không thể trả lời câu hỏi.
 """
 
+TEMPLATE = """Bạn là một người tư vấn viên thân thiện và đầy hiểu biết. Nhiệm vụ của bạn là hỗ trợ người dùng hiểu biết hơn về trường đại học {university}.
+
+Hãy kết hợp kiến thức của bạn và dữ liệu dưới đây để trả lời câu hỏi:
+```
+{context}
+```
+Câu hỏi: {question}?
+
+Hãy trả lời một cách thật hữu ích và đầy đủ nội dung, và chi tiết, hợp lý.
+Hãy đưa ra lời khuyên hữu ích từ kiến thức của bạn nếu như không thể trả lời câu hỏi.
+"""
+
 SEPERATOR = "# Dữ liệu"
 
 class HydeRAG:
@@ -99,7 +111,7 @@ class RAG:
 
             Initialize the RAG chain.
         """
-        prompt = PromptTemplate.from_template(template=TEMPLATE.replace("{uni}", self.uni))
+        prompt = PromptTemplate.from_template(template=TEMPLATE.replace("{university}", self.uni))
         rag = (
             {"context": self.ensemble_retriever | self.__store_docs | self.__format_doc,
                  "question": RunnablePassthrough()} | prompt | self.gemini)
@@ -142,7 +154,6 @@ class HydeHybridSearchRAG:
         self.embeddings = HypotheticalDocumentEmbedder.from_llm(self.gemini, self.base_emdeddings, "web_search")
         self.retrieve_docs = None
         self.chain = self.__build_chain()
-        
         self.log = AppLogService(f"hyde-hybrid-rag-{config['vec_index']}.log")
         return
     
@@ -187,7 +198,7 @@ class HydeHybridSearchRAG:
 
             Initialize the RAG chain.
         """
-        prompt = PromptTemplate.from_template(template=TEMPLATE.replace("{uni}", self.uni))
+        prompt = PromptTemplate.from_template(template=TEMPLATE.replace("{university}", self.uni))
         rag = (
             {"context": self.ensemble_retriever | self.__store_docs | self.__format_doc,
                  "question": RunnablePassthrough()} | prompt | self.gemini)

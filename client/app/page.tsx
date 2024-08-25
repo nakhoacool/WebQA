@@ -59,6 +59,8 @@ export default function Home() {
           >
             <option value='tdt'>TDT</option>
             <option value='ueh'>UEH</option>
+            <option value='raptor_tdt'>TDT (RAPTOR)</option>
+            <option value='raptor_ueh'>UEH (RAPTOR)</option>
           </select>
         </div>
         {/* Chat message */}
