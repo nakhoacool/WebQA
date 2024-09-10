@@ -1,3 +1,7 @@
+## System architecture
+
+![WebQA architecture](./docs/images/system_architecture.png)
+
 ## How to run
 
 At the top of parent directory, run
