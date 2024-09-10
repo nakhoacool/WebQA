@@ -1,8 +1,30 @@
+# WebQA
+A RAG based chat bot that can incoporate external knowledge source.
+
+This bot is developed to perform QA task for:
+- TDT (Tôn Đức Thắng university)
+- UEH (University of Economics Ho Chi Minh city)
+
+## Data
+All the dataset is hosted on https://huggingface.co/BroDeadlines
+TDT dataset
+```
+Text data: https://huggingface.co/datasets/BroDeadlines/TEST.TDT.edu_tdt_proposition_data/viewer/default/INDEX.medium_index_TDT_clean
+QA dataset: https://huggingface.co/datasets/BroDeadlines/QA.TDT.FQA_tu_van_hoc_duong/viewer/default/INDEX.medium_index_TDT
+```
+
+UEH dataset
+```
+Text data: https://huggingface.co/datasets/BroDeadlines/TEST.UEH.ueh_copora_data
+QA dataset: https://huggingface.co/datasets/BroDeadlines/QA.UEH.QA_tu_van_tuyen_sinh
+```
+
 ## System architecture
 
 ![WebQA architecture](./docs/images/system_architecture.png)
 
-## How to run
+## Guides
+### How to run
 
 At the top of parent directory, run
 
@@ -21,7 +43,21 @@ cd ../
 flask --app core/app.py run
 ```
 
-## Docker Setup and Installation
+### Config API keys
+The source code is provided with API keys so only need to config these keys if you need.
+
+For Python Back-end
+```
+cd core/.keys
+ls
+```
+
+For NextJS Front-end
+```
+cat client/.env
+```
+
+### Docker Setup and Installation
 
 1. Make sure Docker and Docker Compose are installed on your machine. If not, you can download them from [Docker's official website](https://www.docker.com/products/docker-desktop).
 
