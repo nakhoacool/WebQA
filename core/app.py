@@ -32,9 +32,9 @@ def get_RAPTOR_ueh_config():
 def get_tdt_config():
     data = {
         "DATA_REPO":"BroDeadlines/TEST.TDT.mini.tdt_copora_data",
-        "SUBSET": "compact", 
-        "VEC_IDX": "vec-sentence-compact-tdt-sentence", 
-        'TXT_IDX': 'text-sentence-compact-tdt-sentence', 
+        "SUBSET": "compact_diemchuan", 
+        "VEC_IDX": "vec-sentence-compact-tdt-sentence-clone", 
+        'TXT_IDX': 'text-sentence-compact-tdt-sentence-clone', 
         "UNI": "Tôn Đức Thắng"}
     return data
 
