@@ -10,13 +10,19 @@ export default function ChatBubble({ data }: ChatBubbleProps) {
     >
       <div className='chat-image avatar'>
         <div className='w-9 rounded-full'>
-          {data.role === 'bot' ? <RobotIcon /> : <UserIcon />}
+          {data.role === 'bot' ? (
+            <RobotIcon className='text-black' />
+          ) : (
+            <UserIcon />
+          )}
         </div>
       </div>
       <div className='chat-header'>{data.role === 'bot' ? 'Bot' : 'User'}</div>
       <div
-        className={`chat-bubble text-white ${
-          data.role === 'user' ? 'bg-[#3F51B5]' : ''
+        className={`chat-bubble ${
+          data.role === 'user'
+            ? 'bg-[#3F51B5] text-white'
+            : 'bg-[#f4f4f4] text-black'
         }`}
       >
         <ReactMarkdown>{data.content}</ReactMarkdown>

@@ -21,38 +21,39 @@ export default function Sidebar() {
 
   const { handleClearChat, chatHistory } = context
   return (
-    <div className='flex flex-col w-64 border-r border-[#282828] bg-[#171717]'>
-      <div className='border-b border-[#282828] p-2'>
+    <div className='flex flex-col w-64 border-r bg-[#F9F9F9]'>
+      <div className='p-2'>
         <button
-          className='btn bg-[#1c1528] hover:bg-[#35255c] w-full flex justify-between items-center px-4 py-2 space-x-2'
+          className='btn w-full flex justify-between items-center px-4 py-2 space-x-2'
           onClick={handleClearChat}
         >
           <span>New chat</span>
           <PlusIcon />
         </button>
       </div>
+      <div className='divider mt-[-1px] mb-[-2px]'></div>
       <div className='overflow-y-auto p-2'>
         {chatHistory.map((item) => (
           <SidebarItem key={item.id} item={item} />
         ))}
       </div>
       <Popover>
-        <PopoverTrigger className='px-4 py-2 flex items-center space-x-2 border-t border-[#282828] hover:bg-[#35255c] bg-[#1c1528] mt-auto'>
+        <PopoverTrigger className='px-4 py-2 flex items-center space-x-2 border-t mt-auto'>
           <Avatar>
-            <AvatarFallback>
+            <AvatarFallback className='text-white bg-gray-500'>
               <span>{session?.user.email?.[0]?.toUpperCase()}</span>
             </AvatarFallback>
           </Avatar>
-          <span className='text-sm truncate text-clip'>
+          <p className='text-sm truncate text-clip text-black'>
             {session?.user.email}
-          </span>
+          </p>
         </PopoverTrigger>
         <PopoverContent className='w-[15rem] px-2'>
           <button
             onClick={() => signOut({ callbackUrl: '/', redirect: true })}
-            className='py-2 hover:bg-gray-700 w-full flex items-center rounded space-x-2'
+            className='py-2 hover:bg-[#C7C8C8] w-full flex items-center rounded space-x-2'
           >
-            <LogOutIcon className='text-white' />
+            <LogOutIcon className='text-black' />
             <span>Sign out</span>
           </button>
         </PopoverContent>

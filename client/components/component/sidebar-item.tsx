@@ -25,8 +25,8 @@ export default function SidebarItem({ item }: SidebarItemProps) {
   return (
     <button
       key={item.id}
-      className={`btn mb-2 flex justify-between items-center hover:bg-[#35255c] w-full ${
-        isActive || isHovered ? 'bg-[#35255c]' : 'bg-[#1c1528]'
+      className={`btn mb-2 flex justify-between items-center w-full ${
+        isActive || isHovered ? 'btn-active' : ''
       } flex-nowrap`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

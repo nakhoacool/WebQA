@@ -49,13 +49,13 @@ export default function Home() {
       <Sidebar />
       {/* Chat */}
       <div className='flex-1 flex flex-col'>
-        <div className='flex items-center space-x-4 p-4 bg-[#00035B]'>
-          <h1 className='text-xl font-bold'>Chatbot</h1>
+        <div className='flex items-center space-x-4 p-4 bg-[#ececec]'>
+          <h1 className='text-xl font-bold text-black'>Chatbot</h1>
           <select
             value={selectedOption}
             onChange={(e) => setSelectedOption(e.target.value)}
             disabled={!isNewChat}
-            className='bg-[#1c1528] text-white rounded'
+            className='bg-[#f4f4f4] text-black rounded'
           >
             <option value='tdt'>TDT</option>
             <option value='ueh'>UEH</option>

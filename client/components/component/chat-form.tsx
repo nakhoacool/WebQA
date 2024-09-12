@@ -121,7 +121,7 @@ export default function ChatForm() {
                     <Textarea
                       onKeyDown={(e) => handleKeyDown(e, field, form, onSubmit)}
                       placeholder='Enter your message...'
-                      className='resize-none focus-visible:ring-offset-0 focus-visible:ring-0 pr-20'
+                      className='resize-none focus-visible:ring-offset-0 focus-visible:ring-0 pr-20 bg-[#ececec] text-black'
                       disabled={isBotTyping}
                       {...field}
                     />
