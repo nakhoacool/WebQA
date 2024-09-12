@@ -94,7 +94,7 @@ export default function SignInForm() {
       <ToastContainer />
       <div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
         <div className='sm:mx-auto sm:w-full sm:max-w-sm'>
-          <h2 className='mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white'>
+          <h2 className='mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-black'>
             Sign in to your account
           </h2>
         </div>
@@ -112,7 +112,7 @@ export default function SignInForm() {
                         type='email'
                         autoComplete='email'
                         placeholder='Enter your email address'
-                        className='h-12 block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
+                        className='h-12 block w-full rounded-md border-0 bg-white/5 py-1.5 text-black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
                         {...field}
                       />
                     </FormControl>
@@ -141,7 +141,7 @@ export default function SignInForm() {
                         type='password'
                         autoComplete='current-password'
                         placeholder='Enter your password'
-                        className='h-12 block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
+                        className='h-12 block w-full rounded-md border-0 bg-white/5 py-1.5 text-black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6'
                         {...field}
                       />
                     </FormControl>
