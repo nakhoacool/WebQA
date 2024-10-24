@@ -24,6 +24,9 @@ QA dataset: https://huggingface.co/datasets/BroDeadlines/QA.UEH.QA_tu_van_tuyen_
 ![WebQA architecture](./docs/images/system_architecture.png)
 
 ## Guides
+
+Check this [guidelines file](./docs/guidelines.md) for details :))
+
 ### How to run
 
 At the top of parent directory, run
