@@ -57,6 +57,11 @@ For NextJS Front-end
 cat client/.env
 ```
 
+To get the ca.cert
+```
+docker cp elasticsearch-es01-1:/usr/share/elasticsearch/config/certs/ca/ca.crt /home/ubuntu/elasticsearch
+```
+
 ### Docker Setup and Installation
 
 1. Make sure Docker and Docker Compose are installed on your machine. If not, you can download them from [Docker's official website](https://www.docker.com/products/docker-desktop).
