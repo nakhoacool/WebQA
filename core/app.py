@@ -15,8 +15,8 @@ def get_ueh_config():
     data = {
         "DATA_REPO":"BroDeadlines/TEST.UEH.ueh_copora_data", 
         "SUBSET": "default", 
-        "VEC_IDX": "vec-sentence-ueh-unique", 
-        'TXT_IDX': 'text-sentence-ueh-unique', 
+        "VEC_IDX": "vec-sentence-ueh-ds", 
+        'TXT_IDX': 'text-sentence-ueh-ds', 
         "UNI": "Kinh tế TP. Hồ Chí Minh"}
     return data
 
@@ -33,8 +33,8 @@ def get_tdt_config():
     data = {
         "DATA_REPO":"BroDeadlines/TEST.TDT.mini.tdt_copora_data",
         "SUBSET": "compact_diemchuan", 
-        "VEC_IDX": "vec-sentence-compact-tdt-sentence-clone", 
-        'TXT_IDX': 'text-sentence-compact-tdt-sentence-clone', 
+        "VEC_IDX": "vec-sentence-tdt-ds", 
+        'TXT_IDX': 'text-sentence-tdt-ds', 
         "UNI": "Tôn Đức Thắng"}
     return data
 
